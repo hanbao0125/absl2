@@ -5,7 +5,7 @@ function downloadFile(path){
     var aLink = document.createElement("a"),
         evt = document.createEvent("HTMLEvents");
 
-    evt.initEvent("click");
+    evt.initEvent("click", true, false);
     aLink.download = "";
     aLink.href = path;
     aLink.dispatchEvent(evt);
