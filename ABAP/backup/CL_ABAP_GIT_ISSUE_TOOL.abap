@@ -1,17 +1,17 @@
-class CL_ABAP_GIT_ISSUE_TOOL definition
-  public
-  final
-  create public .
+CLASS cl_abap_git_issue_tool DEFINITION
+  PUBLIC
+  FINAL
+  CREATE PUBLIC .
 
-public section.
+  PUBLIC SECTION.
 
-  class-methods READ_TXT_FILE
-    importing
-      !IV_PATH type STRING
-    returning
-      value(RV_TEXT) type STRING .
-protected section.
-private section.
+    CLASS-METHODS read_txt_file
+      IMPORTING
+        !iv_path       TYPE string
+      RETURNING
+        VALUE(rv_text) TYPE string .
+  PROTECTED SECTION.
+  PRIVATE SECTION.
 ENDCLASS.
 
 
@@ -25,10 +25,10 @@ CLASS CL_ABAP_GIT_ISSUE_TOOL IMPLEMENTATION.
 * | [--->] IV_PATH                        TYPE        STRING
 * | [<-()] RV_TEXT                        TYPE        STRING
 * +--------------------------------------------------------------------------------------</SIGNATURE>
-  METHOD READ_TXT_FILE.
+  METHOD read_txt_file.
 
     DATA: l_filename TYPE string,
-          l_rawtab   TYPE STANDARD TABLE OF char255,
+          l_rawtab   TYPE string_table,"STANDARD TABLE OF char255,
           l_len      TYPE i.
 
     l_filename = iv_path.
@@ -36,6 +36,7 @@ CLASS CL_ABAP_GIT_ISSUE_TOOL IMPLEMENTATION.
       EXPORTING
         filename                = l_filename
         filetype                = 'ASC'
+        CODEPAGE                = '8400'
       IMPORTING
         filelength              = l_len
       CHANGING
@@ -63,13 +64,9 @@ CLASS CL_ABAP_GIT_ISSUE_TOOL IMPLEMENTATION.
 
     ASSERT sy-subrc = 0.
 
-    CALL FUNCTION 'SCMS_FTEXT_TO_STRING'
-      EXPORTING
-        length           = l_len
-     IMPORTING
-       FTEXT            = rv_text
-      tables
-        ftext_tab        = l_rawtab.
+    LOOP AT l_rawtab ASSIGNING FIELD-SYMBOL(<line>).
+      rv_text = rv_text && <line>.
+    ENDLOOP.
 
   ENDMETHOD.
 ENDCLASS.
