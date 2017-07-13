@@ -1,15 +1,19 @@
-CLASS cl_abap_git_issue_tool DEFINITION
-  PUBLIC
-  FINAL
-  CREATE PUBLIC .
+class CL_ABAP_GIT_ISSUE_TOOL definition
+  public
+  final
+  create public .
 
-  PUBLIC SECTION.
+public section.
 
-    CLASS-METHODS read_txt_file
-      IMPORTING
-        !iv_path       TYPE string
-      RETURNING
-        VALUE(rv_text) TYPE string .
+  class-methods READ_TXT_FILE
+    importing
+      !IV_PATH type STRING
+    returning
+      value(RV_TEXT) type STRING .
+  class-methods DOWNLOAD_AS_TEXT_FILE
+    importing
+      !IV_FILE_PATH type STRING
+      !IV_TEXT_CONTENT type STRING .
   PROTECTED SECTION.
   PRIVATE SECTION.
 ENDCLASS.
@@ -17,6 +21,30 @@ ENDCLASS.
 
 
 CLASS CL_ABAP_GIT_ISSUE_TOOL IMPLEMENTATION.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Static Public Method CL_ABAP_GIT_ISSUE_TOOL=>DOWNLOAD_AS_TEXT_FILE
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] IV_FILE_PATH                   TYPE        STRING
+* | [--->] IV_TEXT_CONTENT                TYPE        STRING
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD download_as_text_file.
+    DATA: lt_data_tab TYPE TABLE OF sdokcntasc.
+
+    CALL FUNCTION 'SCMS_STRING_TO_FTEXT'
+      EXPORTING
+        text      = iv_text_content
+      TABLES
+        ftext_tab = lt_data_tab.
+
+    CALL METHOD cl_gui_frontend_services=>gui_download
+      EXPORTING
+        filename = iv_file_path
+        codepage = '8400'
+      CHANGING
+        data_tab = lt_data_tab.
+  ENDMETHOD.
 
 
 * <SIGNATURE>---------------------------------------------------------------------------------------+
@@ -28,7 +56,7 @@ CLASS CL_ABAP_GIT_ISSUE_TOOL IMPLEMENTATION.
   METHOD read_txt_file.
 
     DATA: l_filename TYPE string,
-          l_rawtab   TYPE string_table,"STANDARD TABLE OF char255,
+          l_rawtab   TYPE string_table,
           l_len      TYPE i.
 
     l_filename = iv_path.
