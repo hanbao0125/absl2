@@ -29,10 +29,6 @@ public section.
     exporting
       !ET_NODE type TT_SORTED_NODE
       !EV_NODE_NUMBER type INT4 .
-  class-methods WRITE_TO_DB
-    importing
-      !IT_SORTED_NODE type TT_SORTED_NODE
-      !IV_ISSUE_NUM type INT4 .
   class-methods START_BACKUP
     importing
       !IV_REPO type CHAR4 .
@@ -67,6 +63,10 @@ private section.
   class-data SV_MAX_NUMBER_IN_DB type INT4 .
   class-data SV_REPO_SHORT_NAME type CHAR4 .
 
+  class-methods WRITE_TO_DB
+    importing
+      !IT_SORTED_NODE type TT_SORTED_NODE
+      !IV_ISSUE_NUM type INT4 .
   class-methods GET_NEXT_PAGE
     importing
       !IT_HEADER type TIHTTPNVP
@@ -149,7 +149,7 @@ CLASS CL_ABAP_GIT_ISSUE_TOOL IMPLEMENTATION.
       RETURN.
     ENDIF.
 
-    data(lv_json) = lo_http_client->response->get_cdata( ).
+    DATA(lv_json) = lo_http_client->response->get_cdata( ).
 
     handle_http_response( lv_json ).
     lo_http_client->response->get_header_fields( CHANGING fields = lt_fields ).
@@ -157,7 +157,7 @@ CLASS CL_ABAP_GIT_ISSUE_TOOL IMPLEMENTATION.
 
     DATA(lv_subsequent_page) = get_next_page( lt_fields ).
     IF lv_subsequent_page IS NOT INITIAL.
-       backup_given_url( lv_subsequent_page ).
+      backup_given_url( lv_subsequent_page ).
     ENDIF.
   ENDMETHOD.
 
@@ -200,14 +200,19 @@ CLASS CL_ABAP_GIT_ISSUE_TOOL IMPLEMENTATION.
     SPLIT <link>-value AT ';' INTO TABLE DATA(lt_page).
     READ TABLE lt_page ASSIGNING FIELD-SYMBOL(<next_page>) INDEX 1.
     CHECK sy-subrc = 0.
-    FIND 'page' IN <next_page>.
+    FIND 'page=' IN <next_page> MATCH OFFSET DATA(lv_offset).
     CHECK sy-subrc = 0.
+    DATA(lv_len) = strlen( <next_page> ) - lv_offset - 5.
+
+    lv_offset = lv_offset + 5.
+    DATA(next_page_number) = conv int4( <next_page>+lv_offset(lv_len) ).
+
+    CHECK next_page_number <> 1.
     rv_next_page_url = <next_page>.
-    replace all OCCURRENCES OF '<' in rv_next_page_url WITH SPACE.
-    replace all OCCURRENCES OF '>' in rv_next_page_url WITH SPACE.
+    REPLACE ALL OCCURRENCES OF '<' IN rv_next_page_url WITH space.
+    REPLACE ALL OCCURRENCES OF '>' IN rv_next_page_url WITH space.
     CONDENSE rv_next_page_url NO-GAPS.
     WRITE:/ 'Next Page:', rv_next_page_url.
-    BREAK-POINT.
   ENDMETHOD.
 
 
@@ -513,40 +518,40 @@ CLASS CL_ABAP_GIT_ISSUE_TOOL IMPLEMENTATION.
 
 
 * <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Public Method CL_ABAP_GIT_ISSUE_TOOL=>WRITE_TO_DB
+* | Static Private Method CL_ABAP_GIT_ISSUE_TOOL=>WRITE_TO_DB
 * +-------------------------------------------------------------------------------------------------+
 * | [--->] IT_SORTED_NODE                 TYPE        TT_SORTED_NODE
 * | [--->] IV_ISSUE_NUM                   TYPE        INT4
 * +--------------------------------------------------------------------------------------</SIGNATURE>
-  method WRITE_TO_DB.
+  METHOD write_to_db.
     DATA: ls_issue TYPE crmd_git_issue,
           lt_issue TYPE TABLE OF crmd_git_issue.
-     DO iv_issue_num TIMES.
-        CLEAR: ls_issue.
-        ls_issue-repo_name = SV_REPO_SHORT_NAME.
-        ls_issue-mandt = sy-mandt.
-        LOOP AT it_sorted_node ASSIGNING FIELD-SYMBOL(<node>) WHERE index = sy-index.
-           CASE <node>-attribute.
-             WHEN 'number'.
-                ls_issue-issue_num = <node>-value.
-                IF sv_max_number_in_db >= ls_issue-issue_num.
-                    EXIT.
-                ENDIF.
-             WHEN 'title'.
-                ls_issue-title = <node>-value.
-             WHEN 'body'.
-                ls_issue-issue_body = <node>-value.
-             WHEN 'created_at'.
-                ls_issue-created_at = <node>-value.
-             WHEN 'updated_at'.
-                ls_issue-updated_at = <node>-value.
-           ENDCASE.
-        ENDLOOP.
+    DO iv_issue_num TIMES.
+      CLEAR: ls_issue.
+      ls_issue-repo_name = sv_repo_short_name.
+      ls_issue-mandt = sy-mandt.
+      LOOP AT it_sorted_node ASSIGNING FIELD-SYMBOL(<node>) WHERE index = sy-index.
+        CASE <node>-attribute.
+          WHEN 'number'.
+            ls_issue-issue_num = <node>-value.
+            IF sv_max_number_in_db >= ls_issue-issue_num.
+              EXIT.
+            ENDIF.
+          WHEN 'title'.
+            ls_issue-title = <node>-value.
+          WHEN 'body'.
+            ls_issue-issue_body = <node>-value.
+          WHEN 'created_at'.
+            ls_issue-created_at = <node>-value.
+          WHEN 'updated_at'.
+            ls_issue-updated_at = <node>-value.
+        ENDCASE.
+      ENDLOOP.
+      APPEND ls_issue TO lt_issue.
+    ENDDO.
 
-        IF lt_issue IS NOT INITIAL.
-           INSERT crmd_git_issue FROM TABLE lt_issue.
-        ENDIF.
-        APPENd ls_issue TO lt_issue.
-     ENDDO.
-  endmethod.
+    IF lt_issue IS NOT INITIAL.
+      INSERT crmd_git_issue FROM TABLE lt_issue.
+    ENDIF.
+  ENDMETHOD.
 ENDCLASS.
