@@ -59,11 +59,13 @@ http://localhost:3000/ui5/ - can work!
 
 cf api https://api.cf.us10.hana.ondemand.com
 
+cf api https://api.cf.eu10.hana.ondemand.com
+
 https://jerry-list-wiesloch.cfapps.us10.hana.ondemand.com
 
 how the CF is clever enough to know that index.html should be executed??
 
-https://jerrylist.cfapps.eu10.hana.ondemand.com/ can access now.
+https://jerrylist.cfapps.eu10.hana.ondemand.com/ui5 can access now.
 https://jerrylist.cfapps.eu10.hana.ondemand.com - 囧，要加https
 
 set HTTPS_PROXY=http://proxy.wdf.sap.corp:8080
@@ -71,5 +73,5 @@ set HTTPS_PROXY=http://proxy.wdf.sap.corp:8080
 2017-05-27
 1. https://jerryordercount.cfapps.eu10.hana.ondemand.com
 
-https://jerryordercount.cfapps.eu10.hana.ondemand.com/jerry/OneOrderHCP.html
+https://jerryordercount.cfapps.eu10.hana.ondemand.com/jerry/OneOrderHCP.html --Jerry checkes on 2017-07-15 that it could still be accessed.
 
