@@ -1,124 +1,339 @@
-class CL_ABAP_GIT_ISSUE_TOOL definition
+class ZCL_CRM_CM_TOOL definition
   public
   final
   create public .
 
 public section.
 
-  types:
-    BEGIN OF ty_sorted_node,
-        index     TYPE string,
-        attribute TYPE string,
-        value     TYPE string,
-      END OF ty_sorted_node .
-  types:
-    tt_sorted_node TYPE STANDARD TABLE OF ty_sorted_node .
-
-  class-methods READ_TXT_FILE
+  class-methods GET_DATA_BY_URL
     importing
-      !IV_PATH type STRING
+      !IV_URL type STRING
     returning
-      value(RV_TEXT) type STRING .
-  class-methods DOWNLOAD_AS_TEXT_FILE
+      value(EV_DATA) type XSTRING .
+  class-methods CREATE_DOC
     importing
-      !IV_FILE_PATH type STRING
-      !IV_TEXT_CONTENT type STRING .
-  class-methods PARSE_JSON_TO_INTERNAL_TABLE
+      !IV_DATA type XSTRING
+      !IV_BOR_TYPE type STRING
+      !IV_GUID type SMI_SOCIALDATAUUID
+      !IV_FILE_NAME type STRING .
+  class-methods DELETE_DOC
     importing
-      !IV_JSON type STRING
+      !IV_BOR_TYPE type STRING
+      !IV_UUID type SOCIALDATA-SOCIALDATAUUID
+    returning
+      value(RV_SUCCESSFUL) type ABAP_BOOL .
+  class-methods GET_ATTACHMENTS
+    importing
+      !IV_GUID type SIBFLPORB-INSTID
+      !IV_BOR_TYPE type STRING
     exporting
-      !ET_NODE type TT_SORTED_NODE
-      !EV_NODE_NUMBER type INT4 .
-  class-methods START_BACKUP
+      value(LOIOS) type SKWF_IOS
+      value(PHIOS) type SKWF_IOS .
+  class-methods CHANGE_PROPERTY
     importing
-      !IV_REPO type CHAR4 .
-  class-methods DOWNLOAD_ISSUE
+      !IV_GUID type SIBFLPORB-INSTID
+      !IV_BOR_TYPE type STRING
+      !IV_ATTR_NAME type STRING
+      !IV_NEW_VALUE type STRING .
+  class-methods CLASS_CONSTRUCTOR .
+  class-methods GET_PRODUCT_DOC_URL
     importing
-      !IV_REPO_NAME type CHAR4
-      !IV_ISSUE_NUMBER type INT4
-      !IV_FOLDER_NAME type STRING .
-  PROTECTED SECTION.
-  PRIVATE SECTION.
-
-    TYPES:
-      BEGIN OF ty_level,
-        level     TYPE i,
-        indicator TYPE string,
-      END OF ty_level .
-    TYPES:
-      tt_level TYPE STANDARD TABLE OF ty_level WITH KEY level .
-    TYPES:
-      BEGIN OF ty_node,
-        node_type TYPE string,
-        prefix    TYPE string,
-        name      TYPE string,
-        nsuri     TYPE string,
-        value     TYPE string,
-        value_raw TYPE xstring,
-      END OF ty_node .
-    TYPES:
-      tt_node TYPE TABLE OF ty_node .
-
-    CONSTANTS gc_json_open_element TYPE string VALUE 'open element' ##NO_TEXT.
-    CONSTANTS gc_json_attribute TYPE string VALUE 'attribute' ##NO_TEXT.
-    CONSTANTS gc_json_close_element TYPE string VALUE 'close element' ##NO_TEXT.
-    CONSTANTS gc_json_value TYPE string VALUE 'value' ##NO_TEXT.
-    CONSTANTS gc_json_error TYPE string VALUE 'Error' ##NO_TEXT.
-    CLASS-DATA sv_url TYPE string .
-    CLASS-DATA sv_max_number_in_db TYPE int4 .
-    CLASS-DATA sv_repo_short_name TYPE char4 .
-
-    CLASS-METHODS write_to_db
-      IMPORTING
-        !it_sorted_node TYPE tt_sorted_node
-        !iv_issue_num   TYPE int4 .
-    CLASS-METHODS get_next_page
-      IMPORTING
-        !it_header              TYPE tihttpnvp
-      RETURNING
-        VALUE(rv_next_page_url) TYPE string .
-    CLASS-METHODS parse_json_to_raw_table
-      IMPORTING
-        !iv_json TYPE string
-      EXPORTING
-        !et_node TYPE tt_node
-      EXCEPTIONS
-        json_parse_error .
-    CLASS-METHODS sort_raw_table
-      IMPORTING
-        !it_node        TYPE tt_node
-      EXPORTING
-        !et_sorted_node TYPE tt_sorted_node
-        !ev_node_number TYPE int4 .
-    CLASS-METHODS backup_given_url
-      IMPORTING
-        !iv_url TYPE string .
-    CLASS-METHODS handle_http_response
-      IMPORTING
-        !iv_json TYPE string .
+      !IV_PROD_ID type COMM_PRODUCT-PRODUCT_ID
+    returning
+      value(RT_URL) type STRING_TABLE .
+  class-methods GET_TEXT_BY_URL
+    importing
+      !IV_URL type STRING
+    returning
+      value(EV_TEXT) type STRING .
+  class-methods IS_TEXT_FILE
+    importing
+      !IS_IO type SKWF_IO
+    returning
+      value(RV_TRUE) type ABAP_BOOL .
+  class-methods GET_PROD_ID_BY_PHIO
+    importing
+      !IV_PHIO type SDOK_PHID
+    returning
+      value(RV_PROD_ID) type COMM_PRODUCT-PRODUCT_ID .
+  class-methods DOWNLOAD_LOCALLY
+    importing
+      !IV_LOCAL_PATH type STRING
+      !IV_BINARY type XSTRING .
+protected section.
+private section.
 ENDCLASS.
 
 
 
-CLASS CL_ABAP_GIT_ISSUE_TOOL IMPLEMENTATION.
+CLASS ZCL_CRM_CM_TOOL IMPLEMENTATION.
 
 
 * <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Private Method CL_ABAP_GIT_ISSUE_TOOL=>BACKUP_GIVEN_URL
+* | Static Public Method ZCL_CRM_CM_TOOL=>CHANGE_PROPERTY
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] IV_GUID                        TYPE        SIBFLPORB-INSTID
+* | [--->] IV_BOR_TYPE                    TYPE        STRING
+* | [--->] IV_ATTR_NAME                   TYPE        STRING
+* | [--->] IV_NEW_VALUE                   TYPE        STRING
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  method CHANGE_PROPERTY.
+    DATA: loios  TYPE SKWF_IOS,
+          phios  TYPE SKWF_IOS,
+          ls_header TYPE SDOKOBJECT,
+          lt_properties TYPE STANDARD TABLE OF SDOKPROPTY.
+
+    DATA(ls_property) = VALUE SDOKPROPTY( name = iv_attr_name value = iv_new_value ).
+    APPEND ls_property TO lt_properties.
+
+    CALL METHOD zcl_crm_cm_tool=>GET_ATTACHMENTS
+      EXPORTING
+         iv_guid = iv_guid
+         iv_bor_type = iv_bor_type
+      IMPORTING
+         LOIOS = LOIOS
+         phios = phios.
+
+    LOOP AT phios ASSIGNING FIELD-SYMBOL(<ios>).
+       ls_header-class =  <ios>-class.
+       ls_header-objid = <ios>-objid.
+      CALL FUNCTION 'SDOK_PHIO_PROPERTIES_SET'
+        EXPORTING
+          object_id = ls_header
+        TABLES
+          properties = lt_properties
+        EXCEPTIONS
+          NOT_EXISTING = 1
+          BAD_PROPERTIES = 2
+          NOT_AUTHORIZED = 3
+          EXCEPTION_IN_EXIT = 4.
+
+      IF sy-subrc <> 0.
+         BREAK-POINT.
+      ENDIF.
+
+    ENDLOOP.
+
+  endmethod.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Static Public Method ZCL_CRM_CM_TOOL=>CLASS_CONSTRUCTOR
+* +-------------------------------------------------------------------------------------------------+
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  method CLASS_CONSTRUCTOR.
+    CALL FUNCTION 'SDOK_INTERNAL_MODE_ACCESS'
+      EXPORTING
+        MODE_REQUESTED = '01'.
+  endmethod.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Static Public Method ZCL_CRM_CM_TOOL=>CREATE_DOC
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] IV_DATA                        TYPE        XSTRING
+* | [--->] IV_BOR_TYPE                    TYPE        STRING
+* | [--->] IV_GUID                        TYPE        SMI_SOCIALDATAUUID
+* | [--->] IV_FILE_NAME                   TYPE        STRING
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  method CREATE_DOC.
+    DATA:
+         ls_bo              TYPE sibflporb,
+         ls_prop            TYPE LINE OF sdokproptys,
+         lt_prop            TYPE sdokproptys,
+         lt_properties_attr TYPE crmt_attr_name_value_t,
+         ls_file_info       TYPE sdokfilaci,
+         lt_file_info       TYPE sdokfilacis,
+         lt_file_content    TYPE sdokcntbins,
+         lv_length          TYPE i,
+         lv_file_xstring    TYPE xstring,
+         ls_loio            TYPE skwf_io,
+         ls_phio            TYPE skwf_io,
+         ls_error           TYPE skwf_error.
+
+    ls_prop-name = 'DESCRIPTION'.
+    ls_prop-value = 'created by Tool'.
+    APPEND ls_prop TO lt_prop.
+
+    ls_prop-name = 'KW_RELATIVE_URL'.
+    ls_prop-value = iv_file_name.
+    APPEND ls_prop TO lt_prop.
+
+    ls_prop-name = 'LANGUAGE'.
+    ls_prop-value = sy-langu.
+    APPEND ls_prop TO lt_prop.
+
+" read only field, cannot work
+*    ls_prop-name = 'CREATED_BY'.
+*    ls_prop-value = 'DAIDE'.
+*    APPEND ls_prop TO lt_prop.
+
+    lv_file_xstring = iv_data.
+    CALL FUNCTION 'SCMS_XSTRING_TO_BINARY'
+      EXPORTING
+        buffer        = lv_file_xstring
+      IMPORTING
+        output_length = lv_length
+      TABLES
+        binary_tab    = lt_file_content.
+
+    ls_file_info-binary_flg = 'X'.
+    ls_file_info-file_name = iv_file_name.
+    ls_file_info-file_size = lv_length.
+    ls_file_info-mimetype = 'text/html'."'image/jpeg'.
+    APPEND ls_file_info TO lt_file_info.
+
+    ls_bo-INSTID = iv_guid.
+    ls_bo-typeid = iv_bor_type.
+    ls_bo-catid = 'BO'.
+
+    CALL METHOD cl_crm_documents=>create_with_table
+      EXPORTING
+        business_object     = ls_bo
+        properties          = lt_prop
+        properties_attr     = lt_properties_attr
+        file_access_info    = lt_file_info
+        file_content_binary = lt_file_content
+        raw_mode            = 'X'
+      IMPORTING
+        loio                = ls_loio
+        phio                = ls_phio
+        error               = ls_error.
+  endmethod.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Static Public Method ZCL_CRM_CM_TOOL=>DELETE_DOC
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] IV_BOR_TYPE                    TYPE        STRING
+* | [--->] IV_UUID                        TYPE        SOCIALDATA-SOCIALDATAUUID
+* | [<-()] RV_SUCCESSFUL                  TYPE        ABAP_BOOL
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  method DELETE_DOC.
+    DATA: ls_bo       TYPE SIBFLPORB,
+          lt_loios    TYPE SKWF_IOS,
+          ls_loios    TYPE SKWF_IO,
+          ls_error    TYPE SKWF_ERROR,
+          lt_badios   TYPE SKWF_IOERRS,
+          lv_del_flag TYPE ABAP_BOOL.
+
+    ls_bo-instid = iv_uuid.
+    ls_bo-typeid = iv_bor_type.
+    ls_bo-catid  = 'BO'.
+    rv_successful = abap_false.
+    CALL METHOD cl_crm_documents=>get_info
+      EXPORTING
+        business_object = ls_bo
+      IMPORTING
+        loios           = lt_loios.
+
+    LOOP AT lt_loios INTO ls_loios.
+      CALL METHOD cl_crm_documents=>lock
+        EXPORTING
+          is_bo    = ls_bo
+          is_loio  = ls_loios
+        IMPORTING
+          es_error = ls_error.
+
+      IF ls_error IS NOT INITIAL.
+         RETURN.
+      ENDIF.
+    ENDLOOP.
+
+    CALL METHOD cl_crm_documents=>delete
+      EXPORTING
+         business_object = ls_bo
+         ios             = lt_loios
+      IMPORTING
+         bad_ios         = lt_badios
+         error           = ls_error.
+
+    IF ls_error IS INITIAL. " deletion failed
+       rv_successful = abap_true.
+    ENDIF.
+
+  endmethod.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Static Public Method ZCL_CRM_CM_TOOL=>DOWNLOAD_LOCALLY
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] IV_LOCAL_PATH                  TYPE        STRING
+* | [--->] IV_BINARY                      TYPE        XSTRING
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD download_locally.
+    TYPES: BEGIN OF ts_line,
+             data(1024) TYPE x,
+           END OF ts_line.
+
+    DATA: lv_size TYPE int4,
+          lt_data TYPE STANDARD TABLE OF ts_line.
+
+    CALL FUNCTION 'SCMS_XSTRING_TO_BINARY'
+      EXPORTING
+        buffer        = iv_binary
+      IMPORTING
+        output_length = lv_size
+      TABLES
+        binary_tab    = lt_data.
+
+    CALL METHOD cl_gui_frontend_services=>gui_download
+      EXPORTING
+        bin_filesize = lv_size
+        filename     = iv_local_path
+        filetype     = 'BIN'
+        append       = space
+      IMPORTING
+        filelength   = lv_size
+      CHANGING
+        data_tab     = lt_data
+      EXCEPTIONS
+        OTHERS       = 01.
+
+    ASSERT sy-subrc = 0.
+
+  ENDMETHOD.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Static Public Method ZCL_CRM_CM_TOOL=>GET_ATTACHMENTS
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] IV_GUID                        TYPE        SIBFLPORB-INSTID
+* | [--->] IV_BOR_TYPE                    TYPE        STRING
+* | [<---] LOIOS                          TYPE        SKWF_IOS
+* | [<---] PHIOS                          TYPE        SKWF_IOS
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  method GET_ATTACHMENTS.
+     DATA(ls) = VALUE SIBFLPORB( INSTID = iv_guid typeid = iv_bor_type catid = 'BO' ).
+
+     CALL METHOD CL_CRM_DOCUMENTS=>get_info
+       EXPORTING
+          BUSINESS_OBJECT = ls
+       IMPORTING
+          LOIOS = LOIOS
+          phios = phios.
+  endmethod.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Static Public Method ZCL_CRM_CM_TOOL=>GET_DATA_BY_URL
 * +-------------------------------------------------------------------------------------------------+
 * | [--->] IV_URL                         TYPE        STRING
+* | [<-()] EV_DATA                        TYPE        XSTRING
 * +--------------------------------------------------------------------------------------</SIGNATURE>
-  METHOD backup_given_url.
-    DATA:lo_http_client TYPE REF TO if_http_client,
-         lv_status      TYPE i,
-         lt_fields      TYPE tihttpnvp,
-         lv_sysubrc     TYPE sysubrc.
+  method GET_DATA_BY_URL.
+    DATA:lo_http_client           TYPE REF TO if_http_client,
+         lv_status                TYPE i,
+         lv_sysubrc               TYPE sysubrc.
 
     CALL METHOD cl_http_client=>create_by_url
       EXPORTING
         url                = iv_url
-        proxy_host         = 'PROXY.WDF.SAP.CORP'
+        proxy_host         = 'PROXY.SHA.SAP.CORP'
         proxy_service      = '8080'
+*        ssl_id             = 'ANONYM'
+*        sap_username       = ''
+*        sap_client         = ''
       IMPORTING
         client             = lo_http_client
       EXCEPTIONS
@@ -131,6 +346,10 @@ CLASS CL_ABAP_GIT_ISSUE_TOOL IMPLEMENTATION.
 
     CALL METHOD lo_http_client->request->set_method( if_http_request=>co_request_method_get ).
 
+*Disable pop-up when request receives unauthorized error: error 401.
+    lo_http_client->propertytype_logon_popup = if_http_client=>co_disabled.
+
+*Send request.
     CALL METHOD lo_http_client->send
       EXCEPTIONS
         http_communication_failure = 1
@@ -139,448 +358,190 @@ CLASS CL_ABAP_GIT_ISSUE_TOOL IMPLEMENTATION.
 
     ASSERT sy-subrc = 0.
 
+* Get response.
     CALL METHOD lo_http_client->receive
       EXCEPTIONS
         http_communication_failure = 1
         http_invalid_state         = 2
         http_processing_failed     = 3.
 
-    IF sy-subrc <> 0.
-      CALL METHOD lo_http_client->get_last_error
+   IF sy-subrc <> 0.
+        CALL METHOD lo_http_client->get_last_error
         IMPORTING
           code    = lv_sysubrc
           message = DATA(ev_message).
-      WRITE: / |error occurred during receive data: { ev_message } | COLOR COL_NEGATIVE.
-      RETURN.
-    ENDIF.
+        "BREAK-POINT.
+        WRITE: / 'error: ' , ev_message.
+        RETURN.
+   ENDIF.
 
-    DATA(lv_json) = lo_http_client->response->get_cdata( ).
+   ev_data = lo_http_client->response->get_data( ).
 
-    handle_http_response( lv_json ).
-    lo_http_client->response->get_header_fields( CHANGING fields = lt_fields ).
-    lo_http_client->close( ).
+   DATA: lv_length TYPE i.
 
-    DATA(lv_subsequent_page) = get_next_page( lt_fields ).
-    IF lv_subsequent_page IS NOT INITIAL.
-      backup_given_url( lv_subsequent_page ).
-    ENDIF.
-  ENDMETHOD.
+   lv_length = xstrlen( ev_data ).
 
+   WRITE: / 'data length: ' , lv_length.
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Public Method CL_ABAP_GIT_ISSUE_TOOL=>DOWNLOAD_AS_TEXT_FILE
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] IV_FILE_PATH                   TYPE        STRING
-* | [--->] IV_TEXT_CONTENT                TYPE        STRING
-* +--------------------------------------------------------------------------------------</SIGNATURE>
-  METHOD download_as_text_file.
-    DATA: lt_data_tab TYPE TABLE OF sdokcntasc.
-
-    CALL FUNCTION 'SCMS_STRING_TO_FTEXT'
-      EXPORTING
-        text      = iv_text_content
-      TABLES
-        ftext_tab = lt_data_tab.
-
-    CALL METHOD cl_gui_frontend_services=>gui_download
-      EXPORTING
-        filename = iv_file_path
-        codepage = '8400'
-      CHANGING
-        data_tab = lt_data_tab.
-  ENDMETHOD.
+   lo_http_client->close( ).
+  endmethod.
 
 
 * <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Public Method CL_ABAP_GIT_ISSUE_TOOL=>DOWNLOAD_ISSUE
+* | Static Public Method ZCL_CRM_CM_TOOL=>GET_PRODUCT_DOC_URL
 * +-------------------------------------------------------------------------------------------------+
-* | [--->] IV_REPO_NAME                   TYPE        CHAR4
-* | [--->] IV_ISSUE_NUMBER                TYPE        INT4
-* | [--->] IV_FOLDER_NAME                 TYPE        STRING
+* | [--->] IV_PROD_ID                     TYPE        COMM_PRODUCT-PRODUCT_ID
+* | [<-()] RT_URL                         TYPE        STRING_TABLE
 * +--------------------------------------------------------------------------------------</SIGNATURE>
-  METHOD download_issue.
-    DATA: path TYPE string.
+  method GET_PRODUCT_DOC_URL.
+    DATA:  lt_query_parameter    TYPE crmt_name_value_pair_tab,
+           ls_query_parameter    LIKE LINE OF lt_query_parameter,
+           lv_view_name          TYPE crmt_view_name,
+           ls_doc                TYPE CRMT_PRIL_DOCUMENTS_URI,
+           lv_query_name         TYPE crmt_ext_obj_name.
+    ls_query_parameter-name = 'PRODUCT_ID'.
+    ls_query_parameter-value = iv_prod_id.
+    APPEND ls_query_parameter TO lt_query_parameter.
 
-    SELECT SINGLE * INTO @DATA(ls_issue) FROM crmd_git_issue
-       WHERE repo_name = @iv_repo_name AND issue_num = @iv_issue_number.
+    DATA(lo_core) = cl_crm_bol_core=>get_instance( ).
+    lo_core->load_component_set( 'PROD_ALL' ).
+    lv_query_name = 'ProdAdvancedSearchProducts'.
+
+  try.
+   DATA(lo_collection) = lo_core->query(
+      iv_query_name               = lv_query_name
+      it_query_params             = lt_query_parameter
+      iv_view_name                = lv_view_name ).
+   CATCH CX_SY_ARITHMETIC_ERROR.
+      write:/ 'Error' .
+   ENDTRY.
+
+   DATA(lo_product) = lo_collection->get_first( ).
+   DATA(lo_doc) = lo_product->get_related_entities( IV_RELATION_NAME = 'ProductDocumentLink' ).
+   CHECK lo_doc IS NOT INITIAL.
+
+   DATA(lo_item) = lo_doc->get_first( ).
+   WHILE lo_item IS NOT INITIAL.
+     lo_item->get_properties( IMPORTING ES_ATTRIBUTES = ls_doc ).
+     APPEND ls_doc-document_uri TO rt_url.
+     lo_item = lo_doc->get_next( ).
+   ENDWHILE.
+
+  endmethod.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Static Public Method ZCL_CRM_CM_TOOL=>GET_PROD_ID_BY_PHIO
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] IV_PHIO                        TYPE        SDOK_PHID
+* | [<-()] RV_PROD_ID                     TYPE        COMM_PRODUCT-PRODUCT_ID
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD get_prod_id_by_phio.
+    DATA: ls_ph         TYPE bdsphio22,
+          ls_product    TYPE comm_product,
+          lv_instance_b TYPE skwg_brel-instid_b,
+          ls_relation   TYPE skwg_brel.
+
+    SELECT SINGLE * INTO ls_ph FROM bdsphio22 WHERE phio_id = iv_phio.
     CHECK sy-subrc = 0.
 
-    path = | { iv_folder_name }\\{ iv_repo_name }\\{ iv_issue_number }.md|.
-    download_as_text_file( iv_file_path = path iv_text_content = ls_issue-issue_body ).
+    lv_instance_b = 'L/' && ls_ph-lo_class && '/' && ls_ph-loio_id.
+
+
+    SELECT SINGLE * INTO ls_relation FROM skwg_brel WHERE instid_b = lv_instance_b AND typeid_a = 'BUS1178'.
+    CHECK sy-subrc = 0.
+
+    SELECT SINGLE * INTO ls_product FROM comm_product WHERE product_guid = ls_relation-instid_a.
+    CHECK sy-subrc = 0.
+
+    rv_prod_id = ls_product-product_id.
   ENDMETHOD.
 
 
 * <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Private Method CL_ABAP_GIT_ISSUE_TOOL=>GET_NEXT_PAGE
+* | Static Public Method ZCL_CRM_CM_TOOL=>GET_TEXT_BY_URL
 * +-------------------------------------------------------------------------------------------------+
-* | [--->] IT_HEADER                      TYPE        TIHTTPNVP
-* | [<-()] RV_NEXT_PAGE_URL               TYPE        STRING
+* | [--->] IV_URL                         TYPE        STRING
+* | [<-()] EV_TEXT                        TYPE        STRING
 * +--------------------------------------------------------------------------------------</SIGNATURE>
-  METHOD get_next_page.
-    READ TABLE it_header ASSIGNING FIELD-SYMBOL(<link>) WITH KEY
-       name = 'link'.
-    CHECK sy-subrc = 0.
+  method GET_TEXT_BY_URL.
+    DATA:lo_http_client           TYPE REF TO if_http_client,
+         lv_status                TYPE i,
+         lv_sysubrc               TYPE sysubrc.
 
-    SPLIT <link>-value AT ';' INTO TABLE DATA(lt_page).
-    READ TABLE lt_page ASSIGNING FIELD-SYMBOL(<next_page>) INDEX 1.
-    CHECK sy-subrc = 0.
-    rv_next_page_url = <next_page>.
-    REPLACE ALL OCCURRENCES OF '<' IN rv_next_page_url WITH space.
-    REPLACE ALL OCCURRENCES OF '>' IN rv_next_page_url WITH space.
-    CONDENSE rv_next_page_url NO-GAPS.
-    FIND 'page=' IN rv_next_page_url MATCH OFFSET DATA(lv_offset).
-    ASSERT sy-subrc = 0.
-    DATA(lv_len) = strlen( rv_next_page_url ) - lv_offset - 5.
-
-    lv_offset = lv_offset + 5.
-    DATA(next_page_number) = CONV int4( rv_next_page_url+lv_offset(lv_len) ).
-
-    IF next_page_number = 1.
-      CLEAR: rv_next_page_url.
-    ELSE.
-      WRITE:/ 'Next Page:', rv_next_page_url.
-    ENDIF.
-  ENDMETHOD.
-
-
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Private Method CL_ABAP_GIT_ISSUE_TOOL=>HANDLE_HTTP_RESPONSE
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] IV_JSON                        TYPE        STRING
-* +--------------------------------------------------------------------------------------</SIGNATURE>
-  METHOD handle_http_response.
-    CALL METHOD parse_json_to_internal_table
+    CALL METHOD cl_http_client=>create_by_url
       EXPORTING
-        iv_json        = iv_json
+        url                = iv_url
+        proxy_host         = 'PROXY.WDF.SAP.CORP'
+        proxy_service      = '8080'
+*        ssl_id             = 'ANONYM'
+*        sap_username       = ''
+*        sap_client         = ''
       IMPORTING
-        et_node        = DATA(lt_node)
-        ev_node_number = DATA(lv_number).
-
-    CALL METHOD write_to_db
-      EXPORTING
-        it_sorted_node = lt_node
-        iv_issue_num   = lv_number.
-
-  ENDMETHOD.
-
-
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Public Method CL_ABAP_GIT_ISSUE_TOOL=>PARSE_JSON_TO_INTERNAL_TABLE
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] IV_JSON                        TYPE        STRING
-* | [<---] ET_NODE                        TYPE        TT_SORTED_NODE
-* | [<---] EV_NODE_NUMBER                 TYPE        INT4
-* +--------------------------------------------------------------------------------------</SIGNATURE>
-  METHOD parse_json_to_internal_table.
-    DATA lt_raw_node TYPE tt_node.
-
-    CALL METHOD parse_json_to_raw_table
-      EXPORTING
-        iv_json          = iv_json
-      IMPORTING
-        et_node          = lt_raw_node
+        client             = lo_http_client
       EXCEPTIONS
-        json_parse_error = 1
-        OTHERS           = 2.
+        argument_not_found = 1
+        plugin_not_active  = 2
+        internal_error     = 3
+        OTHERS             = 4.
 
     ASSERT sy-subrc = 0.
 
-    CALL METHOD sort_raw_table
-      EXPORTING
-        it_node        = lt_raw_node
-      IMPORTING
-        et_sorted_node = et_node
-        ev_node_number = ev_node_number.
-  ENDMETHOD.
+    CALL METHOD lo_http_client->request->set_method( if_http_request=>co_request_method_get ).
 
+*Disable pop-up when request receives unauthorized error: error 401.
+    "lo_http_client->propertytype_logon_popup = if_http_client=>co_disabled.
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Private Method CL_ABAP_GIT_ISSUE_TOOL=>PARSE_JSON_TO_RAW_TABLE
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] IV_JSON                        TYPE        STRING
-* | [<---] ET_NODE                        TYPE        TT_NODE
-* | [EXC!] JSON_PARSE_ERROR
-* +--------------------------------------------------------------------------------------</SIGNATURE>
-  METHOD parse_json_to_raw_table.
-    DATA:
-      node_wa TYPE ty_node.
-
-    DATA(json) = cl_abap_codepage=>convert_to( iv_json ).
-    DATA(reader) = cl_sxml_string_reader=>create( json ).
-
-    TRY.
-        DO.
-          CLEAR node_wa.
-          DATA(node) = reader->read_next_node( ).
-          IF node IS INITIAL.
-            EXIT.
-          ENDIF.
-          CASE node->type.
-            WHEN if_sxml_node=>co_nt_element_open.
-              DATA(open_element) = CAST if_sxml_open_element( node ).
-              node_wa-node_type = gc_json_open_element.
-              node_wa-prefix    = open_element->prefix.
-              node_wa-name      = open_element->qname-name.
-              node_wa-nsuri     = open_element->qname-namespace.
-              DATA(attributes)  = open_element->get_attributes( ).
-              APPEND node_wa TO et_node.
-              LOOP AT attributes INTO DATA(attribute).
-                node_wa-node_type = gc_json_attribute.
-                node_wa-prefix    = attribute->prefix.
-                node_wa-name      = attribute->qname-name.
-                node_wa-nsuri     = attribute->qname-namespace.
-                IF attribute->value_type = if_sxml_value=>co_vt_text.
-                  node_wa-value = attribute->get_value( ).
-                ELSEIF attribute->value_type =
-                                   if_sxml_value=>co_vt_raw.
-                  node_wa-value_raw = attribute->get_value_raw( ).
-                ENDIF.
-                APPEND node_wa TO et_node.
-              ENDLOOP.
-              CONTINUE.
-            WHEN if_sxml_node=>co_nt_element_close.
-              DATA(close_element) = CAST if_sxml_close_element( node ).
-              node_wa-node_type   = gc_json_close_element.
-              node_wa-prefix      = close_element->prefix.
-              node_wa-name        = close_element->qname-name.
-              node_wa-nsuri       = close_element->qname-namespace.
-              APPEND node_wa TO et_node.
-              CONTINUE.
-            WHEN if_sxml_node=>co_nt_value.
-              DATA(value_node) = CAST if_sxml_value_node( node ).
-              node_wa-node_type   = gc_json_value.
-              IF value_node->value_type = if_sxml_value=>co_vt_text.
-                node_wa-value = value_node->get_value( ).
-              ELSEIF value_node->value_type = if_sxml_value=>co_vt_raw.
-                node_wa-value_raw = value_node->get_value_raw( ).
-              ENDIF.
-              APPEND node_wa TO et_node.
-              CONTINUE.
-            WHEN OTHERS.
-              node_wa-node_type   = gc_json_error.
-              APPEND node_wa TO et_node.
-              EXIT.
-          ENDCASE.
-        ENDDO.
-      CATCH cx_sxml_parse_error INTO DATA(parse_error).
-        RAISE json_parse_error.
-    ENDTRY.
-  ENDMETHOD.
-
-
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Public Method CL_ABAP_GIT_ISSUE_TOOL=>READ_TXT_FILE
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] IV_PATH                        TYPE        STRING
-* | [<-()] RV_TEXT                        TYPE        STRING
-* +--------------------------------------------------------------------------------------</SIGNATURE>
-  METHOD read_txt_file.
-
-    DATA: l_filename TYPE string,
-          l_rawtab   TYPE string_table,
-          l_len      TYPE i.
-
-    l_filename = iv_path.
-    CALL METHOD cl_gui_frontend_services=>gui_upload
-      EXPORTING
-        filename                = l_filename
-        filetype                = 'ASC'
-        codepage                = '8400'
-      IMPORTING
-        filelength              = l_len
-      CHANGING
-        data_tab                = l_rawtab
+*Send request.
+    CALL METHOD lo_http_client->send
       EXCEPTIONS
-        file_open_error         = 1
-        file_read_error         = 2
-        no_batch                = 3
-        gui_refuse_filetransfer = 4
-        invalid_type            = 5
-        no_authority            = 6
-        unknown_error           = 7
-        bad_data_format         = 8
-        header_not_allowed      = 9
-        separator_not_allowed   = 10
-        header_too_long         = 11
-        unknown_dp_error        = 12
-        access_denied           = 13
-        dp_out_of_memory        = 14
-        disk_full               = 15
-        dp_timeout              = 16
-        not_supported_by_gui    = 17
-        error_no_gui            = 18
-        OTHERS                  = 19.
+        http_communication_failure = 1
+        http_invalid_state         = 2
+        http_processing_failed     = 3.
 
     ASSERT sy-subrc = 0.
 
-    LOOP AT l_rawtab ASSIGNING FIELD-SYMBOL(<line>).
-      rv_text = rv_text && <line>.
-    ENDLOOP.
+* Get response.
+    CALL METHOD lo_http_client->receive
+      EXCEPTIONS
+        http_communication_failure = 1
+        http_invalid_state         = 2
+        http_processing_failed     = 3.
 
-  ENDMETHOD.
+   IF sy-subrc <> 0.
+        CALL METHOD lo_http_client->get_last_error
+        IMPORTING
+          code    = lv_sysubrc
+          message = DATA(ev_message).
+        "BREAK-POINT.
+        WRITE: / 'error: ' , ev_message.
+        RETURN.
+   ENDIF.
 
+   ev_text = lo_http_client->response->get_cdata( ).
 
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Private Method CL_ABAP_GIT_ISSUE_TOOL=>SORT_RAW_TABLE
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] IT_NODE                        TYPE        TT_NODE
-* | [<---] ET_SORTED_NODE                 TYPE        TT_SORTED_NODE
-* | [<---] EV_NODE_NUMBER                 TYPE        INT4
-* +--------------------------------------------------------------------------------------</SIGNATURE>
-  METHOD sort_raw_table.
-    DATA:
-      ls_node              TYPE ty_node,
-      lv_level_counter     TYPE i VALUE 0,
-      lv_attribute_name    TYPE string,
-      lv_seperator         TYPE char1,
-      ls_sorted_node       TYPE ty_sorted_node,
-      lv_node_counter      TYPE i VALUE 1,
-      lv_node_flag_counter TYPE i,
-      lt_level_tab         TYPE tt_level,
-      ls_level_tab         TYPE ty_level,
-      lv_index             TYPE i,
-      lv_temp_counter      TYPE i.
-
-    FIELD-SYMBOLS <fs_level_tab> TYPE ty_level.
-
-    LOOP AT it_node INTO ls_node.
-*Check if open element, if yes increase level counter
-      IF  ls_node-node_type = gc_json_open_element.
-        lv_level_counter = lv_level_counter + 1.
-
-*Check if it is new node, if yes increase node counter
-        IF lv_node_flag_counter IS NOT INITIAL AND lv_level_counter = lv_node_flag_counter.
-          lv_node_counter = lv_node_counter + 1.
-        ENDIF.
-
-*Add level indicator to level table in order to remember which level we are in
-        CLEAR ls_level_tab.
-        READ TABLE lt_level_tab INTO ls_level_tab WITH TABLE KEY level = lv_level_counter.
-        IF ls_level_tab IS INITIAL.
-          ls_level_tab-level = lv_level_counter.
-          APPEND ls_level_tab TO lt_level_tab.
-        ENDIF.
-      ENDIF.
-
-*Check if attribute
-      IF  ls_node-node_type = gc_json_attribute.
-*If no entry in our generated result table then me mark current level as the begining of each node
-        IF et_sorted_node IS INITIAL.
-          lv_node_flag_counter = lv_level_counter - 1.
-        ENDIF.
-
-        LOOP AT lt_level_tab ASSIGNING <fs_level_tab> WHERE level = lv_level_counter.
-          <fs_level_tab>-indicator =  ls_node-value.
-        ENDLOOP.
-      ENDIF.
-
-
-*Check if value
-*-------------------------------------------------------------------------
-*Add level indicator to level table in order to show hierachy node
-*For instance if we have following node hieracy
-*   -A
-*     -a
-*     -b
-*we wil have following naming convertion in our generated table
-*  A-a  &  A-b
-*-------------------------------------------------------------------------
-      IF  ls_node-node_type = gc_json_value.
-        CLEAR lv_attribute_name.
-        LOOP AT lt_level_tab ASSIGNING <fs_level_tab> FROM 0 TO lv_level_counter.
-          IF <fs_level_tab>-indicator IS NOT INITIAL.
-            CONCATENATE lv_attribute_name '-' <fs_level_tab>-indicator INTO lv_attribute_name.
-          ENDIF.
-        ENDLOOP.
-
-        CLEAR: lv_seperator, lv_index.
-        lv_seperator = lv_attribute_name+0(1).
-        IF lv_seperator = '-'.
-          lv_index = strlen( lv_attribute_name ) - 1.
-          lv_attribute_name = lv_attribute_name+1(lv_index).
-        ENDIF.
-
-        IF lv_attribute_name IS NOT INITIAL.
-          ls_sorted_node-attribute = lv_attribute_name.
-          ls_sorted_node-value =  ls_node-value.
-          ls_sorted_node-index = lv_node_counter.
-          APPEND ls_sorted_node TO et_sorted_node.
-        ENDIF.
-        CLEAR: ls_sorted_node.
-      ENDIF.
-
-*Check if close element
-      IF  ls_node-node_type = gc_json_close_element.
-        lv_level_counter = lv_level_counter - 1.
-
-*Remove level indicator from level table
-        DESCRIBE TABLE lt_level_tab LINES lv_temp_counter.
-        LOOP AT lt_level_tab ASSIGNING <fs_level_tab> FROM lv_level_counter + 1 TO lv_temp_counter.
-          <fs_level_tab>-indicator = ''.
-        ENDLOOP.
-      ENDIF.
-    ENDLOOP.
-
-*Return total number of nodes
-    ev_node_number = lv_node_counter.
-  ENDMETHOD.
+   lo_http_client->close( ).
+  endmethod.
 
 
 * <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Public Method CL_ABAP_GIT_ISSUE_TOOL=>START_BACKUP
+* | Static Public Method ZCL_CRM_CM_TOOL=>IS_TEXT_FILE
 * +-------------------------------------------------------------------------------------------------+
-* | [--->] IV_REPO                        TYPE        CHAR4
+* | [--->] IS_IO                          TYPE        SKWF_IO
+* | [<-()] RV_TRUE                        TYPE        ABAP_BOOL
 * +--------------------------------------------------------------------------------------</SIGNATURE>
-  METHOD start_backup.
-    sv_repo_short_name = iv_repo.
-    SELECT SINGLE * INTO @DATA(ls_repo) FROM crmd_git_repo
-        WHERE repo_name = @iv_repo.
+  method IS_TEXT_FILE.
 
-    ASSERT sy-subrc = 0.
+    DATA: lv_type type W3CONTTYPE.
 
-    SELECT MAX( issue_num ) FROM crmd_git_issue INTO sv_max_number_in_db
-       WHERE repo_name = iv_repo.
-    backup_given_url( |https://api.github.com/repos/{ ls_repo-repo_owner }/{ ls_repo-repo_fullname }/issues| ).
-  ENDMETHOD.
+    CALL METHOD cl_crm_documents=>get_file_info
+      EXPORTING
+        phio      = is_io
+      IMPORTING
+        mimetype  = lv_type.
 
-
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Private Method CL_ABAP_GIT_ISSUE_TOOL=>WRITE_TO_DB
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] IT_SORTED_NODE                 TYPE        TT_SORTED_NODE
-* | [--->] IV_ISSUE_NUM                   TYPE        INT4
-* +--------------------------------------------------------------------------------------</SIGNATURE>
-  METHOD write_to_db.
-    DATA: ls_issue TYPE crmd_git_issue,
-          lt_issue TYPE TABLE OF crmd_git_issue.
-    DO iv_issue_num TIMES.
-      CLEAR: ls_issue.
-      LOOP AT it_sorted_node ASSIGNING FIELD-SYMBOL(<node>) WHERE index = sy-index.
-        CASE <node>-attribute.
-          WHEN 'number'.
-            IF sv_max_number_in_db >= ls_issue-issue_num.
-              EXIT.
-            ENDIF.
-            ls_issue-issue_num = <node>-value.
-          WHEN 'title'.
-            ls_issue-title = <node>-value.
-          WHEN 'body'.
-            ls_issue-issue_body = <node>-value.
-          WHEN 'created_at'.
-            ls_issue-created_at = <node>-value.
-          WHEN 'updated_at'.
-            ls_issue-updated_at = <node>-value.
-        ENDCASE.
-      ENDLOOP.
-      IF ls_issue-issue_num IS NOT INITIAL.
-        ls_issue-repo_name = sv_repo_short_name.
-        ls_issue-mandt = sy-mandt.
-        APPEND ls_issue TO lt_issue.
-      ENDIF.
-    ENDDO.
-
-    IF lt_issue IS NOT INITIAL.
-      INSERT crmd_git_issue FROM TABLE lt_issue.
+    IF lv_type = 'text/plain'.
+       rv_true = abap_true.
     ENDIF.
-  ENDMETHOD.
+  endmethod.
 ENDCLASS.
