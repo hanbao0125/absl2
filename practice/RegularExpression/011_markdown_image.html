@@ -1,0 +1,26 @@
+<html>
+<script>
+RegExp.escape= function(s) {
+	console.log("before escape: " + s);
+	var afterEscape = s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+	console.log("after escape: " + afterEscape);
+    return afterEscape;
+};
+
+var content = "Some text ![alt](http://somehost/uploads11Jerry/3.jpg)";
+content += "some text more![alt2](http://somehost/uploads22Carsten/3.jpg) more text.";
+//var fileName = someDynamicValue;
+
+var afterEscape = RegExp.escape('![') + '.*' + RegExp.escape(']') + 
+	RegExp.escape('(') + '.*' + RegExp.escape('.') + ".*" + RegExp.escape(')');
+var regex = new RegExp( afterEscape, 'i');
+console.log("after escape: " + afterEscape);
+
+var found = regex.exec(content);
+console.log("found: " + found);
+/*
+var newContent = content.replace(regex, "");
+target.val(newContent);
+*/
+</script>
+</html>
