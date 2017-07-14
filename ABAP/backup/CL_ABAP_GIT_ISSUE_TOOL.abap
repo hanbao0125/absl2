@@ -1,49 +1,54 @@
-CLASS cl_abap_git_issue_tool DEFINITION
-  PUBLIC
-  FINAL
-  CREATE PUBLIC .
+class CL_ABAP_GIT_ISSUE_TOOL definition
+  public
+  final
+  create public .
 
-  PUBLIC SECTION.
+public section.
 
-    TYPES:
-      BEGIN OF ty_sorted_node,
+  types:
+    BEGIN OF ty_sorted_node,
         index     TYPE string,
         attribute TYPE string,
         value     TYPE string,
       END OF ty_sorted_node .
-    TYPES:
-      tt_sorted_node TYPE STANDARD TABLE OF ty_sorted_node .
+  types:
+    tt_sorted_node TYPE STANDARD TABLE OF ty_sorted_node .
 
-    CLASS-METHODS read_txt_file
-      IMPORTING
-        !iv_path       TYPE string
-      RETURNING
-        VALUE(rv_text) TYPE string .
-    CLASS-METHODS download_as_text_file
-      IMPORTING
-        !iv_file_path    TYPE string
-        !iv_text_content TYPE string .
-    CLASS-METHODS parse_json_to_internal_table
-      IMPORTING
-        !iv_json        TYPE string
-      EXPORTING
-        !et_node        TYPE tt_sorted_node
-        !ev_node_number TYPE int4 .
-    CLASS-METHODS start_backup
-      IMPORTING
-        !iv_repo TYPE char4 .
+  class-methods READ_TXT_FILE
+    importing
+      !IV_PATH type STRING
+    returning
+      value(RV_TEXT) type STRING .
+  class-methods DOWNLOAD_AS_TEXT_FILE
+    importing
+      !IV_FILE_PATH type STRING
+      !IV_TEXT_CONTENT type STRING .
+  class-methods PARSE_JSON_TO_INTERNAL_TABLE
+    importing
+      !IV_JSON type STRING
+    exporting
+      !ET_NODE type TT_SORTED_NODE
+      !EV_NODE_NUMBER type INT4 .
+  class-methods START_BACKUP
+    importing
+      !IV_REPO type CHAR4 .
+  class-methods DOWNLOAD_ISSUE
+    importing
+      !IV_REPO_NAME type CHAR4
+      !IV_ISSUE_NUMBER type INT4
+      !IV_FOLDER_NAME type STRING .
   PROTECTED SECTION.
-  PRIVATE SECTION.
+private section.
 
-    TYPES:
-      BEGIN OF ty_level,
+  types:
+    BEGIN OF ty_level,
         level     TYPE i,
         indicator TYPE string,
       END OF ty_level .
-    TYPES:
-      tt_level TYPE STANDARD TABLE OF ty_level WITH KEY level .
-    TYPES:
-      BEGIN OF ty_node,
+  types:
+    tt_level TYPE STANDARD TABLE OF ty_level WITH KEY level .
+  types:
+    BEGIN OF ty_node,
         node_type TYPE string,
         prefix    TYPE string,
         name      TYPE string,
@@ -51,46 +56,47 @@ CLASS cl_abap_git_issue_tool DEFINITION
         value     TYPE string,
         value_raw TYPE xstring,
       END OF ty_node .
-    TYPES:
-      tt_node TYPE TABLE OF ty_node .
+  types:
+    tt_node TYPE TABLE OF ty_node .
 
-    CONSTANTS gc_json_open_element TYPE string VALUE 'open element' ##NO_TEXT.
-    CONSTANTS gc_json_attribute TYPE string VALUE 'attribute' ##NO_TEXT.
-    CONSTANTS gc_json_close_element TYPE string VALUE 'close element' ##NO_TEXT.
-    CONSTANTS gc_json_value TYPE string VALUE 'value' ##NO_TEXT.
-    CONSTANTS gc_json_error TYPE string VALUE 'Error' ##NO_TEXT.
-    CLASS-DATA sv_url TYPE string .
-    CLASS-DATA sv_max_number_in_db TYPE int4 .
-    CLASS-DATA sv_repo_short_name TYPE char4 .
+  constants GC_JSON_OPEN_ELEMENT type STRING value 'open element' ##NO_TEXT.
+  constants GC_JSON_ATTRIBUTE type STRING value 'attribute' ##NO_TEXT.
+  constants GC_JSON_CLOSE_ELEMENT type STRING value 'close element' ##NO_TEXT.
+  constants GC_JSON_VALUE type STRING value 'value' ##NO_TEXT.
+  constants GC_JSON_ERROR type STRING value 'Error' ##NO_TEXT.
+  class-data SV_URL type STRING .
+  class-data SV_MAX_NUMBER_IN_DB type INT4 .
+  class-data SV_REPO_SHORT_NAME type CHAR4 .
+  class-data SV_MAX_NUMBER_REACHED type ABAP_BOOL .
 
-    CLASS-METHODS write_to_db
-      IMPORTING
-        !it_sorted_node TYPE tt_sorted_node
-        !iv_issue_num   TYPE int4 .
-    CLASS-METHODS get_next_page
-      IMPORTING
-        !it_header              TYPE tihttpnvp
-      RETURNING
-        VALUE(rv_next_page_url) TYPE string .
-    CLASS-METHODS parse_json_to_raw_table
-      IMPORTING
-        !iv_json TYPE string
-      EXPORTING
-        !et_node TYPE tt_node
-      EXCEPTIONS
-        json_parse_error .
-    CLASS-METHODS sort_raw_table
-      IMPORTING
-        !it_node        TYPE tt_node
-      EXPORTING
-        !et_sorted_node TYPE tt_sorted_node
-        !ev_node_number TYPE int4 .
-    CLASS-METHODS backup_given_url
-      IMPORTING
-        !iv_url TYPE string .
-    CLASS-METHODS handle_http_response
-      IMPORTING
-        !iv_json TYPE string .
+  class-methods WRITE_TO_DB
+    importing
+      !IT_SORTED_NODE type TT_SORTED_NODE
+      !IV_ISSUE_NUM type INT4 .
+  class-methods GET_NEXT_PAGE
+    importing
+      !IT_HEADER type TIHTTPNVP
+    returning
+      value(RV_NEXT_PAGE_URL) type STRING .
+  class-methods PARSE_JSON_TO_RAW_TABLE
+    importing
+      !IV_JSON type STRING
+    exporting
+      !ET_NODE type TT_NODE
+    exceptions
+      JSON_PARSE_ERROR .
+  class-methods SORT_RAW_TABLE
+    importing
+      !IT_NODE type TT_NODE
+    exporting
+      !ET_SORTED_NODE type TT_SORTED_NODE
+      !EV_NODE_NUMBER type INT4 .
+  class-methods BACKUP_GIVEN_URL
+    importing
+      !IV_URL type STRING .
+  class-methods HANDLE_HTTP_RESPONSE
+    importing
+      !IV_JSON type STRING .
 ENDCLASS.
 
 
@@ -187,12 +193,32 @@ CLASS CL_ABAP_GIT_ISSUE_TOOL IMPLEMENTATION.
 
 
 * <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Static Public Method CL_ABAP_GIT_ISSUE_TOOL=>DOWNLOAD_ISSUE
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] IV_REPO_NAME                   TYPE        CHAR4
+* | [--->] IV_ISSUE_NUMBER                TYPE        INT4
+* | [--->] IV_FOLDER_NAME                 TYPE        STRING
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD download_issue.
+    DATA: path TYPE string.
+
+    SELECT SINGLE * INTO @DATA(ls_issue) FROM crmd_git_issue
+       WHERE repo_name = @iv_repo_name AND issue_num = @iv_issue_number.
+    CHECK sy-subrc = 0.
+
+    path = | { iv_folder_name }\\{ iv_repo_name }\\{ iv_issue_number }.md|.
+    download_as_text_file( iv_file_path = path iv_text_content = ls_issue-issue_body ).
+  ENDMETHOD.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
 * | Static Private Method CL_ABAP_GIT_ISSUE_TOOL=>GET_NEXT_PAGE
 * +-------------------------------------------------------------------------------------------------+
 * | [--->] IT_HEADER                      TYPE        TIHTTPNVP
 * | [<-()] RV_NEXT_PAGE_URL               TYPE        STRING
 * +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD get_next_page.
+    CHECK sv_max_number_reached = abap_false.
     READ TABLE it_header ASSIGNING FIELD-SYMBOL(<link>) WITH KEY
        name = 'link'.
     CHECK sy-subrc = 0.
@@ -516,7 +542,7 @@ CLASS CL_ABAP_GIT_ISSUE_TOOL IMPLEMENTATION.
 
     SELECT MAX( issue_num ) FROM crmd_git_issue INTO sv_max_number_in_db
        WHERE repo_name = iv_repo.
-    backup_given_url( |https://api.github.com/repos/i042416/{ ls_repo-repo_fullname }/issues| ).
+    backup_given_url( |https://api.github.com/repos/{ ls_repo-repo_owner }/{ ls_repo-repo_fullname }/issues| ).
   ENDMETHOD.
 
 
@@ -530,16 +556,18 @@ CLASS CL_ABAP_GIT_ISSUE_TOOL IMPLEMENTATION.
     DATA: ls_issue TYPE crmd_git_issue,
           lt_issue TYPE TABLE OF crmd_git_issue.
     DO iv_issue_num TIMES.
+      IF sv_max_number_reached = abap_true.
+         EXIT.
+      ENDIF.
       CLEAR: ls_issue.
-      ls_issue-repo_name = sv_repo_short_name.
-      ls_issue-mandt = sy-mandt.
       LOOP AT it_sorted_node ASSIGNING FIELD-SYMBOL(<node>) WHERE index = sy-index.
         CASE <node>-attribute.
           WHEN 'number'.
-            ls_issue-issue_num = <node>-value.
-            IF sv_max_number_in_db >= ls_issue-issue_num.
+            IF sv_max_number_in_db >= <node>-value.
+               sv_max_number_reached = abap_true.
               EXIT.
             ENDIF.
+            ls_issue-issue_num = <node>-value.
           WHEN 'title'.
             ls_issue-title = <node>-value.
           WHEN 'body'.
@@ -550,7 +578,11 @@ CLASS CL_ABAP_GIT_ISSUE_TOOL IMPLEMENTATION.
             ls_issue-updated_at = <node>-value.
         ENDCASE.
       ENDLOOP.
-      APPEND ls_issue TO lt_issue.
+      IF ls_issue-issue_num IS NOT INITIAL.
+        ls_issue-repo_name = sv_repo_short_name.
+        ls_issue-mandt = sy-mandt.
+        APPEND ls_issue TO lt_issue.
+      ENDIF.
     ENDDO.
 
     IF lt_issue IS NOT INITIAL.
