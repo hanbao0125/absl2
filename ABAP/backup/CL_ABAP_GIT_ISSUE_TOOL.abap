@@ -1,49 +1,49 @@
-class CL_ABAP_GIT_ISSUE_TOOL definition
-  public
-  final
-  create public .
+CLASS cl_abap_git_issue_tool DEFINITION
+  PUBLIC
+  FINAL
+  CREATE PUBLIC .
 
-public section.
+  PUBLIC SECTION.
 
-  types:
-    BEGIN OF ty_sorted_node,
+    TYPES:
+      BEGIN OF ty_sorted_node,
         index     TYPE string,
         attribute TYPE string,
         value     TYPE string,
       END OF ty_sorted_node .
-  types:
-    tt_sorted_node TYPE STANDARD TABLE OF ty_sorted_node .
+    TYPES:
+      tt_sorted_node TYPE STANDARD TABLE OF ty_sorted_node .
 
-  class-methods READ_TXT_FILE
-    importing
-      !IV_PATH type STRING
-    returning
-      value(RV_TEXT) type STRING .
-  class-methods DOWNLOAD_AS_TEXT_FILE
-    importing
-      !IV_FILE_PATH type STRING
-      !IV_TEXT_CONTENT type STRING .
-  class-methods PARSE_JSON_TO_INTERNAL_TABLE
-    importing
-      !IV_JSON type STRING
-    exporting
-      !ET_NODE type TT_SORTED_NODE
-      !EV_NODE_NUMBER type INT4 .
-  class-methods START_BACKUP
-    importing
-      !IV_REPO type CHAR4 .
+    CLASS-METHODS read_txt_file
+      IMPORTING
+        !iv_path       TYPE string
+      RETURNING
+        VALUE(rv_text) TYPE string .
+    CLASS-METHODS download_as_text_file
+      IMPORTING
+        !iv_file_path    TYPE string
+        !iv_text_content TYPE string .
+    CLASS-METHODS parse_json_to_internal_table
+      IMPORTING
+        !iv_json        TYPE string
+      EXPORTING
+        !et_node        TYPE tt_sorted_node
+        !ev_node_number TYPE int4 .
+    CLASS-METHODS start_backup
+      IMPORTING
+        !iv_repo TYPE char4 .
   PROTECTED SECTION.
-private section.
+  PRIVATE SECTION.
 
-  types:
-    BEGIN OF ty_level,
+    TYPES:
+      BEGIN OF ty_level,
         level     TYPE i,
         indicator TYPE string,
       END OF ty_level .
-  types:
-    tt_level TYPE STANDARD TABLE OF ty_level WITH KEY level .
-  types:
-    BEGIN OF ty_node,
+    TYPES:
+      tt_level TYPE STANDARD TABLE OF ty_level WITH KEY level .
+    TYPES:
+      BEGIN OF ty_node,
         node_type TYPE string,
         prefix    TYPE string,
         name      TYPE string,
@@ -51,46 +51,46 @@ private section.
         value     TYPE string,
         value_raw TYPE xstring,
       END OF ty_node .
-  types:
-    tt_node TYPE TABLE OF ty_node .
+    TYPES:
+      tt_node TYPE TABLE OF ty_node .
 
-  constants GC_JSON_OPEN_ELEMENT type STRING value 'open element' ##NO_TEXT.
-  constants GC_JSON_ATTRIBUTE type STRING value 'attribute' ##NO_TEXT.
-  constants GC_JSON_CLOSE_ELEMENT type STRING value 'close element' ##NO_TEXT.
-  constants GC_JSON_VALUE type STRING value 'value' ##NO_TEXT.
-  constants GC_JSON_ERROR type STRING value 'Error' ##NO_TEXT.
-  class-data SV_URL type STRING .
-  class-data SV_MAX_NUMBER_IN_DB type INT4 .
-  class-data SV_REPO_SHORT_NAME type CHAR4 .
+    CONSTANTS gc_json_open_element TYPE string VALUE 'open element' ##NO_TEXT.
+    CONSTANTS gc_json_attribute TYPE string VALUE 'attribute' ##NO_TEXT.
+    CONSTANTS gc_json_close_element TYPE string VALUE 'close element' ##NO_TEXT.
+    CONSTANTS gc_json_value TYPE string VALUE 'value' ##NO_TEXT.
+    CONSTANTS gc_json_error TYPE string VALUE 'Error' ##NO_TEXT.
+    CLASS-DATA sv_url TYPE string .
+    CLASS-DATA sv_max_number_in_db TYPE int4 .
+    CLASS-DATA sv_repo_short_name TYPE char4 .
 
-  class-methods WRITE_TO_DB
-    importing
-      !IT_SORTED_NODE type TT_SORTED_NODE
-      !IV_ISSUE_NUM type INT4 .
-  class-methods GET_NEXT_PAGE
-    importing
-      !IT_HEADER type TIHTTPNVP
-    returning
-      value(RV_NEXT_PAGE_URL) type STRING .
-  class-methods PARSE_JSON_TO_RAW_TABLE
-    importing
-      !IV_JSON type STRING
-    exporting
-      !ET_NODE type TT_NODE
-    exceptions
-      JSON_PARSE_ERROR .
-  class-methods SORT_RAW_TABLE
-    importing
-      !IT_NODE type TT_NODE
-    exporting
-      !ET_SORTED_NODE type TT_SORTED_NODE
-      !EV_NODE_NUMBER type INT4 .
-  class-methods BACKUP_GIVEN_URL
-    importing
-      !IV_URL type STRING .
-  class-methods HANDLE_HTTP_RESPONSE
-    importing
-      !IV_JSON type STRING .
+    CLASS-METHODS write_to_db
+      IMPORTING
+        !it_sorted_node TYPE tt_sorted_node
+        !iv_issue_num   TYPE int4 .
+    CLASS-METHODS get_next_page
+      IMPORTING
+        !it_header              TYPE tihttpnvp
+      RETURNING
+        VALUE(rv_next_page_url) TYPE string .
+    CLASS-METHODS parse_json_to_raw_table
+      IMPORTING
+        !iv_json TYPE string
+      EXPORTING
+        !et_node TYPE tt_node
+      EXCEPTIONS
+        json_parse_error .
+    CLASS-METHODS sort_raw_table
+      IMPORTING
+        !it_node        TYPE tt_node
+      EXPORTING
+        !et_sorted_node TYPE tt_sorted_node
+        !ev_node_number TYPE int4 .
+    CLASS-METHODS backup_given_url
+      IMPORTING
+        !iv_url TYPE string .
+    CLASS-METHODS handle_http_response
+      IMPORTING
+        !iv_json TYPE string .
 ENDCLASS.
 
 
@@ -200,19 +200,22 @@ CLASS CL_ABAP_GIT_ISSUE_TOOL IMPLEMENTATION.
     SPLIT <link>-value AT ';' INTO TABLE DATA(lt_page).
     READ TABLE lt_page ASSIGNING FIELD-SYMBOL(<next_page>) INDEX 1.
     CHECK sy-subrc = 0.
-    FIND 'page=' IN <next_page> MATCH OFFSET DATA(lv_offset).
-    CHECK sy-subrc = 0.
-    DATA(lv_len) = strlen( <next_page> ) - lv_offset - 5.
-
-    lv_offset = lv_offset + 5.
-    DATA(next_page_number) = conv int4( <next_page>+lv_offset(lv_len) ).
-
-    CHECK next_page_number <> 1.
     rv_next_page_url = <next_page>.
     REPLACE ALL OCCURRENCES OF '<' IN rv_next_page_url WITH space.
     REPLACE ALL OCCURRENCES OF '>' IN rv_next_page_url WITH space.
     CONDENSE rv_next_page_url NO-GAPS.
-    WRITE:/ 'Next Page:', rv_next_page_url.
+    FIND 'page=' IN rv_next_page_url MATCH OFFSET DATA(lv_offset).
+    ASSERT sy-subrc = 0.
+    DATA(lv_len) = strlen( rv_next_page_url ) - lv_offset - 5.
+
+    lv_offset = lv_offset + 5.
+    DATA(next_page_number) = CONV int4( rv_next_page_url+lv_offset(lv_len) ).
+
+    IF next_page_number = 1.
+      CLEAR: rv_next_page_url.
+    ELSE.
+      WRITE:/ 'Next Page:', rv_next_page_url.
+    ENDIF.
   ENDMETHOD.
 
 
