@@ -24,7 +24,23 @@ target.val(newContent);
 */
 
 const regex = /!\[(.*?)\]\((.*?)\)/g;
-const str = `Some text ![alt](http://somehost/uploads/filename.jpg) some text ![alt2](http://somehost/uploads/filename2.jpg) more text.`;
+//const str = `Some text ![alt](http://somehost/uploads/filename.jpg) some text ![// alt2](http://somehost/uploads/filename2.jpg) more text.`;
+
+const str = `# Created by Jerry Wang, last modified on Jun 24, 2014
+
+User parameter里只要BSPWD_USER_LEVEL 值大于5 即可在webclient UI上显示error message的technical information:
+![clipboard1](https://user-images.githubusercontent.com/5669954/28164017-f102028c-67ff-11e7-81f0-a4e8b0e48fd0.png)
+![clipboard2](https://user-images.githubusercontent.com/5669954/28164011-f0781176-67ff-11e7-8779-6db53bb01be6.png)
+![clipboard3](https://user-images.githubusercontent.com/5669954/28164013-f094ce10-67ff-11e7-9b47-d26fa4413599.png)
+![clipboard4](https://user-images.githubusercontent.com/5669954/28164014-f0998676-67ff-11e7-9126-8c0d609b0607.png)
+
+这里决定用什么icon来在UI上显示message:
+![clipboard5](https://user-images.githubusercontent.com/5669954/28164019-f16258f8-67ff-11e7-9aec-43538d1ce54f.png)
+message level > 5的判断:
+![clipboard6](https://user-images.githubusercontent.com/5669954/28164015-f09c7570-67ff-11e7-9c06-da380d4a0c06.png)
+![clipboard7](https://user-images.githubusercontent.com/5669954/28164018-f15fee1a-67ff-11e7-9ef0-ea44b3e3a049.png)
+![clipboard8](https://user-images.githubusercontent.com/5669954/28164016-f0d067e0-67ff-11e7-9445-baf3af4c1494.png)`;
+
 let m;
 
 while ((m = regex.exec(str)) !== null) {
