@@ -59,7 +59,7 @@ http://localhost:3000/ui5/ - can work!
 
 cf api https://api.cf.us10.hana.ondemand.com
 
-cf api https://api.cf.eu10.hana.ondemand.com
+cf api https://api.cf.eu10.hana.ondemand.com - Jerry 2017-07-15
 
 https://jerry-list-wiesloch.cfapps.us10.hana.ondemand.com
 
