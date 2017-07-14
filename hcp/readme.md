@@ -70,8 +70,12 @@ https://jerrylist.cfapps.eu10.hana.ondemand.com - 囧，要加https
 
 set HTTPS_PROXY=http://proxy.wdf.sap.corp:8080
 
-2017-05-27
+# 2017-05-27
 1. https://jerryordercount.cfapps.eu10.hana.ondemand.com
 
 https://jerryordercount.cfapps.eu10.hana.ondemand.com/jerry/OneOrderHCP.html --Jerry checkes on 2017-07-15 that it could still be accessed.
 
+# 2017-07-15
+
+user: my sap email
+password: the one to access my laptop!!!
