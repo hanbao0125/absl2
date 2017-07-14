@@ -1,6 +1,6 @@
 <html>
 <script>
-RegExp.escape= function(s) {
+/*RegExp.escape= function(s) {
 	console.log("before escape: " + s);
 	var afterEscape = s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
 	console.log("after escape: " + afterEscape);
@@ -22,5 +22,21 @@ console.log("found: " + found);
 var newContent = content.replace(regex, "");
 target.val(newContent);
 */
+
+const regex = /!\[(.*?)\]\((.*?)\)/g;
+const str = `Some text ![alt](http://somehost/uploads/filename.jpg) some text ![alt2](http://somehost/uploads/filename2.jpg) more text.`;
+let m;
+
+while ((m = regex.exec(str)) !== null) {
+    // This is necessary to avoid infinite loops with zero-width matches
+    if (m.index === regex.lastIndex) {
+        regex.lastIndex++;
+    }
+    
+    // The result can be accessed through the `m`-variable.
+    m.forEach((match, groupIndex) => {
+        console.log(`Found match, group ${groupIndex}: ${match}`);
+    });
+}
 </script>
 </html>
