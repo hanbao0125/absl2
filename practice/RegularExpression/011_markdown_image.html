@@ -29,7 +29,7 @@ target.val(newContent);
 // group 1: first () for []
 // group 2: second () for ()
 const regex = /!\[(.*?)\]\(((.*?)\.(.*?))\)/g;
-const str = `Some text ![alt](http://somehost/uploads/filename.jpg) some text ![ alt2](http://somehost/uploads/filename2.jpg) more text.`;
+const str = `Some text ![alt](http://somehost/uploads/filename.jpg) some text ![alt2](http://somehost/uploads/filename2.jpg) more text.`;
 
 /*const str = `# Created by Jerry Wang, last modified on Jun 24, 2014
 
@@ -48,16 +48,24 @@ message level > 5的判断:
 */
 let m;
 
+var printResult = ( array) => {
+	console.log("local file: " + array[1] + "." + array[4]);
+	console.log("url: " + array[2]);
+};
+
 while ((m = regex.exec(str)) !== null) {
     // This is necessary to avoid infinite loops with zero-width matches
     if (m.index === regex.lastIndex) {
         regex.lastIndex++;
     }
     
+    printResult(m);
     // The result can be accessed through the `m`-variable.
-    m.forEach((match, groupIndex) => {
+    /*m.forEach((match, groupIndex) => {
         console.log(`Found match, group ${groupIndex}: ${match}`);
-    });
+    });*/
 }
+
+
 </script>
 </html>
