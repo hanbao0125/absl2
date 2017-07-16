@@ -109,23 +109,31 @@ CLASS CL_ABAP_GIT_ISSUE_IMAGE_TOOL IMPLEMENTATION.
 * +-------------------------------------------------------------------------------------------------+
 * | [--->] IT_DOWNLOAD_LIST               TYPE        TT_DOWNLOAD_LIST
 * +--------------------------------------------------------------------------------------</SIGNATURE>
-method DOWNLOAD_IMAGE.
+METHOD download_image.
   DATA: ls_image_db TYPE crmd_git_image,
-        lt_image_db TYPE TABLE OF crmd_git_image.
-  loop at it_download_list INTO DATA(IMAGE) GROUP BY ( repo_name = image-repo_name )
+        lt_image_db TYPE TABLE OF crmd_git_image,
+        lv_index    TYPE int4 VALUE 1.
+  DATA(lv_total) = lines( it_download_list ).
+  LOOP AT it_download_list INTO DATA(image) GROUP BY ( repo_name = image-repo_name )
     ASSIGNING FIELD-SYMBOL(<image>).
     "WRITE:/ | Issue for repo: { image-repo_name }| COLOR COL_NEGATIVE.
     CLEAR: lt_image_db.
-   LOOP AT GROUP <image> ASSIGNING FIELD-SYMBOL(<element>).
+    LOOP AT GROUP <image> ASSIGNING FIELD-SYMBOL(<element>).
       ls_image_db = CORRESPONDING #( <element> ).
-      ls_image_db-image_binary_data = get_image_binary_Data( <element>-image_url ).
-      APPEND ls_image_db TO LT_IMAGE_DB.
-   ENDLOOP.
-   IF lt_image_db IS NOT INITIAL.
-      INSERT crmd_git_IMAGE FROM TABLE lt_image_db.
-   ENDIF.
-ENDLOOP.
-  endmethod.
+      DATA(lv_text) = |file:{ ls_image_db-image_name } -{ lv_index }/{ lv_total }|.
+      CALL FUNCTION 'SAPGUI_PROGRESS_INDICATOR'
+        EXPORTING
+          percentage = lv_index * 100 / lv_total
+          text       = lv_text.
+      ls_image_db-image_binary_data = get_image_binary_data( <element>-image_url ).
+      ADD 1 TO lv_index.
+      APPEND ls_image_db TO lt_image_db.
+    ENDLOOP.
+    IF lt_image_db IS NOT INITIAL.
+      INSERT crmd_git_image FROM TABLE lt_image_db.
+    ENDIF.
+  ENDLOOP.
+ENDMETHOD.
 
 
 * <SIGNATURE>---------------------------------------------------------------------------------------+
@@ -344,5 +352,7 @@ ENDLOOP.
   data(lt_image_task) = GET_MD_PARSE_TASK_LIST( iv_repo_name ).
 
   data(lt_image_list) = get_image_list_to_download( lt_image_task ).
+
+  download_image( lt_imagE_list ).
   endmethod.
 ENDCLASS.
