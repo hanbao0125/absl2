@@ -13,6 +13,15 @@ public section.
   types:
     tt_image_reference TYPE TABLE OF ty_image_reference with key image_name .
 
+  TYPES:
+    BEGIN OF ty_download_list,
+        image_url TYPE string,
+        image_name TYPE string,
+        repo_name TYPE char4,
+        issue_num TYPE int4,
+    END OF ty_download_list.
+
+  TYPES: tt_download_list TYPE TABLE OF ty_download_list WITH KEY image_url.
   constants CV_API_URL type STRING value 'https://jerrylist.cfapps.eu10.hana.ondemand.com' ##NO_TEXT.
 
   class-methods CLASS_CONSTRUCTOR .
@@ -26,11 +35,34 @@ public section.
       !IV_ISSUE_SOURCE_CODE type STRING
     returning
       value(RT_IMAGE) type TT_IMAGE_REFERENCE .
+  class-methods START_BACKUP
+    importing
+      !IV_REPO_NAME type CHAR4 .
 protected section.
 private section.
 
+  types:
+    begin of ty_image_parse_task,
+              repo_name TYPE char4,
+              issue_num TYPE int4,
+              issue_body TYPE string,
+         end of ty_image_parse_task .
+  types:
+    tt_image_parse_task TYPE TABLE OF ty_image_parse_task with key repo_name issue_num .
+
   class-data SV_IMAGE_PATTERN type STRING value '(!\[.*\]\(.*\))' ##NO_TEXT.
   class-data SO_CLIENT type ref to IF_HTTP_CLIENT .
+
+  class-methods GET_IMAGE_LIST_TO_DOWNLOAD
+    importing
+      !IT_IMAGE_TASK type TT_IMAGE_PARSE_TASK
+    returning
+      value(RT_IMAGE_LIST) type TT_DOWNLOAD_LIST .
+  class-methods GET_MD_PARSE_TASK_LIST
+    importing
+      !IV_REPO_NAME type CHAR4
+    returning
+      value(RT_TASK) type TT_IMAGE_PARSE_TASK .
 ENDCLASS.
 
 
@@ -62,6 +94,27 @@ CLASS CL_ABAP_GIT_ISSUE_IMAGE_TOOL IMPLEMENTATION.
     ENDIF.
 
   ENDMETHOD.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Static Private Method CL_ABAP_GIT_ISSUE_IMAGE_TOOL=>GET_IMAGE_LIST_TO_DOWNLOAD
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] IT_IMAGE_TASK                  TYPE        TT_IMAGE_PARSE_TASK
+* | [<-()] RT_IMAGE_LIST                  TYPE        TT_DOWNLOAD_LIST
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  method GET_IMAGE_LIST_TO_DOWNLOAD.
+* repo name, issue number, issue_body
+    LOOP AT IT_IMAGE_TASK ASSIGNING FIELD-SYMBOL(<image_task>).
+* Image file name, url
+       DATA(lt_parsed_image) = GET_IMAGE_REF_VIA_JS_SERVICE( <image_task>-issue_body ).
+       LOOP AT lt_parsed_image ASSIGNING FIELD-SYMBOL(<parsed_image>).
+         DATA(ls_download_list) = CORRESPONDING ty_download_list( <parsed_image> ).
+         ls_download_list-repo_name = <image_task>-repo_name.
+         ls_download_list-issue_num = <image_task>-issue_num.
+         APPEND ls_download_list TO RT_IMAGE_LIST.
+       ENDLOOP.
+    ENDLOOP.
+  endmethod.
 
 
 * <SIGNATURE>---------------------------------------------------------------------------------------+
@@ -169,7 +222,51 @@ CLASS CL_ABAP_GIT_ISSUE_IMAGE_TOOL IMPLEMENTATION.
                 ls_data-image_url = <node>-value.
           ENDCASE.
        ENDLOOP.
-       APPEND ls_data TO rt_image.
+       IF ls_data-image_url IS NOT INITIAL.
+          APPEND ls_data TO rt_image.
+       ENDIF.
     ENDDO.
   ENDMETHOD.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Static Private Method CL_ABAP_GIT_ISSUE_IMAGE_TOOL=>GET_MD_PARSE_TASK_LIST
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] IV_REPO_NAME                   TYPE        CHAR4
+* | [<-()] RT_TASK                        TYPE        TT_IMAGE_PARSE_TASK
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD get_md_parse_task_list.
+    DATA: lt_issue TYPE TABLE OF crmd_git_issue.
+    SELECT * INTO TABLE lt_issue FROM crmd_git_issue WHERE repo_name = iv_repo_name.
+    IF sy-subrc <> 0.
+      WRITE:/ 'Please backup issue body first' COLOR COL_NEGATIVE.
+      RETURN.
+    ENDIF.
+
+    SELECT * INTO TABLE @DATA(lt_image) FROM crmd_git_image WHERE repo_name = @iv_repo_name.
+
+    LOOP AT lt_issue ASSIGNING FIELD-SYMBOL(<issue>).
+      READ TABLE lt_image WITH KEY repo_name = <issue>-repo_name
+         issue_num = <issue>-issue_num TRANSPORTING NO FIELDS.
+      IF sy-subrc <> 0.
+        DATA(ls_task) = CORRESPONDING ty_image_parse_task( <issue> ).
+        APPEND ls_task TO rt_task.
+      ENDIF.
+    ENDLOOP.
+
+    CLEAR: lt_issue, lt_image.
+  ENDMETHOD.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Static Public Method CL_ABAP_GIT_ISSUE_IMAGE_TOOL=>START_BACKUP
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] IV_REPO_NAME                   TYPE        CHAR4
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  method START_BACKUP.
+
+  data(lt_image_task) = GET_MD_PARSE_TASK_LIST( iv_repo_name ).
+
+  data(lt_image_list) = get_image_list_to_download( lt_image_task ).
+  endmethod.
 ENDCLASS.
