@@ -53,6 +53,11 @@ private section.
   class-data SV_IMAGE_PATTERN type STRING value '(!\[.*\]\(.*\))' ##NO_TEXT.
   class-data SO_CLIENT type ref to IF_HTTP_CLIENT .
 
+  class-methods GET_IMAGE_BINARY_DATA
+    importing
+      !IV_URL type STRING
+    returning
+      value(RV_DATA) type XSTRING .
   class-methods GET_IMAGE_LIST_TO_DOWNLOAD
     importing
       !IT_IMAGE_TASK type TT_IMAGE_PARSE_TASK
@@ -63,6 +68,9 @@ private section.
       !IV_REPO_NAME type CHAR4
     returning
       value(RT_TASK) type TT_IMAGE_PARSE_TASK .
+  class-methods DOWNLOAD_IMAGE
+    importing
+      !IT_DOWNLOAD_LIST type TT_DOWNLOAD_LIST .
 ENDCLASS.
 
 
@@ -93,6 +101,74 @@ CLASS CL_ABAP_GIT_ISSUE_IMAGE_TOOL IMPLEMENTATION.
       RETURN.
     ENDIF.
 
+  ENDMETHOD.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Static Private Method CL_ABAP_GIT_ISSUE_IMAGE_TOOL=>DOWNLOAD_IMAGE
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] IT_DOWNLOAD_LIST               TYPE        TT_DOWNLOAD_LIST
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+method DOWNLOAD_IMAGE.
+  DATA: ls_image_db TYPE crmd_git_image,
+        lt_image_db TYPE TABLE OF crmd_git_image.
+  loop at it_download_list INTO DATA(IMAGE) GROUP BY ( repo_name = image-repo_name )
+    ASSIGNING FIELD-SYMBOL(<image>).
+    "WRITE:/ | Issue for repo: { image-repo_name }| COLOR COL_NEGATIVE.
+    CLEAR: lt_image_db.
+   LOOP AT GROUP <image> ASSIGNING FIELD-SYMBOL(<element>).
+      ls_image_db = CORRESPONDING #( <element> ).
+      ls_image_db-image_binary_data = get_image_binary_Data( <element>-image_url ).
+      APPEND ls_image_db TO LT_IMAGE_DB.
+   ENDLOOP.
+   IF lt_image_db IS NOT INITIAL.
+      INSERT crmd_git_IMAGE FROM TABLE lt_image_db.
+   ENDIF.
+ENDLOOP.
+  endmethod.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Static Private Method CL_ABAP_GIT_ISSUE_IMAGE_TOOL=>GET_IMAGE_BINARY_DATA
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] IV_URL                         TYPE        STRING
+* | [<-()] RV_DATA                        TYPE        XSTRING
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD get_image_binary_data.
+    DATA: so_client TYPE REF TO if_http_client.
+
+    CALL METHOD cl_http_client=>create_by_url
+      EXPORTING
+        url                = iv_url
+        proxy_host         = 'proxy.wdf.sap.corp'
+        proxy_service      = '8080'
+      IMPORTING
+        client             = so_client
+      EXCEPTIONS
+        argument_not_found = 1
+        plugin_not_active  = 2
+        internal_error     = 3
+        OTHERS             = 4.
+
+    ASSERT sy-subrc = 0.
+    so_client->request->set_method( 'GET' ).
+    CALL METHOD so_client->send
+      EXCEPTIONS
+        http_communication_failure = 1
+        http_invalid_state         = 2
+        http_processing_failed     = 3.
+    ASSERT sy-subrc = 0.
+
+    CALL METHOD so_client->receive
+      EXCEPTIONS
+        http_communication_failure = 1
+        http_invalid_state         = 2
+        http_processing_failed     = 3.
+
+    ASSERT sy-subrc = 0.
+
+    rv_data = so_client->response->get_data( ).
+    so_client->close( ).
   ENDMETHOD.
 
 
