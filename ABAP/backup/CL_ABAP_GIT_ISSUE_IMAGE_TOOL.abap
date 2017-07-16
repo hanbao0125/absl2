@@ -1,76 +1,80 @@
-class CL_ABAP_GIT_ISSUE_IMAGE_TOOL definition
-  public
-  final
-  create public .
+CLASS cl_abap_git_issue_image_tool DEFINITION
+  PUBLIC
+  FINAL
+  CREATE PUBLIC .
 
-public section.
+  PUBLIC SECTION.
 
-  types:
-    BEGIN OF ty_image_reference,
-           image_name TYPE string,
-           image_url TYPE string,
-         END OF ty_image_reference .
-  types:
-    tt_image_reference TYPE TABLE OF ty_image_reference with key image_name .
-
-  TYPES:
-    BEGIN OF ty_download_list,
-        image_url TYPE string,
+    TYPES:
+      BEGIN OF ty_image_reference,
         image_name TYPE string,
-        repo_name TYPE char4,
-        issue_num TYPE int4,
-    END OF ty_download_list.
+        image_url  TYPE string,
+      END OF ty_image_reference .
+    TYPES:
+      tt_image_reference TYPE TABLE OF ty_image_reference WITH KEY image_name .
+    TYPES:
+      BEGIN OF ty_download_list,
+        image_url  TYPE string,
+        image_name TYPE string,
+        repo_name  TYPE char4,
+        issue_num  TYPE int4,
+      END OF ty_download_list .
+    TYPES:
+      tt_download_list TYPE TABLE OF ty_download_list WITH KEY image_url .
 
-  TYPES: tt_download_list TYPE TABLE OF ty_download_list WITH KEY image_url.
-  constants CV_API_URL type STRING value 'https://jerrylist.cfapps.eu10.hana.ondemand.com' ##NO_TEXT.
+    CONSTANTS cv_api_url TYPE string VALUE 'https://jerrylist.cfapps.eu10.hana.ondemand.com' ##NO_TEXT.
 
-  class-methods CLASS_CONSTRUCTOR .
-  class-methods GET_IMAGE_REFERENCE
-    importing
-      !IV_ISSUE_SOURCE_CODE type STRING
-    returning
-      value(RT_IMAGE) type TT_IMAGE_REFERENCE .
-  class-methods GET_IMAGE_REF_VIA_JS_SERVICE
-    importing
-      !IV_ISSUE_SOURCE_CODE type STRING
-    returning
-      value(RT_IMAGE) type TT_IMAGE_REFERENCE .
-  class-methods START_BACKUP
-    importing
-      !IV_REPO_NAME type CHAR4 .
-protected section.
-private section.
+    CLASS-METHODS class_constructor .
+    CLASS-METHODS get_image_reference
+      IMPORTING
+        !iv_issue_source_code TYPE string
+      RETURNING
+        VALUE(rt_image)       TYPE tt_image_reference .
+    CLASS-METHODS get_image_ref_via_js_service
+      IMPORTING
+        !iv_issue_source_code TYPE string
+      RETURNING
+        VALUE(rt_image)       TYPE tt_image_reference .
+    CLASS-METHODS start_backup
+      IMPORTING
+        !iv_repo_name TYPE char4 .
+    CLASS-METHODS export_locally
+      IMPORTING
+        !iv_local_path TYPE string
+        !iv_binary     TYPE xstring .
+  PROTECTED SECTION.
+  PRIVATE SECTION.
 
-  types:
-    begin of ty_image_parse_task,
-              repo_name TYPE char4,
-              issue_num TYPE int4,
-              issue_body TYPE string,
-         end of ty_image_parse_task .
-  types:
-    tt_image_parse_task TYPE TABLE OF ty_image_parse_task with key repo_name issue_num .
+    TYPES:
+      BEGIN OF ty_image_parse_task,
+        repo_name  TYPE char4,
+        issue_num  TYPE int4,
+        issue_body TYPE string,
+      END OF ty_image_parse_task .
+    TYPES:
+      tt_image_parse_task TYPE TABLE OF ty_image_parse_task WITH KEY repo_name issue_num .
 
-  class-data SV_IMAGE_PATTERN type STRING value '(!\[.*\]\(.*\))' ##NO_TEXT.
-  class-data SO_CLIENT type ref to IF_HTTP_CLIENT .
+    CLASS-DATA sv_image_pattern TYPE string VALUE '(!\[.*\]\(.*\))' ##NO_TEXT.
+    CLASS-DATA so_client TYPE REF TO if_http_client .
 
-  class-methods GET_IMAGE_BINARY_DATA
-    importing
-      !IV_URL type STRING
-    returning
-      value(RV_DATA) type XSTRING .
-  class-methods GET_IMAGE_LIST_TO_DOWNLOAD
-    importing
-      !IT_IMAGE_TASK type TT_IMAGE_PARSE_TASK
-    returning
-      value(RT_IMAGE_LIST) type TT_DOWNLOAD_LIST .
-  class-methods GET_MD_PARSE_TASK_LIST
-    importing
-      !IV_REPO_NAME type CHAR4
-    returning
-      value(RT_TASK) type TT_IMAGE_PARSE_TASK .
-  class-methods DOWNLOAD_IMAGE
-    importing
-      !IT_DOWNLOAD_LIST type TT_DOWNLOAD_LIST .
+    CLASS-METHODS get_image_binary_data
+      IMPORTING
+        !iv_url        TYPE string
+      RETURNING
+        VALUE(rv_data) TYPE xstring .
+    CLASS-METHODS get_image_list_to_download
+      IMPORTING
+        !it_image_task       TYPE tt_image_parse_task
+      RETURNING
+        VALUE(rt_image_list) TYPE tt_download_list .
+    CLASS-METHODS get_md_parse_task_list
+      IMPORTING
+        !iv_repo_name  TYPE char4
+      RETURNING
+        VALUE(rt_task) TYPE tt_image_parse_task .
+    CLASS-METHODS download_image
+      IMPORTING
+        !it_download_list TYPE tt_download_list .
 ENDCLASS.
 
 
@@ -109,31 +113,71 @@ CLASS CL_ABAP_GIT_ISSUE_IMAGE_TOOL IMPLEMENTATION.
 * +-------------------------------------------------------------------------------------------------+
 * | [--->] IT_DOWNLOAD_LIST               TYPE        TT_DOWNLOAD_LIST
 * +--------------------------------------------------------------------------------------</SIGNATURE>
-METHOD download_image.
-  DATA: ls_image_db TYPE crmd_git_image,
-        lt_image_db TYPE TABLE OF crmd_git_image,
-        lv_index    TYPE int4 VALUE 1.
-  DATA(lv_total) = lines( it_download_list ).
-  LOOP AT it_download_list INTO DATA(image) GROUP BY ( repo_name = image-repo_name )
-    ASSIGNING FIELD-SYMBOL(<image>).
-    "WRITE:/ | Issue for repo: { image-repo_name }| COLOR COL_NEGATIVE.
-    CLEAR: lt_image_db.
-    LOOP AT GROUP <image> ASSIGNING FIELD-SYMBOL(<element>).
-      ls_image_db = CORRESPONDING #( <element> ).
-      DATA(lv_text) = |file:{ ls_image_db-image_name } -{ lv_index }/{ lv_total }|.
-      CALL FUNCTION 'SAPGUI_PROGRESS_INDICATOR'
-        EXPORTING
-          percentage = lv_index * 100 / lv_total
-          text       = lv_text.
-      ls_image_db-image_binary_data = get_image_binary_data( <element>-image_url ).
-      ADD 1 TO lv_index.
-      APPEND ls_image_db TO lt_image_db.
+  METHOD download_image.
+    DATA: ls_image_db TYPE crmd_git_image,
+          lt_image_db TYPE TABLE OF crmd_git_image,
+          lv_index    TYPE int4 VALUE 1.
+    DATA(lv_total) = lines( it_download_list ).
+    LOOP AT it_download_list INTO DATA(image) GROUP BY ( repo_name = image-repo_name )
+      ASSIGNING FIELD-SYMBOL(<image>).
+      "WRITE:/ | Issue for repo: { image-repo_name }| COLOR COL_NEGATIVE.
+      CLEAR: lt_image_db.
+      LOOP AT GROUP <image> ASSIGNING FIELD-SYMBOL(<element>).
+        ls_image_db = CORRESPONDING #( <element> ).
+        DATA(lv_text) = |file:{ ls_image_db-image_name } - { lv_index }/{ lv_total }|.
+        CALL FUNCTION 'SAPGUI_PROGRESS_INDICATOR'
+          EXPORTING
+            percentage = lv_index * 100 / lv_total
+            text       = lv_text.
+        ls_image_db-image_index = lv_index.
+        ls_image_db-image_binary_data = get_image_binary_data( <element>-image_url ).
+        ADD 1 TO lv_index.
+        APPEND ls_image_db TO lt_image_db.
+      ENDLOOP.
+      IF lt_image_db IS NOT INITIAL.
+        INSERT crmd_git_image FROM TABLE lt_image_db.
+      ENDIF.
     ENDLOOP.
-    IF lt_image_db IS NOT INITIAL.
-      INSERT crmd_git_image FROM TABLE lt_image_db.
-    ENDIF.
-  ENDLOOP.
-ENDMETHOD.
+  ENDMETHOD.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Static Public Method CL_ABAP_GIT_ISSUE_IMAGE_TOOL=>EXPORT_LOCALLY
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] IV_LOCAL_PATH                  TYPE        STRING
+* | [--->] IV_BINARY                      TYPE        XSTRING
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD export_locally.
+    TYPES: BEGIN OF ts_line,
+             data(1024) TYPE x,
+           END OF ts_line.
+
+    DATA: lv_size TYPE int4,
+          lt_data TYPE STANDARD TABLE OF ts_line.
+
+    CALL FUNCTION 'SCMS_XSTRING_TO_BINARY'
+      EXPORTING
+        buffer        = iv_binary
+      IMPORTING
+        output_length = lv_size
+      TABLES
+        binary_tab    = lt_data.
+
+    CALL METHOD cl_gui_frontend_services=>gui_download
+      EXPORTING
+        bin_filesize = lv_size
+        filename     = iv_local_path
+        filetype     = 'BIN'
+        append       = space
+      IMPORTING
+        filelength   = lv_size
+      CHANGING
+        data_tab     = lt_data
+      EXCEPTIONS
+        OTHERS       = 01.
+
+    ASSERT sy-subrc = 0.
+  ENDMETHOD.
 
 
 * <SIGNATURE>---------------------------------------------------------------------------------------+
@@ -186,19 +230,19 @@ ENDMETHOD.
 * | [--->] IT_IMAGE_TASK                  TYPE        TT_IMAGE_PARSE_TASK
 * | [<-()] RT_IMAGE_LIST                  TYPE        TT_DOWNLOAD_LIST
 * +--------------------------------------------------------------------------------------</SIGNATURE>
-  method GET_IMAGE_LIST_TO_DOWNLOAD.
+  METHOD get_image_list_to_download.
 * repo name, issue number, issue_body
-    LOOP AT IT_IMAGE_TASK ASSIGNING FIELD-SYMBOL(<image_task>).
+    LOOP AT it_image_task ASSIGNING FIELD-SYMBOL(<image_task>).
 * Image file name, url
-       DATA(lt_parsed_image) = GET_IMAGE_REF_VIA_JS_SERVICE( <image_task>-issue_body ).
-       LOOP AT lt_parsed_image ASSIGNING FIELD-SYMBOL(<parsed_image>).
-         DATA(ls_download_list) = CORRESPONDING ty_download_list( <parsed_image> ).
-         ls_download_list-repo_name = <image_task>-repo_name.
-         ls_download_list-issue_num = <image_task>-issue_num.
-         APPEND ls_download_list TO RT_IMAGE_LIST.
-       ENDLOOP.
+      DATA(lt_parsed_image) = get_image_ref_via_js_service( <image_task>-issue_body ).
+      LOOP AT lt_parsed_image ASSIGNING FIELD-SYMBOL(<parsed_image>).
+        DATA(ls_download_list) = CORRESPONDING ty_download_list( <parsed_image> ).
+        ls_download_list-repo_name = <image_task>-repo_name.
+        ls_download_list-issue_num = <image_task>-issue_num.
+        APPEND ls_download_list TO rt_image_list.
+      ENDLOOP.
     ENDLOOP.
-  endmethod.
+  ENDMETHOD.
 
 
 * <SIGNATURE>---------------------------------------------------------------------------------------+
@@ -247,7 +291,7 @@ ENDMETHOD.
   METHOD get_image_ref_via_js_service.
     DATA: lv_sysubrc LIKE sy-subrc,
           lv_message TYPE string,
-          ls_data LIKE LINE OF rt_image.
+          ls_data    LIKE LINE OF rt_image.
     so_client->request->set_method( 'POST' ).
     so_client->request->set_content_type('application/x-www-form-urlencoded').
     so_client->request->set_form_field( name = 'markdown_source' value = iv_issue_source_code ).
@@ -289,26 +333,26 @@ ENDMETHOD.
 
     CALL METHOD cl_abap_git_issue_tool=>parse_json_to_internal_table
       EXPORTING
-        iv_json = lv_message
+        iv_json        = lv_message
       IMPORTING
-        et_node = DATA(node)
-        ev_node_number = data(lv_num).
+        et_node        = DATA(node)
+        ev_node_number = DATA(lv_num).
 
     so_client->close( ).
 
     DO lv_num TIMES.
-       CLEAR: ls_data.
-       LOOP AT node ASSIGNING FIELD-SYMBOL(<node>) WHERE index = sy-index.
-          CASE <node>-attribute.
-             WHEN 'localFile'.
-                ls_data-image_name = <node>-value.
-             WHEN 'fileUrl'.
-                ls_data-image_url = <node>-value.
-          ENDCASE.
-       ENDLOOP.
-       IF ls_data-image_url IS NOT INITIAL.
-          APPEND ls_data TO rt_image.
-       ENDIF.
+      CLEAR: ls_data.
+      LOOP AT node ASSIGNING FIELD-SYMBOL(<node>) WHERE index = sy-index.
+        CASE <node>-attribute.
+          WHEN 'localFile'.
+            ls_data-image_name = <node>-value.
+          WHEN 'fileUrl'.
+            ls_data-image_url = <node>-value.
+        ENDCASE.
+      ENDLOOP.
+      IF ls_data-image_url IS NOT INITIAL.
+        APPEND ls_data TO rt_image.
+      ENDIF.
     ENDDO.
   ENDMETHOD.
 
@@ -347,12 +391,12 @@ ENDMETHOD.
 * +-------------------------------------------------------------------------------------------------+
 * | [--->] IV_REPO_NAME                   TYPE        CHAR4
 * +--------------------------------------------------------------------------------------</SIGNATURE>
-  method START_BACKUP.
+  METHOD start_backup.
 
-  data(lt_image_task) = GET_MD_PARSE_TASK_LIST( iv_repo_name ).
+    DATA(lt_image_task) = get_md_parse_task_list( iv_repo_name ).
 
-  data(lt_image_list) = get_image_list_to_download( lt_image_task ).
+    DATA(lt_image_list) = get_image_list_to_download( lt_image_task ).
 
-  download_image( lt_imagE_list ).
-  endmethod.
+    download_image( lt_image_list ).
+  ENDMETHOD.
 ENDCLASS.
