@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+<script>
+
+var end;
+
+function setupDB(){
+	return this.createDatabase().then(createTable).then(insertEntry).then(readEntry);
+}
+
+function createTable(){
+	this._db.transaction(function(query){
+		setTimeout( (function(query) {
+			query.executeSql('create table if not exists user(id unique, user, passwd)');
+			console.log("table created successfully!");
+			debugger;
+		})(query), 1000);
+	});
+}
+
+function createDatabase(){
+	return new Promise(function(resovle, reject) {
+		this._db = openDatabase('mydb','1.0', 'JerryTestdb',1024);
+		setTimeout(resovle(this._db), 1000);
+	});
+}
+
+function insertEntry(){
+	this._db.transaction(function(query){
+		setTimeout( (function(query) {
+			query.executeSql("insert into user values (1,'Jerry','1234')");
+			console.log("entry inserted to table successfully"); 
+			var end = true;
+		})(query), 1000);
+	});
+}
+
+function readEntry(){
+
+	this._db.transaction(function(query){
+		setTimeout( (function(query) {
+			query.executeSql('select * from user',[],function(u,results){
+				for( var i = 0; i < results.rows.length; i++){
+					document.writeln('id: ' + results.rows[i].id);
+					document.writeln('user: ' + results.rows[i].user);
+					document.writeln('passwd: ' + results.rows[i].passwd);
+				}
+				debugger;
+				console.log("entry read from table successfully"); 
+				end = true;
+			});
+			
+		})(query), 1000);
+	});
+}
+
+setupDB();
+
+var handle = setInterval( work, 200);
+function work(handle){
+	if( end){
+		clearInterval(handle);
+	}
+	else{
+		console.log(" working..." + Date.now());
+	}
+}
+</script>
+
+</head>
+
+</html>
