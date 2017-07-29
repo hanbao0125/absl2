@@ -1,0 +1,45 @@
+<!doctype html>
+
+<html>
+
+<head>
+
+<script>
+
+//Create DB Connection
+
+var db = openDatabase('mydb','1.0', 'JerryTestdb',1024);
+
+//Create table under the above DB
+
+db.transaction(function(query){
+
+query.executeSql('create table if not exists user(id unique, usesr, passwd)');
+
+});
+
+//Insert values to the table
+
+db.transaction(function(query){
+
+query.executeSql("insert into user values (2,'Jerry','1234')");
+
+});
+
+//Get stored values from the table
+
+db.transaction(function(query){
+
+query.executeSql('select * from user',[],function(u,results){
+
+	document.write('length => ' + results.rows.length)
+
+});
+
+});
+
+</script>
+
+</head>
+
+</html>
