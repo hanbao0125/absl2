@@ -6,72 +6,87 @@
 var end;
 
 function setupDB(){
-	return this.createDatabase().then(createTable).then(insertEntry).then(readEntry);
+	return this.createDatabase().then(createTable).then(insertEntry).then(readEntry).then(printResult);
 }
 
 function createTable(){
-	this._db.transaction(function(query){
-		setTimeout( _createTable.bind(null, query), 1000);
-		// _createTable(query);
+	return new Promise(function(resovle, reject) {
+		console.log("prepare to create table..." + Date.now());
+		this._db.transaction(function(query){
+			query.executeSql('create table if not exists user(id unique, user, passwd)');
+		});
+		setTimeout( _createTableOK.bind(this, resovle), 1000);
 	});
 }
 
-function _createTable(query){
-	query.executeSql('create table if not exists user(id unique, user, passwd)');
+function _createTableOK(resovle){
 	console.log("table created successfully..." + Date.now());
+	resovle();
 }
 
 function createDatabase(){
 	return new Promise(function(resovle, reject) {
+		console.log("prepare to create database..." + Date.now());
 		this._db = openDatabase('mydb','1.0', 'JerryTestdb',1024);
-		setTimeout(resovle(this._db), 3000);
+		setTimeout( _createDatabaseOK.bind(this, resovle), 1000);
+
 	});
+}
+
+function _createDatabaseOK(resovle){
+	console.log("database created successfully..." + Date.now());
+	resovle(this._db);
 }
 
 function insertEntry(){
-	this._db.transaction(function(query){
-		//setTimeout( _insertEntry.bind(this, query), 3000);
-		_insertEntry(query);
+	return new Promise(function(resolve, reject) {
+		this._db.transaction(function(query){
+			query.executeSql("insert into user values (1,'Jerry','1234')");
+		});
+		setTimeout( _insertEntryOK.bind(this, resolve), 1000);
 	});
 }
 
-function _insertEntry(query){
-	query.executeSql("insert into user values (1,'Jerry','1234')");
+function _insertEntryOK(resolve){
 	console.log("entry inserted to table successfully..." + Date.now()); 
+	resolve();
 }
 
-function readEntry(){
-
-	this._db.transaction(function(query){
-		// setTimeout( _readEntry.bind(this, query), 3000);
-		_readEntry(query);
-	});
+function readEntry() {
+	return new Promise(function(resolve, reject) {
+			this._db.transaction( function(query) {
+				query.executeSql('select * from user',[],function(u,results) {
+				setTimeout( _readEntryOK.bind(this, resolve, results), 1000);
+			}); // end of query.executeSql
+	 } // end of function(query)
+	 ); // end of this._db.transaction
+ });
 }
 
-function _readEntry(query){
-	query.executeSql('select * from user',[],function(u,results){
-		for( var i = 0; i < results.rows.length; i++){
-			document.writeln('id: ' + results.rows[i].id);
-			document.writeln('user: ' + results.rows[i].user);
-			document.writeln('passwd: ' + results.rows[i].passwd);
-		}
-	debugger;
-	console.log("entry read from table successfully..." + Date.now()); 
+function _readEntryOK(resolve, oResult){
+	console.log("entry readed from DB successfully..." + Date.now());
+	resolve(oResult);
+}
+
+function printResult(oResults){
+	for( var i = 0; i < oResults.rows.length; i++) {
+			document.writeln('id: ' + oResults.rows[i].id);
+			document.writeln('user: ' + oResults.rows[i].user);
+			document.writeln('passwd: ' + oResults.rows[i].passwd);
+	}
 	end = true;
-	});
 }
 
-/*
 var handle = setInterval( work, 200);
-function work(handle){
-	if( end){
+function work(){
+	if( end ){
 		clearInterval(handle);
 	}
 	else{
 		console.log(" working..." + Date.now());
 	}
 }
-*/
+
 setupDB();
 </script>
 
