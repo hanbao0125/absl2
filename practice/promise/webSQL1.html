@@ -11,52 +11,57 @@ function setupDB(){
 
 function createTable(){
 	this._db.transaction(function(query){
-		setTimeout( (function(query) {
-			query.executeSql('create table if not exists user(id unique, user, passwd)');
-			console.log("table created successfully!");
-			debugger;
-		})(query), 1000);
+		setTimeout( _createTable.bind(null, query), 1000);
+		// _createTable(query);
 	});
+}
+
+function _createTable(query){
+	query.executeSql('create table if not exists user(id unique, user, passwd)');
+	console.log("table created successfully..." + Date.now());
 }
 
 function createDatabase(){
 	return new Promise(function(resovle, reject) {
 		this._db = openDatabase('mydb','1.0', 'JerryTestdb',1024);
-		setTimeout(resovle(this._db), 1000);
+		setTimeout(resovle(this._db), 3000);
 	});
 }
 
 function insertEntry(){
 	this._db.transaction(function(query){
-		setTimeout( (function(query) {
-			query.executeSql("insert into user values (1,'Jerry','1234')");
-			console.log("entry inserted to table successfully"); 
-			var end = true;
-		})(query), 1000);
+		//setTimeout( _insertEntry.bind(this, query), 3000);
+		_insertEntry(query);
 	});
+}
+
+function _insertEntry(query){
+	query.executeSql("insert into user values (1,'Jerry','1234')");
+	console.log("entry inserted to table successfully..." + Date.now()); 
 }
 
 function readEntry(){
 
 	this._db.transaction(function(query){
-		setTimeout( (function(query) {
-			query.executeSql('select * from user',[],function(u,results){
-				for( var i = 0; i < results.rows.length; i++){
-					document.writeln('id: ' + results.rows[i].id);
-					document.writeln('user: ' + results.rows[i].user);
-					document.writeln('passwd: ' + results.rows[i].passwd);
-				}
-				debugger;
-				console.log("entry read from table successfully"); 
-				end = true;
-			});
-			
-		})(query), 1000);
+		// setTimeout( _readEntry.bind(this, query), 3000);
+		_readEntry(query);
 	});
 }
 
-setupDB();
+function _readEntry(query){
+	query.executeSql('select * from user',[],function(u,results){
+		for( var i = 0; i < results.rows.length; i++){
+			document.writeln('id: ' + results.rows[i].id);
+			document.writeln('user: ' + results.rows[i].user);
+			document.writeln('passwd: ' + results.rows[i].passwd);
+		}
+	debugger;
+	console.log("entry read from table successfully..." + Date.now()); 
+	end = true;
+	});
+}
 
+/*
 var handle = setInterval( work, 200);
 function work(handle){
 	if( end){
@@ -66,6 +71,8 @@ function work(handle){
 		console.log(" working..." + Date.now());
 	}
 }
+*/
+setupDB();
 </script>
 
 </head>
