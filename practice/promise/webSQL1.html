@@ -29,7 +29,6 @@ function createDatabase(){
 		console.log("prepare to create database..." + Date.now());
 		this._db = openDatabase('mydb','1.0', 'JerryTestdb',1024);
 		setTimeout( _createDatabaseOK.bind(this, resovle), 1000);
-
 	});
 }
 
@@ -77,7 +76,6 @@ function printResult(oResults){
 	end = true;
 }
 
-var handle = setInterval( work, 200);
 function work(){
 	if( end ){
 		clearInterval(handle);
@@ -88,8 +86,7 @@ function work(){
 }
 
 setupDB();
+var handle = setInterval( work, 200);
 </script>
-
 </head>
-
 </html>

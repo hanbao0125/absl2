@@ -5,11 +5,21 @@
 <head>
 
 <script>
-
+var end = false;
 //Create DB Connection
 
-var db = openDatabase('mydb','1.0', 'JerryTestdb',1024);
+var handle = setInterval( work, 200);
+function work(){
+	if( end ){
+		clearInterval(handle);
+	}
+	else{
+		console.log(" working..." + Date.now());
+	}
+}
 
+var db = openDatabase('mydb','1.0', 'JerryTestdb',1024);
+console.log("database created successfully..." + Date.now());
 //Create table under the above DB
 
 db.transaction(function(query){
@@ -17,7 +27,7 @@ db.transaction(function(query){
 query.executeSql('create table if not exists user(id unique, usesr, passwd)');
 
 });
-
+console.log("table created successfully..." + Date.now());
 //Insert values to the table
 
 db.transaction(function(query){
@@ -25,7 +35,7 @@ db.transaction(function(query){
 query.executeSql("insert into user values (2,'Jerry','1234')");
 
 });
-
+console.log("entry inserted to table successfully..." + Date.now()); 
 //Get stored values from the table
 
 db.transaction(function(query){
@@ -37,7 +47,8 @@ query.executeSql('select * from user',[],function(u,results){
 });
 
 });
-
+console.log("entry readed from DB successfully..." + Date.now());
+end = true;
 </script>
 
 </head>
