@@ -79,3 +79,7 @@ https://jerryordercount.cfapps.eu10.hana.ondemand.com/jerry/OneOrderHCP.html --J
 
 user: my sap email
 password: the one to access my laptop!!!
+
+# 2017-08-05
+
+1. https://jerrylist.cfapps.eu10.hana.ondemand.com/ui5 - SCN offline list
