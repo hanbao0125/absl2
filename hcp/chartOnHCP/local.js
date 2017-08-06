@@ -45,6 +45,9 @@ app.post('/c4c', function(req, res){
     console.log('body end: ' + body);
     var reqObj = JSON.parse(body);
     console.log("Account id: " + reqObj);
+    for( var i in reqObj){
+      console.log("attribute: " + i);
+    }
   })
 
     res.setHeader('Content-Type', 'application/json');
