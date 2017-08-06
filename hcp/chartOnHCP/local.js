@@ -49,10 +49,9 @@ app.post('/c4c', function(req, res){
     for( var i in reqObj){
       console.log("attribute: " + i + " value: " + reqObj[i]);
     }
+  });
 
-  })
-
-    res.setHeader('Content-Type', 'application/json');
+    // res.setHeader('Content-Type', 'application/json');
 var sURL = "https://qxl-cust233.dev.sapbydesign.com/sap/byd/odata/v1/opportunity/OpportunityCollection('00163E06551B1EE79E9E69D7F8FBCDCF')";
 var sURL2 = "https://raw.githubusercontent.com/i042416/KnowlegeRepository/master/ABAP/BO/reuse_backend_code.md";
 
@@ -71,12 +70,18 @@ var options = {
 }
 request(options, function (error, response, body) {
   console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-  console.log('body:', body); // Print the HTML for the Google homepage.
+  // console.log('body:', body); // Print the HTML for the Google homepage.
   var opportunity = JSON.parse(body);
-  console.log("id: " + opportunity.d.results.Name);
- 
+  var line1 = "Opportunity name: " + opportunity.d.results.Name;
+  console.log(line1);
+  var line2 = "Responsible: " + opportunity.d.results.MainEmployeeResponsiblePartyName;
+  console.log(line2);
+  var line3 = "Opportunity id: " + opportunity.d.results.ObjectID;
+  console.log(line3);
+  var responseText = line1 + "\n" + line2 + "\n" + line3;
+  res.send(responseText);
 });
-	res.send("Hello C4C, post is got");
+	
 });
 
 app.listen(process.env.PORT || 3001, function(){
