@@ -6,6 +6,8 @@ solution: proxy_on
 
 var path = require('path'), express = require('express');
 var https = require("https");
+var bodyParser = require('body-parser');
+var multer = require('multer'); // v1.0.5
 var fs = require('fs'), request = require('request');
 var app = express();
 
@@ -32,9 +34,10 @@ app.get('/c4c', function(req, res){
 });
 
 
-
+app.use(bodyParser.json()); // for parsing application/json
 app.post('/c4c', function(req, res){
     res.setHeader('Content-Type', 'application/json');
+    console.log("Jerry: " + req.body);
 
     /*download('https://raw.githubusercontent.com/i042416/KnowlegeRepository/master/ABAP/BO/reuse_backend_code.md',  
         function(){
