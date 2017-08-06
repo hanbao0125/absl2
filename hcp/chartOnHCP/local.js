@@ -44,10 +44,12 @@ app.post('/c4c', function(req, res){
   req.on('end', function () {
     console.log('body end: ' + body);
     var reqObj = JSON.parse(body);
-    console.log("Account id: " + reqObj);
+    console.log("Account id: " + reqObj["AccountID"]);
+    console.log("Account id2: " + reqObj.AccountID);
     for( var i in reqObj){
-      console.log("attribute: " + i);
+      console.log("attribute: " + i + " value: " + reqObj[i]);
     }
+
   })
 
     res.setHeader('Content-Type', 'application/json');
