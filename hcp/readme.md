@@ -73,7 +73,7 @@ set HTTPS_PROXY=http://proxy.wdf.sap.corp:8080
 # 2017-05-27
 1. https://jerryordercount.cfapps.eu10.hana.ondemand.com
 
-https://jerryordercount.cfapps.eu10.hana.ondemand.com/jerry/OneOrderHCP.html --Jerry checkes on 2017-07-15 that it could still be accessed.
+https://jerryordercount.cfapps.eu10.hana.ondemand.com/jerry/OneOrderHCP.html --Jerry checks on 2017-07-15 that it could still be accessed.
 
 # 2017-07-15
 
@@ -83,3 +83,7 @@ password: the one to access my laptop!!!
 # 2017-08-05
 
 1. https://jerrylist.cfapps.eu10.hana.ondemand.com/ui5 - SCN offline list
+
+# 2017-08-06
+
+Vicky: https://blogs.sap.com/2017/02/07/how-to-deploy-ui5-application-on-hcpcloudfoundry/
