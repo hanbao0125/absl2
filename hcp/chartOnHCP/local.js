@@ -55,7 +55,17 @@ app.post('/c4c', function(req, res){
     res.setHeader('Content-Type', 'application/json');
 var sURL = "https://qxl-cust233.dev.sapbydesign.com/sap/byd/odata/v1/opportunity/OpportunityCollection('00163E06551B1EE79E9E69D7F8FBCDCF')";
 var sURL2 = "https://raw.githubusercontent.com/i042416/KnowlegeRepository/master/ABAP/BO/reuse_backend_code.md";
-request(sURL, function (error, response, body) {
+
+var username = 'WANGJER'
+var password = 'Saptest1'
+var options = {
+  url: sURL,
+  auth: {
+    user: username,
+    password: password
+  }
+}
+request(options, function (error, response, body) {
   console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
   console.log('body:', body); // Print the HTML for the Google homepage.
 });
