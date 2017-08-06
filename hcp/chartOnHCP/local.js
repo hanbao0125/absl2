@@ -1,4 +1,7 @@
 // https://stackoverflow.com/questions/12740659/downloading-images-with-node-js
+/* Jerry 2017-08-06 9:26AM
+proxy: once I have logged on VPN, download does not work any more
+*/
 
 var path = require('path'), express = require('express');
 var https = require("https");
