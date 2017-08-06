@@ -59,6 +59,7 @@ app.post('/c4c', function(req, res){
     console.log(line3);
     var responseText = line1 + "\n" + line2 + "\n" + line3;
     res.send(responseText);
+    res.send("another line"); // this line will cause error - repeated send response is not allowed
   });
 });
 
