@@ -36,6 +36,7 @@ app.post('/c4c', function(req, res){
     //res.send(body);
     body = body + "\n" + "Server handled ok";
     res.write(body);
+    console.log(body);
     res.end();
   });
 
