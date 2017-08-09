@@ -30,17 +30,17 @@ app.post('/c4c', function(req, res){
   req.on('data', function (chunk) {
     body += chunk;
   });
+
   req.on('end', function () {
     console.log('body end: ' + body);
     var reqObj = JSON.parse(body);
     //res.send(body);
-    body = body + "\n" + "Server handled ok";
-    res.write(body);
-    console.log(body);
-    res.end();
-  });
+    //body = body + "\n" + "Server handled ok";
+    //res.write(body);
+    console.log("Name: " + reqObj.Name.content);
 
-  /*var sURL = "https://qxl-cust233.dev.sapbydesign.com/sap/byd/odata/v1/opportunity/OpportunityCollection('00163E06551B1EE79E9E69D7F8FBCDCF')";
+    
+  var sURL = "https://qxl-cust233.dev.sapbydesign.com/sap/byd/odata/v1/opportunity/OpportunityCollection('00163E06551B1EE79E9E69D7F8FBCDCF')";
   var sURL2 = "https://raw.githubusercontent.com/i042416/KnowlegeRepository/master/ABAP/BO/reuse_backend_code.md";
 
   var username = 'WANGJER'
@@ -67,8 +67,12 @@ app.post('/c4c', function(req, res){
     console.log(line3);
     var responseText = line1 + "\n" + line2 + "\n" + line3;
     res.send(responseText);
-    res.send("another line"); // this line will cause error - repeated send response is not allowed
-  }); */
+    // res.send("another line"); // this line will cause error - repeated send response is not allowed
+  }); 
+
+    // res.end();
+  }); // end of req.on
+
 });
 
 app.listen(process.env.PORT || 3001, function(){
