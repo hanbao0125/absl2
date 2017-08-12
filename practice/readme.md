@@ -7,6 +7,7 @@
 V8 使用 JavaScript 本身实现了 JavaScript 语言的大部分内置对象和函数。 例如，promise 功能就是通过 JavaScript 编写的。我们把这样的内置函数称为自主托管（self-hosted）。
 
 # 2017-04-26
+
 不要使用 for…in 来遍历数组，虽然可以遍历，但是如果为 Object.prototype 设置了可枚举属性后，也会把这些属性遍历到，因为数组也是一种对象。
 
 * Object.keys(obj)：返回一个数组，包括对象自身的（不含继承的）所有可枚举属性（不含 Symbol 类型的属性
@@ -17,3 +18,6 @@ V8 使用 JavaScript 本身实现了 JavaScript 语言的大部分内置对象�
 
 https://stackoverflow.com/questions/11849562/how-to-save-the-output-of-a-console-logobject-to-a-file - Created by Jerry Wang, last modified on Jan 16, 2015
 
+# 2017-08-12
+
+A **Promise** is a proxy for a value not necessarily known when the promise is created. It allows you to associate handlers with an asynchronous action's eventual success value or failure reason. This lets asynchronous methods return values like synchronous methods: instead of immediately returning the final value, the asynchronous method returns a promise to supply the value at some point in the future.
