@@ -1,0 +1,19 @@
+For each/one column we can set a footer.
+
+new sap.m.Column({ // second column
+
+  hAlign : "Right", // column will be right aligned
+
+  header : new sap.m.Label({ // header of the second column
+
+  text : "Price"
+
+  }),
+
+   footer : new sap.m.Label({ // footer of the second column
+
+  text : "15.00 EUR"
+
+  })
+
+  })
