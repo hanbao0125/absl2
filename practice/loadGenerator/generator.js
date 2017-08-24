@@ -15,3 +15,15 @@ function funcTwo(input, callback) {
 }*/
 
 console.log("hello world");
+
+var request = require('request');
+var count = 0;
+for( let i = 0; i < 500; i++){
+  request('http://www.baidu.com', function (error, response, body) {
+  // console.log('error:', error); // Print the error if one occurred
+  count++;
+    console.log("finished count: " + count );
+    console.log('statusCode:' + response.statusCode );// response &&  // Print the response status code if a response was received
+  // console.log('body:', body); // Print the HTML for the Google homepage.
+  });
+}
