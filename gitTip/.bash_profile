@@ -16,6 +16,10 @@ function proxy_off(){
     export NO_PROXY=
 }
 
-function c4c(){
-    cd C:\\Code\\Jerrylaunchpad\\C4C
+function c4c() {
+	cd C:\\Code\\Jerrylaunchpad\\C4C
+}
+
+function home() {
+	cd c:\\code\\git
 }
