@@ -46,3 +46,5 @@ LET: define local variable in constructor expression
 # Useful links
 
 1. [good website](http://www.guidancetech.com/people/holland/sap/abap/) containing source code of ABAP ( most of them are basis )
+
+2. Jerry's print: \\Cnctul000.ctul.sap.corp\restricted\ByD_SC\20_Technology\FieldExtension\75_Documents
