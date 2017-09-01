@@ -29,3 +29,8 @@
   2. re = new RegExp("ab+c");
 使用构造函数，提供了对正则表达式运行时的编译。当你知道正则表达式的模式会发生改变， 或者你事先并不了解它的模式或者是从其他地方（比如用户的输入），得到的代码这时比较适合用构造函数的方式。
 
+## get user and password
+
+FIND REGEX ‘&login=(\w+)@(\w+)’ IN url SUBMATCHES user password.
+
+
