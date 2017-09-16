@@ -127,11 +127,11 @@ businessobject BonusPlan {
 
 * annotation combination
 
-(1) [AlternativeKey] element AssigmentDate : Date;
-(2) [CrossDeploymentUnit] association toBusinessPartner to BusinessPartner;
-(3) [RelevantForAccessControl] association toBusinessPartner to BusinessPartner;
-(4) [DependentObject(TextCollection)] node TextCollection; 
-(5) [Extension] businessobject SalesOrder { ... }
-(6) [DeploymentUnit(CRM)] businessobject SunnyDay { ... }
-(7) [DependentObject(TextCollection)] [MultipleTexts] node TextCollection; //second annotation
+1. [AlternativeKey] element AssigmentDate : Date;
+2. [CrossDeploymentUnit] association toBusinessPartner to BusinessPartner;
+3. [RelevantForAccessControl] association toBusinessPartner to BusinessPartner;
+4. [DependentObject(TextCollection)] node TextCollection; 
+5. [Extension] businessobject SalesOrder { ... }
+6. [DeploymentUnit(CRM)] businessobject SunnyDay { ... }
+7. [DependentObject(TextCollection)] [MultipleTexts] node TextCollection; //second annotation
 
