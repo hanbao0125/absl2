@@ -16,3 +16,11 @@ foreach( item in queryResult )
      item.ext_test_for_lock = "change by Service Order";
 ```
 
+# collection
+
+import ABSL;
+import AP.Common.GDT
+
+```abap
+var mycollection : collectionof SalesOrder.BuyerID; // internal table
+```
