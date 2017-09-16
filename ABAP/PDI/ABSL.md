@@ -87,5 +87,16 @@ collectionA = this.Where(n => n.ItemID == mySearchValues.ItemID || !(n.ItemID.co
 ```
 
 ### Limitations
+
 * Collections with an unstructured table line are not supported.
 * It is not possible to delete instances from a BO node with the where-statement. The delete method has to be used for this purpose. 
+
+# DistinctBy
+
+<Collection>.DistinctBy(<anonymous function>).ThenBy(<anonymous function>);
+
+
+The DistinctBy statement deletes duplicate lines in collections by comparing content of defined components.
+An anonymous function (lambda expression) is used to refer to the components of the collection line type.
+
+collection.DistinctBy(n => n.BUYER_NAME.CONTENT).ThenBy(n => n.STATUS).ThenBy(n => n.TYPE_CODE); 
