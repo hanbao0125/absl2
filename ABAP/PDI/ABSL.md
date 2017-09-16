@@ -57,3 +57,18 @@ SalesOrderID.content = "12";
 SalesOrder.Retrieve( SalesOrderID );
 ```
 
+# String operation
+
+```abap
+import ABSL;
+var test;
+test = String.Substring("Test",2,2);
+```
+
+# Reuse Service - Get current date time
+
+```abap
+import ABSL;
+var time;
+time = Context.GetCurrentGlobalDateTime( );
+``` 
