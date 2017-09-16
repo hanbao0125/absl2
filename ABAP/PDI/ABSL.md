@@ -104,3 +104,11 @@ collection.DistinctBy(n => n.BUYER_NAME.CONTENT).ThenBy(n => n.STATUS).ThenBy(n 
 # Count
 
 <intVar> = <Collection>.Count();
+
+# BODL
+
+* Assignment of Deviating Deployment Unit
+
+[DeploymentUnit(CustomerRelationshipManagement)] businessobject BonusPlan {
+    element ID : Identifier;
+}
