@@ -24,3 +24,16 @@ import AP.Common.GDT
 ```abap
 var mycollection : collectionof SalesOrder.BuyerID; // internal table
 ```
+
+# element
+
+var mycollection: collectionof SalesOrder.BuyerID;
+var result: collectionof SalesOrder.BuyerID;
+
+var item_one: elementof SalresOrder.BuyerID;
+var item_two: elementof SalresOrder.BuyerID;
+var collection: collectionof SalesOrder.SystemAdministrativeData;
+
+item_one.content = "A";
+mycollection.Add( item_one);
+
