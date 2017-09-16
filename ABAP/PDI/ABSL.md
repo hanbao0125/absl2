@@ -112,3 +112,9 @@ collection.DistinctBy(n => n.BUYER_NAME.CONTENT).ThenBy(n => n.STATUS).ThenBy(n 
 [DeploymentUnit(CustomerRelationshipManagement)] businessobject BonusPlan {
     element ID : Identifier;
 }
+
+[DeploymentUnit(CustomerRelationshipManagement)]
+[Extension]
+businessobject BonusPlan {
+                     element ID : Identifier;
+}
