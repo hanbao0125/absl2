@@ -55,6 +55,10 @@ result = mycollection.Where( test=>test.content == "A" );
 var SalesOrderID : elementsof SalesOrder.ID; 
 SalesOrderID.content = "12";
 SalesOrder.Retrieve( SalesOrderID );
+
+<node Instance> = <BusinessObject>.Retrieve(<alternativeKey>);
+<Collection of node instances> = <BusinessObject>.Retrieve(<collection of alternativeKeys>);
+	
 ```
 
 # String operation
