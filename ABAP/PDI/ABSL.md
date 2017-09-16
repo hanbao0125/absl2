@@ -48,3 +48,12 @@ item_two.Clear();
 collection.OrderBy( time=>time.LastChangeDateTime);
 result = mycollection.Where( test=>test.content == "A" );
 ```
+
+# Retrieve
+
+```abap
+var SalesOrderID : elementsof SalesOrder.ID; 
+SalesOrderID.content = "12";
+SalesOrder.Retrieve( SalesOrderID );
+```
+
