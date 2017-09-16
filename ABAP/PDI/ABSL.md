@@ -100,3 +100,7 @@ The DistinctBy statement deletes duplicate lines in collections by comparing con
 An anonymous function (lambda expression) is used to refer to the components of the collection line type.
 
 collection.DistinctBy(n => n.BUYER_NAME.CONTENT).ThenBy(n => n.STATUS).ThenBy(n => n.TYPE_CODE); 
+
+# Count
+
+<intVar> = <Collection>.Count();
