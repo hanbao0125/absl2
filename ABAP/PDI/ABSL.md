@@ -103,7 +103,9 @@ collection.DistinctBy(n => n.BUYER_NAME.CONTENT).ThenBy(n => n.STATUS).ThenBy(n 
 
 # Count
 
+```abap
 <intVar> = <Collection>.Count();
+```
 
 # BODL
 
