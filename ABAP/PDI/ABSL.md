@@ -58,7 +58,7 @@ SalesOrder.Retrieve( SalesOrderID );
 
 <node Instance> = <BusinessObject>.Retrieve(<alternativeKey>);
 <Collection of node instances> = <BusinessObject>.Retrieve(<collection of alternativeKeys>);
-	
+
 ```
 
 # String operation
@@ -76,3 +76,16 @@ import ABSL;
 var time;
 time = Context.GetCurrentGlobalDateTime( );
 ``` 
+
+# Where
+
+```abap
+var mySearchValues : elementsof myBO.Item;
+var collectionA;  
+mySearchValues.ItemID.content = "Bill";
+collectionA = this.Where(n => n.ItemID == mySearchValues.ItemID || !(n.ItemID.content < 1000 && n.ItemID.content == "Fred")); 
+```
+
+### Limitations
+* Collections with an unstructured table line are not supported.
+* It is not possible to delete instances from a BO node with the where-statement. The delete method has to be used for this purpose. 
