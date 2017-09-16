@@ -118,3 +118,8 @@ collection.DistinctBy(n => n.BUYER_NAME.CONTENT).ThenBy(n => n.STATUS).ThenBy(n 
 businessobject BonusPlan {
                      element ID : Identifier;
 }
+
+* DO - dependent object
+
+[DependentObject(TextCollection)] node ItemTextCollection;
+
