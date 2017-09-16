@@ -27,6 +27,7 @@ var mycollection : collectionof SalesOrder.BuyerID; // internal table
 
 # element
 
+```abap
 var mycollection: collectionof SalesOrder.BuyerID;
 var result: collectionof SalesOrder.BuyerID;
 
@@ -37,3 +38,12 @@ var collection: collectionof SalesOrder.SystemAdministrativeData;
 item_one.content = "A";
 mycollection.Add( item_one);
 
+item_one.content = "B";
+mycollection.Add( item_one);
+mycollection.Count();
+item_two = mycollection.getFirst();
+item_two.Clear();
+item_two = mycollection.getLast();
+item_two.Clear();
+collection.OrderBy( time=>time.LastChangeDateTime);
+```
