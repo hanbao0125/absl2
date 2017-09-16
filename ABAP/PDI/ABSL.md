@@ -46,4 +46,5 @@ item_two.Clear();
 item_two = mycollection.getLast();
 item_two.Clear();
 collection.OrderBy( time=>time.LastChangeDateTime);
+result = mycollection.Where( test=>test.content == "A" );
 ```
