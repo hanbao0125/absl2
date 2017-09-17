@@ -137,3 +137,28 @@ businessobject BonusPlan {
 
 * BOGenerationHandler.cs
 
+```c#
+using System;
+using System.Collections.Generic;
+using System.Text;
+using com.sap.JSONConnector;
+using SAP.Copernicus.Core.Protocol.JSON.ProxyClasses;
+using SAP.Copernicus.Core.Repository;
+namespace SAP.Copernicus.Core.Protocol.JSON.Handlers
+/// Generates an BO that must already exist in the MDRS. Generation consists of the following three steps:
+        /// Proxy Generation, automated BOPF implementation, Script Code Snippet generation and registration.
+        /// Script code context parameters must not be provided anymore, as the RFC analyses the existence of script
+        /// code in the backend (XRep) and automatically registers the BOPF determination impl classes accordingly.
+// Get cached JSON Client for currently connected Respository system
+                JSONClient jsonClient = Client.getInstance().getJSONClient();
+                // Create Proxy
+                PDI_RI_BOG_GENERATE proxy = new PDI_RI_BOG_GENERATE();
+                // Handle params
+                proxy.Importing = new PDI_RI_BOG_GENERATE.ImportingType();
+                proxy.Importing.IV_ESR_NAMESPACE = nsName;
+                proxy.Importing.IV_ESR_BO_NAME = boName;
+                proxy.Importing.IV_PROXY = "X";
+                proxy.Importing.IV_BOPF = "X";
+                // Execute the RFC
+                jsonClient.callFunctionModule(proxy);
+```
