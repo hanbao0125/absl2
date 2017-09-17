@@ -135,3 +135,5 @@ businessobject BonusPlan {
 6. [DeploymentUnit(CRM)] businessobject SunnyDay { ... }
 7. [DependentObject(TextCollection)] [MultipleTexts] node TextCollection; //second annotation
 
+* BOGenerationHandler.cs
+
