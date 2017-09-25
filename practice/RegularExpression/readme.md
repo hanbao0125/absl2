@@ -33,4 +33,12 @@
 
 FIND REGEX ‘&login=(\w+)@(\w+)’ IN url SUBMATCHES user password.
 
+# 2017-09-25
+
+(?:exp)不会改变正则表达式的处理方式，只是这样的组匹配的内容不会像前两种那样被捕获到某个组里面，也不会拥有组号
+(?=exp)也叫零宽度正预测先行断言，它断言自身出现的位置的后面能匹配表达式exp。比如\b\w+(?=ing\b)，匹配以ing结尾的单词的前面部分(除了ing以外的部分)，如查找I'm singing while you're dancing.时，它会匹配sing和danc。
+
+![image](https://user-images.githubusercontent.com/5669954/30790674-e3b4d784-a1df-11e7-9487-9491738a5811.png)
+
+
 
