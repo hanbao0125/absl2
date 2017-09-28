@@ -162,3 +162,10 @@ namespace SAP.Copernicus.Core.Protocol.JSON.Handlers
                 // Execute the RFC
                 jsonClient.callFunctionModule(proxy);
 ```
+
+
+```Javascript
+foreach( entry in this ){
+  entry.ext_item = "11";
+}
+```
