@@ -1,6 +1,7 @@
 REPORT ZEXCEL_PASSWD.
 include ole2incl.
 
+* initial created on 2014年06月20日 15:54
 data: e_sheet type ole2_object.
 data: e_appl  type ole2_object.
 data: e_work  type ole2_object.
