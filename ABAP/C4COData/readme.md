@@ -19,3 +19,5 @@ Business partners is the collective term for all the companies and people you in
 [Sales Quote SAP help](https://cp.hana.ondemand.com/dps/d/preview/6029d1035487452d858f1cdf229f4af1/1508/en-US/frameset.html?187da78e763d1014add6efccbd6607e6.html)
 
 [Create sales quote from opportunity in C4C - possible?](https://archive.sap.com/discussions/thread/3783575)
+
+* We can only create an ERP sales quote or order from an opportunity.
