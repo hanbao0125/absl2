@@ -11,3 +11,5 @@ The view Registered Product is seen in 2 Work Centers - Products and Installed B
 [Useful document](https://archive.sap.com/documents/docs/DOC-68151)
 
 Scoping: Communication and Information Exchange->Integration with External Applications and Solutions->Integration into Sales, Service, and Marketing Processes->Group: Sales Quotes End of the navigation path.
+
+Sales quote processing is used to offer products to customers according to specific terms with fixed conditions.
