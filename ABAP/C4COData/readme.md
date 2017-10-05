@@ -25,4 +25,4 @@ Business partners is the collective term for all the companies and people you in
 
 How do you change action options? I only have that options. ?!
 
-[Opportunity SAP help]
+[Opportunity SAP help](https://help.sap.com/viewer/637db7a0d01e47009d9420e9a927c571/1708/en-US/7c26aed20dda43adabb14c5b281b3963.html#loio7c26aed20dda43adabb14c5b281b3963)
