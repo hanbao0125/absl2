@@ -40,4 +40,4 @@ data flow: sales quote to sales order -> at least in BYD!
 Sales Quote是Sales scenario里的。
 
 /BYD_COD/ServiceOnDemand/RegisteredProduct/UI/COD_Registered_Product_TI
-只教怎么做，没说
+只教怎么做，没说出问题怎么办。。
