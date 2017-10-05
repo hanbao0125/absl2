@@ -4,5 +4,5 @@ Change log: Business flexibility - change log
 
 Registered Product  is made up of 2 Business Objects.
 
-* InstallationPoint (http://sap.com/xi/AP/FO/IBase/Global) .
+* InstallationPoint (http://sap.com/xi/AP/FO/IBase/Global)
 * IndividualProduct ( http://sap.com/xi/AP/FO/ProductDataMaintenance/Global)
