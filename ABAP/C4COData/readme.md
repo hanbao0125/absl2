@@ -8,3 +8,4 @@ Registered Product  is made up of 2 Business Objects.
 * IndividualProduct ( http://sap.com/xi/AP/FO/ProductDataMaintenance/Global)
 
 The view Registered Product is seen in 2 Work Centers - Products and Installed Base.
+[Useful document](https://archive.sap.com/documents/docs/DOC-68151)
