@@ -31,3 +31,4 @@ This feature is only available if the scoping question in Opportunity is turned 
 
 Registered product is in Service scoping? yes 2017-10-5 6:07PM
 create with reference does not work in C4C!
+data flow: sales quote to sales order -> at least in BYD!
