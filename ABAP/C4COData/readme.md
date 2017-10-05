@@ -13,3 +13,6 @@ The view Registered Product is seen in 2 Work Centers - Products and Installed B
 Scoping: Communication and Information Exchange->Integration with External Applications and Solutions->Integration into Sales, Service, and Marketing Processes->Group: Sales Quotes End of the navigation path.
 
 Sales quote processing is used to offer products to customers according to specific terms with fixed conditions.The seller is bound by the sales quote for a specific period of time. The sales quote is usually created by a sales representative of the company.
+
+Business partners is the collective term for all the companies and people you interact with in your business, and includes accounts, contacts, partners, and employees. When you create a document, you can designate a business partner as an involved party and assign them a role.
+
