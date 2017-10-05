@@ -24,3 +24,5 @@ Business partners is the collective term for all the companies and people you in
 * we could create a sales quote/order in C4C without any predecessors.
 
 How do you change action options? I only have that options. ?!
+
+[Opportunity SAP help]
