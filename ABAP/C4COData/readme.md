@@ -45,4 +45,4 @@ APCRM_OPP_INSTALLED_OBJ is a business feature.
 
 NavigationBar.prototype.addItem
 
-In A6P, Opportunity tab
+In A6P, Opportunity tab is navigationItem4
