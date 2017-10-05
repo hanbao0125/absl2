@@ -28,3 +28,5 @@ How do you change action options? I only have that options. ?!
 [Opportunity SAP help](https://help.sap.com/viewer/637db7a0d01e47009d9420e9a927c571/1708/en-US/7c26aed20dda43adabb14c5b281b3963.html#loio7c26aed20dda43adabb14c5b281b3963)
 
 This feature is only available if the scoping question in Opportunity is turned on here:  Business Configuration->Scoping->Questions->Sales->New Business->Opportunity->Do you want to enable users to capture registered products in opportunities? 
+
+Registered product is in Service scoping?
