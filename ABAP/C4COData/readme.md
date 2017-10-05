@@ -29,4 +29,5 @@ How do you change action options? I only have that options. ?!
 
 This feature is only available if the scoping question in Opportunity is turned on here:  Business Configuration->Scoping->Questions->Sales->New Business->Opportunity->Do you want to enable users to capture registered products in opportunities? 
 
-Registered product is in Service scoping?
+Registered product is in Service scoping? yes 2017-10-5 6:07PM
+create with reference does not work in C4C!
