@@ -22,3 +22,5 @@ Business partners is the collective term for all the companies and people you in
 
 * We can only create an ERP sales quote or order from an opportunity.
 * we could create a sales quote/order in C4C without any predecessors.
+
+How do you change action options? I only have that options. ?!
