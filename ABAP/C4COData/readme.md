@@ -16,3 +16,4 @@ Sales quote processing is used to offer products to customers according to speci
 
 Business partners is the collective term for all the companies and people you interact with in your business, and includes accounts, contacts, partners, and employees. When you create a document, you can designate a business partner as an involved party and assign them a role.
 
+[Sales Quote SAP help](https://cp.hana.ondemand.com/dps/d/preview/6029d1035487452d858f1cdf229f4af1/1508/en-US/frameset.html?187da78e763d1014add6efccbd6607e6.html)
