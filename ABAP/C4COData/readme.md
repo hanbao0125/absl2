@@ -29,6 +29,9 @@ How do you change action options? I only have that options. ?!
 
 Create an Opportunity from a Registered Product - how?!
 
+>
+In SAP Hybris Cloud for Customer, you can create opportunities from one or more registered products using the Opportunities tab of a registered product or from the Registered Products tab when selecting multiple products. This feature allows you to create opportunities more easily when increasing your line of business from existing products. From the Registered Products tab, you can create opportunities and choose one or multiple registered products as detailed below.
+
 This feature is only available if the scoping question in Opportunity is turned on here:  Business Configuration->Scoping->Questions->Sales->New Business->Opportunity->Do you want to enable users to capture registered products in opportunities? 
 
 Registered product is in Service scoping? yes 2017-10-5 6:07PM
