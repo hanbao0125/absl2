@@ -44,3 +44,5 @@ Sales Quote是Sales scenario里的。
 APCRM_OPP_INSTALLED_OBJ is a business feature.
 
 NavigationBar.prototype.addItem
+
+In A6P, Opportunity tab
