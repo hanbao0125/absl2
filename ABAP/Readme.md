@@ -64,6 +64,13 @@ second type.
 
 A substructure represented by a generic box. A polymorphic structure has a client-specific construction which is unknown statically. A polymorphic structure can either have no components or can be associated with the components of an append structure. Only dynamic access is possible to a polymorphic structure and its components. 
 
+## difference between data and constant
+
+One important hint is to declare variables with constant content as CONSTANTS and not
+as DATA. Constants are stored in the program buffer once together with the program load,
+variables declared with DATA are stored per user context. This is especially important for
+INCLUDES with a high degree of reuse
+
 # Useful links
 
 1. [good website](http://www.guidancetech.com/people/holland/sap/abap/) containing source code of ABAP ( most of them are basis )
