@@ -48,3 +48,5 @@ NavigationBar.prototype.addItem
 In A6P, Opportunity tab is navigationItem4
 
 Whether a change transaction can be used for extensibility can be found out in tab properties->Extensibility->Anchors. Each anchor containing a reference field shall be extensible.  
+
+The path e.g. from the Controller Attribute to the BO Node field can be determined easily in case model information is available e.g. in case of a BSA or FSI model, 
