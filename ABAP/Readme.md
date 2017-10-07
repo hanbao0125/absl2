@@ -62,6 +62,8 @@ will have no influence on the SAP enqueues (locks), it will have a
 tremendous effect on the visibility of updated data on DB systems of the 
 second type.
 
+A substructure represented by a generic box. A polymorphic structure has a client-specific construction which is unknown statically. A polymorphic structure can either have no components or can be associated with the components of an append structure. Only dynamic access is possible to a polymorphic structure and its components. 
+
 # Useful links
 
 1. [good website](http://www.guidancetech.com/people/holland/sap/abap/) containing source code of ABAP ( most of them are basis )
