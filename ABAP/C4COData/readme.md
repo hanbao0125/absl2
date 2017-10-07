@@ -46,3 +46,5 @@ APCRM_OPP_INSTALLED_OBJ is a business feature.
 NavigationBar.prototype.addItem
 
 In A6P, Opportunity tab is navigationItem4
+
+Whether a change transaction can be used for extensibility can be found out in tab properties->Extensibility->Anchors. Each anchor containing a reference field shall be extensible.  
