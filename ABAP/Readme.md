@@ -53,6 +53,15 @@ SAPSYS & DDIC are pre-defined R/3 system users. User DDIC is a user with special
 if a logon attempt fails, the dialog step for this logon will be saved with the internal user SAPSYS. Its simply used as a placeholder as long as the logon is not successful (because the system doesn't know if the user is valid one in this case).
 You could check it by trying to logon with an incorrect password or not existing user. You will find a dialog steps for SAPSYS in STAD.
 
+## Difference between two debuggers
+
+Another difference might be due to the usage of the debugger: As long as 
+you didn't get an exclusive debugging process, each single step in the 
+debugger will result in an COMMIT WORK towards the database. Though this 
+will have no influence on the SAP enqueues (locks), it will have a 
+tremendous effect on the visibility of updated data on DB systems of the 
+second type.
+
 # Useful links
 
 1. [good website](http://www.guidancetech.com/people/holland/sap/abap/) containing source code of ABAP ( most of them are basis )
