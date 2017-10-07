@@ -58,5 +58,9 @@ Regarding section group and list we distinguish between "personalization" and "f
 Technically a UI Anchor
 * Has an own, release stable name
 * Points to a field in the data model of the UI
-* Points to a reference field in the ABAP backend
+* Points to a reference field in the ABAP backend\
+
+# tenant specific
+
+
 
