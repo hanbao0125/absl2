@@ -62,5 +62,5 @@ Technically a UI Anchor
 
 # tenant specific
 
-The problem is not the isolation of data but of metadata. 
+The problem is not the isolation of data but of metadata. The table has this extra field in every client. 
 
