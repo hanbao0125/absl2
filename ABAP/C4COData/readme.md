@@ -55,3 +55,8 @@ Extensibility Mapping instances are relevant only for those nodes with Reference
 
 Regarding section group and list we distinguish between "personalization" and "field extensibility" anchors. Pure personalization anchors do not have an assignment to a reference field. As soon as reference field information is maintained in the anchor it can be regarded as personalization and field extensibility anchor. Personalization anchors have already been generated for all existing section groups and lists of all UI models via mass change report. For new UI section groups and lists personalization anchors are automatically created in the UI designer.
 
+Technically a UI Anchor
+* Has an own, release stable name
+* Points to a field in the data model of the UI
+* Points to a reference field in the ABAP backend
+
