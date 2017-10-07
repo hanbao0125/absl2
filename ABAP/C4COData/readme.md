@@ -51,5 +51,5 @@ Whether a change transaction can be used for extensibility can be found out in t
 
 The path e.g. from the Controller Attribute to the BO Node field can be determined easily in case model information is available e.g. in case of a BSA or FSI model, or it can be more complicated if there is coding in between and no model information available. In those cases where the path information cannot be derived from a model, explicit mapping has to be maintained using the newly introduced MDRS meta object Extensibility Mapping to close the model gap. 
 
-Extensibility Mapping instances are relevant only for those nodes with Reference Field definitions and there for any involved Controller Object when no BSA model is in place or when BSA-based ECO also contains coded paths which are extensibility-relevant, i.e. BSA indicator Dedicated is set
+Extensibility Mapping instances are relevant only for those nodes with Reference Field definitions and there for any involved Controller Object when no BSA model is in place or when BSA-based ECO also contains coded paths which are extensibility-relevant, i.e. BSA indicator Dedicated is set. 就是一些metadata.
 
