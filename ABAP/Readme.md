@@ -47,6 +47,12 @@ LET: define local variable in constructor expression
 
 There is no NULL value to be stored in an ABAP field. The IS NULL comparison is valid only for WHERE clause in SELECT statement. WHERE field = space is different from WHERE field IS NULL. A Database NULL value represents a field that has never been stored to database - this saving space, potentially.A NULL value in the database means that ORACLE will **NOT use physical storage space** for the value. NULL means there is nothing, not even an initial value stored.
 
+## DDIC user
+
+SAPSYS & DDIC are pre-defined R/3 system users. User DDIC is a user with special privileges in installation, software logistics, and the ABAP Dictionary. The user master record for the above id's is created in clients 000 and 001 when you first install your R/3 System
+if a logon attempt fails, the dialog step for this logon will be saved with the internal user SAPSYS. Its simply used as a placeholder as long as the logon is not successful (because the system doesn't know if the user is valid one in this case).
+You could check it by trying to logon with an incorrect password or not existing user. You will find a dialog steps for SAPSYS in STAD.
+
 # Useful links
 
 1. [good website](http://www.guidancetech.com/people/holland/sap/abap/) containing source code of ABAP ( most of them are basis )
