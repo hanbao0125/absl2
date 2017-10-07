@@ -53,3 +53,5 @@ The path e.g. from the Controller Attribute to the BO Node field can be determin
 
 Extensibility Mapping instances are relevant only for those nodes with Reference Field definitions and there for any involved Controller Object when no BSA model is in place or when BSA-based ECO also contains coded paths which are extensibility-relevant, i.e. BSA indicator Dedicated is set. 就是一些metadata.
 
+Regarding section group and list we distinguish between "personalization" and "field extensibility" anchors. 
+
