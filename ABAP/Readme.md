@@ -43,6 +43,10 @@ cannot connect to SAP git today :(
 
 LET: define local variable in constructor expression
 
+# 2017-10-07
+
+There is no NULL value to be stored in an ABAP field. The IS NULL comparison is valid only for WHERE clause in SELECT statement. WHERE field = space is different from WHERE field IS NULL. That's why you should check for both specially for appended table fields. A Database NULL value represents a field that has never been stored to database - this saving space, potentially.A NULL value in the database means that ORACLE will not use physical storage space for the value. NULL means there is nothing, not even an initial value stored.
+
 # Useful links
 
 1. [good website](http://www.guidancetech.com/people/holland/sap/abap/) containing source code of ABAP ( most of them are basis )
