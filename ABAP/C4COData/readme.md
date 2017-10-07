@@ -53,5 +53,5 @@ The path e.g. from the Controller Attribute to the BO Node field can be determin
 
 Extensibility Mapping instances are relevant only for those nodes with Reference Field definitions and there for any involved Controller Object when no BSA model is in place or when BSA-based ECO also contains coded paths which are extensibility-relevant, i.e. BSA indicator Dedicated is set. 就是一些metadata.
 
-Regarding section group and list we distinguish between "personalization" and "field extensibility" anchors. Pure personalization anchors do not have an assignment to a reference field. As soon as reference field information is maintained in the anchor it can be regarded as personalization and field extensibility anchor.
+Regarding section group and list we distinguish between "personalization" and "field extensibility" anchors. Pure personalization anchors do not have an assignment to a reference field. As soon as reference field information is maintained in the anchor it can be regarded as personalization and field extensibility anchor. Personalization anchors have already been generated for all existing section groups and lists of all UI models via mass change report. For new UI section groups and lists personalization anchors are automatically created in the UI designer.
 
