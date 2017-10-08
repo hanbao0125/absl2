@@ -73,7 +73,7 @@ INCLUDES with a high degree of reuse
 
 # important table
 
-history table for ABAP workbench SE80
+* history table for ABAP workbench SE80: RSEUMOD
 
 # Useful links
 
