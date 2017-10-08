@@ -96,6 +96,9 @@ If the GTABKEY-server is not available while releasing requests (RFC-problems, e
 
 A boxed component used to support multitenancy. Currently, a generic box can be used only as a component in an ABAP Dictionary structure. A generic box refers to **a polymorphic structure**. The box and its components **cannot** be addressed statically. Only dynamic access at program runtime is possible. 
 
+# ? not supported in ABAP regular expression
+
+
 # Useful links
 
 1. [good website](http://www.guidancetech.com/people/holland/sap/abap/) containing source code of ABAP ( most of them are basis )
