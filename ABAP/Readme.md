@@ -83,6 +83,10 @@ when user click /nse38 the dispatcher rolls your user context into an available 
 
 Cross-client access to databases is not permitted in application programs. For this reason, the addition USING CLIENT must not be used in application programs and no access to sy-mandt should take place. 
 
+# Generic box
+
+A boxed component used to support multitenancy. Currently, a generic box can be used only as a component in an ABAP Dictionary structure. A generic box refers to a polymorphic structure. The box and its components cannot be addressed statically. Only dynamic access at program runtime is possible. 
+
 # Useful links
 
 1. [good website](http://www.guidancetech.com/people/holland/sap/abap/) containing source code of ABAP ( most of them are basis )
