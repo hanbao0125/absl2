@@ -86,6 +86,12 @@ Cross-client access to databases is not permitted in application programs. For t
 The addition WITH SYSTEM CLIENT PRIVILEGES can be used in system programs that require open access to any client. This addition is not permitted in application programs. 
 The checks are deactivated only in the implementation of the method itself, and not in any units called from the method. 
 
+# GTADIR
+
+If the global GTABKEY switch in a system is switched ON, all table entries which are contained in a workbench or customizing request will be checked during the release process for conflicts with other software components and – if there are none – registered under the software component to which the workbench or customizing request belongs to.
+The conflict check can be done manually before releasing the request via the menu Check à Syntax check or with STRG-F6 (Global key check) while displaying a request. Here, the table entries will not be registered.
+If the GTABKEY-server is not available while releasing requests (RFC-problems, etc…), the entries are stored locally for later registration. The request can be released! If the conflict check is done manually before releasing the request, no error message is displayed.
+
 # Generic box
 
 A boxed component used to support multitenancy. Currently, a generic box can be used only as a component in an ABAP Dictionary structure. A generic box refers to **a polymorphic structure**. The box and its components **cannot** be addressed statically. Only dynamic access at program runtime is possible. 
