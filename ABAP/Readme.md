@@ -73,6 +73,8 @@ INCLUDES with a high degree of reuse
 
 ## roll-in and roll-out
 
+when user click /nse38 the dispatcher rolls your user context into an available dialog work process,which executes this task until the first screen comes up.The transaction is now waiting for your input.Because this work prrocess would be idle in the meantime, the system rolls out your user context so that another user can use the WP. If you performa any action on the screen, such as Pressing return key, the dispatcher will search for next available WP and rolls in your user context again, this time in the new WP.
+
 # important table
 
 * history table for ABAP workbench SE80: RSEUMOD
