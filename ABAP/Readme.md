@@ -85,7 +85,7 @@ Cross-client access to databases is not permitted in application programs. For t
 
 # Generic box
 
-A boxed component used to support multitenancy. Currently, a generic box can be used only as a component in an ABAP Dictionary structure. A generic box refers to **a polymorphic structure**. The box and its components cannot be addressed statically. Only dynamic access at program runtime is possible. 
+A boxed component used to support multitenancy. Currently, a generic box can be used only as a component in an ABAP Dictionary structure. A generic box refers to **a polymorphic structure**. The box and its components **cannot** be addressed statically. Only dynamic access at program runtime is possible. 
 
 # Useful links
 
