@@ -71,6 +71,8 @@ as DATA. Constants are stored in the program buffer once together with the progr
 variables declared with DATA are stored per user context. This is especially important for
 INCLUDES with a high degree of reuse
 
+## roll-in and roll-out
+
 # important table
 
 * history table for ABAP workbench SE80: RSEUMOD
