@@ -98,6 +98,7 @@ A boxed component used to support multitenancy. Currently, a generic box can be 
 
 # ? not supported in ABAP regular expression
 
+[stackoverflow](https://stackoverflow.com/questions/22457596/greedy-non-greedy-quantifiers-in-abap-regular-expressions)
 
 # Useful links
 
