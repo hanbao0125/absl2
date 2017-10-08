@@ -83,6 +83,9 @@ when user click /nse38 the dispatcher rolls your user context into an available 
 
 Cross-client access to databases is not permitted in application programs. For this reason, the addition USING CLIENT must not be used in application programs and no access to sy-mandt should take place. 
 
+The addition WITH SYSTEM CLIENT PRIVILEGES can be used in system programs that require open access to any client. This addition is not permitted in application programs. 
+The checks are deactivated only in the implementation of the method itself, and not in any units called from the method. 
+
 # Generic box
 
 A boxed component used to support multitenancy. Currently, a generic box can be used only as a component in an ABAP Dictionary structure. A generic box refers to **a polymorphic structure**. The box and its components **cannot** be addressed statically. Only dynamic access at program runtime is possible. 
