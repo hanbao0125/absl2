@@ -81,6 +81,7 @@ when user click /nse38 the dispatcher rolls your user context into an available 
 
 # multi-tenant
 
+Cross-client access to databases is not permitted in application programs. For this reason, the addition USING CLIENT must not be used in application programs and no access to sy-mandt should take place. 
 
 # Useful links
 
