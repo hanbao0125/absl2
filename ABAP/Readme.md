@@ -71,6 +71,10 @@ as DATA. Constants are stored in the program buffer once together with the progr
 variables declared with DATA are stored per user context. This is especially important for
 INCLUDES with a high degree of reuse
 
+# important table
+
+history table for ABAP workbench SE80
+
 # Useful links
 
 1. [good website](http://www.guidancetech.com/people/holland/sap/abap/) containing source code of ABAP ( most of them are basis )
