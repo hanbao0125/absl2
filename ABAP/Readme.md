@@ -104,6 +104,10 @@ A boxed component used to support multitenancy. Currently, a generic box can be 
 
 SRT_UTIL
 
+# ICF
+
+ICF controller: FM HTTP_DISPATCH_REQUEST
+
 # Useful links
 
 1. [good website](http://www.guidancetech.com/people/holland/sap/abap/) containing source code of ABAP ( most of them are basis )
