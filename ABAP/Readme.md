@@ -110,7 +110,7 @@ SRT_UTIL
 * ICF manager: CL_HTTP_SERVER
 * IF_HTTP_EXTENSION~FLOW_RC controls the order in which the individual http request handlers are called. 
 * Redirect could also be disabled:IF_HTTP_CLIENT~PROPERTYTYPE_REDIRECT.
-* ICM and SAP web dispatcher shares the same code basis. Web dispatcher performs load balancing, and passes requests to ICM on the connected application servers rather than to work processes. 
+* ICM and SAP web dispatcher shares the same code basis. Web dispatcher performs load balancing, and passes requests to ICM on the connected application servers rather than to work processes. ICM processes uses thread to parallelize the load.
 
 # Useful links
 
