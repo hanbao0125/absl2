@@ -72,3 +72,6 @@ cl_oberon_fm_white_list=>verify_fm_in_white_list
 My custom BO action: YT42LIMGY_CL_T9DB8F8822A14E8B0=>ACTION_CALCULATE line 166
 Custom query developed in Cloud studio is implemented by TREX. 
 
+# UI
+
+* note in TI is implemented by span ( display mode).
