@@ -67,4 +67,6 @@ The problem is not the isolation of data but of metadata. The table has this ext
 * /EXT/CUS_DELETE_FIELD_BY_LABEL
 * /EXT/CUS_DELETE_FIELDS_BY_NODE
 
+cl_oberon_fm_white_list=>verify_fm_in_white_list
+
 
