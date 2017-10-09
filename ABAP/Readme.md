@@ -106,7 +106,8 @@ SRT_UTIL
 
 # ICF
 
-ICF controller: FM HTTP_DISPATCH_REQUEST
+* ICF controller: FM HTTP_DISPATCH_REQUEST
+* ICF manager: CL_HTTP_SERVER
 
 # Useful links
 
