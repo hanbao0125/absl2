@@ -64,3 +64,6 @@ Technically a UI Anchor
 
 The problem is not the isolation of data but of metadata. The table has this extra field in every client. This means that no tenant on this system can be moved to another system on which this add-on is not installed.
 
+* /EXT/CUS_DELETE_FIELD_BY_LABEL
+
+
