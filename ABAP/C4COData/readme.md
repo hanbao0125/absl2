@@ -69,4 +69,6 @@ The problem is not the isolation of data but of metadata. The table has this ext
 
 cl_oberon_fm_white_list=>verify_fm_in_white_list
 
+My custom BO action: YT42LIMGY_CL_T9DB8F8822A14E8B0=>ACTION_CALCULATE
+
 
