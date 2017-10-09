@@ -109,6 +109,7 @@ SRT_UTIL
 * ICF controller: FM HTTP_DISPATCH_REQUEST
 * ICF manager: CL_HTTP_SERVER
 * IF_HTTP_EXTENSION~FLOW_RC controls the order in which the individual http request handlers are called. 
+* Redirect could also be disabled.
 
 # Useful links
 
