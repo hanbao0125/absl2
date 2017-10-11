@@ -111,7 +111,7 @@ SRT_UTIL
 * IF_HTTP_EXTENSION~FLOW_RC controls the order in which the individual http request handlers are called. 
 * Redirect could also be disabled:IF_HTTP_CLIENT~PROPERTYTYPE_REDIRECT.
 * ICM and SAP web dispatcher shares the same code basis. Web dispatcher performs load balancing, and passes requests to ICM on the connected application servers rather than to work processes. ICM processes uses thread to parallelize the load (There is a thread control block inside the ICM). Thread control从thread pool里 wake一个thread响应TCP request. 工作线程包含IO handler,处理network input & output.
-* Watch Dog: a work thread waits for the response, regardless of whether the worker thread is a server or a client. If a timeout occurs, the watchdog takes on the task of waiting for the response. This makes the worker thread available for other requests.
+* Watch Dog: a work thread waits for the response, regardless of whether the worker thread is a server or a client. If a timeout occurs, the watchdog takes on the task of waiting for the response. This makes the worker thread available for other requests. When the watchdog receives the response, it informs the thread control components, which then call a work thread. 
 
 
 # Useful links
