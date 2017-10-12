@@ -82,4 +82,7 @@ After I switch to Customer OVS, I even could not see Customer data in OWL!! 10/1
 
 CX_OBERON_CONTROLLER_EXCEPTION. It seems I didn't find the OVS query. CL_OBERON_MODEL_PARSER
 
- Query input paramter /Root/SearchParameters1/InternalID bound to a BO node attribute
+* error 1: Query input paramter /Root/SearchParameters1/InternalID bound to a BO node attribute
+
+ Exception Message: XRepositoryException (4)Invalid model: query binding is missing in data field /Root/Items/FormattedName
+SADL View generation failed
