@@ -78,4 +78,4 @@ Custom query developed in Cloud studio is implemented by TREX.
 
 # OVS
 
-After I switch to Customer OVS, I even could not see Customer data in OWL!!
+After I switch to Customer OVS, I even could not see Customer data in OWL!! 10/12/2017
