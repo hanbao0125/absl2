@@ -75,3 +75,7 @@ Custom query developed in Cloud studio is implemented by TREX.
 # UI
 
 * note in TI is implemented by span ( display mode). In span.textContent, no line break found.
+
+# OVS
+
+After I switch to Customer OVS, I even could not see Customer data in OWL!!
