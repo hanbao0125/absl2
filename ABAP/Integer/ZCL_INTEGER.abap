@@ -1,43 +1,43 @@
-CLASS zcl_integer DEFINITION
-  PUBLIC
-  FINAL
-  CREATE PRIVATE .
+class ZCL_INTEGER definition
+  public
+  final
+  create private .
 
-  PUBLIC SECTION.
+public section.
 
-    METHODS shift_left
-      IMPORTING
-        !iv_position TYPE int4 .
-    METHODS or
-      IMPORTING
-        !io_other_int    TYPE REF TO zcl_integer
-      RETURNING
-        VALUE(ro_result) TYPE REF TO zcl_integer .
-    CLASS-METHODS class_constructor .
-    CLASS-METHODS value_of
-      IMPORTING
-        !iv_value          TYPE int4
-      RETURNING
-        VALUE(ro_instance) TYPE REF TO zcl_integer .
-    METHODS get_binary_format
-      RETURNING
-        VALUE(rv_format) TYPE string .
-    METHODS and
-      IMPORTING
-        !io_other_int    TYPE REF TO zcl_integer
-      RETURNING
-        VALUE(ro_result) TYPE REF TO zcl_integer .
-    METHODS xor
-      IMPORTING
-        !io_other_int    TYPE REF TO zcl_integer
-      RETURNING
-        VALUE(ro_result) TYPE REF TO zcl_integer .
-    METHODS get_raw_value
-      RETURNING
-        VALUE(rv_raw) TYPE int4 .
-    METHODS shift_right
-      IMPORTING
-        !iv_position TYPE int4 .
+  methods SHIFT_LEFT
+    importing
+      !IV_POSITION type INT4 default 1 .
+  methods OR
+    importing
+      !IO_OTHER_INT type ref to ZCL_INTEGER
+    returning
+      value(RO_RESULT) type ref to ZCL_INTEGER .
+  class-methods CLASS_CONSTRUCTOR .
+  class-methods VALUE_OF
+    importing
+      !IV_VALUE type INT4
+    returning
+      value(RO_INSTANCE) type ref to ZCL_INTEGER .
+  methods GET_BINARY_FORMAT
+    returning
+      value(RV_FORMAT) type STRING .
+  methods AND
+    importing
+      !IO_OTHER_INT type ref to ZCL_INTEGER
+    returning
+      value(RO_RESULT) type ref to ZCL_INTEGER .
+  methods XOR
+    importing
+      !IO_OTHER_INT type ref to ZCL_INTEGER
+    returning
+      value(RO_RESULT) type ref to ZCL_INTEGER .
+  methods GET_RAW_VALUE
+    returning
+      value(RV_RAW) type INT4 .
+  methods SHIFT_RIGHT
+    importing
+      !IV_POSITION type INT4 default 1 .
   PROTECTED SECTION.
   PRIVATE SECTION.
 
@@ -317,7 +317,7 @@ CLASS ZCL_INTEGER IMPLEMENTATION.
 * <SIGNATURE>---------------------------------------------------------------------------------------+
 * | Instance Public Method ZCL_INTEGER->SHIFT_LEFT
 * +-------------------------------------------------------------------------------------------------+
-* | [--->] IV_POSITION                    TYPE        INT4
+* | [--->] IV_POSITION                    TYPE        INT4 (default =1)
 * +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD shift_left.
     IF iv_position <= 0 OR iv_position >= cv_max_bit.
@@ -333,7 +333,7 @@ CLASS ZCL_INTEGER IMPLEMENTATION.
 * <SIGNATURE>---------------------------------------------------------------------------------------+
 * | Instance Public Method ZCL_INTEGER->SHIFT_RIGHT
 * +-------------------------------------------------------------------------------------------------+
-* | [--->] IV_POSITION                    TYPE        INT4
+* | [--->] IV_POSITION                    TYPE        INT4 (default =1)
 * +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD shift_right.
     IF iv_position <= 0 OR iv_position >= cv_max_bit.
@@ -359,13 +359,14 @@ CLASS ZCL_INTEGER IMPLEMENTATION.
       RETURN.
     ENDIF.
 
-    APPEND INITIAL LINE TO mt_cache ASSIGNING FIELD-SYMBOL(<new_cache>).
-    <new_cache>-int_value = iv_value.
-    CREATE OBJECT <new_cache>-instance
+    "APPEND INITIAL LINE TO mt_cache ASSIGNING FIELD-SYMBOL(<new_cache>).
+    "<new_cache>-int_value = iv_value.
+    "CREATE OBJECT <new_cache>-instance
+    CREATE OBJECT ro_instance
       EXPORTING
         iv_value = iv_value.
 
-    ro_instance = <new_cache>-instance.
+    "ro_instance = <new_cache>-instance.
   ENDMETHOD.
 
 
