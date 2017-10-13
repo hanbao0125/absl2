@@ -5,6 +5,9 @@
 *&---------------------------------------------------------------------*
 REPORT zint.
 
+PARAMETERS: a TYPE int4 OBLIGATORY DEFAULT 100,
+            b TYPE int4 OBLIGATORY DEFAULT 100.
+
 FORM add USING a TYPE int4 b TYPE int4 CHANGING cv_result TYPE int4.
   DATA: n TYPE int4 VALUE 0,
         c TYPE int4 VALUE 0.
@@ -13,13 +16,12 @@ FORM add USING a TYPE int4 b TYPE int4 CHANGING cv_result TYPE int4.
   DATA: boolean_a TYPE abap_bool,
         boolean_b TYPE abap_bool,
         _a        TYPE int4,
-        _b        TYPE int4.
+        _b        TYPE int4,
+        aa TYPE int4,
+        bb TYPE int4.
 
   DATA(wrapper_one) = zcl_integer=>value_of( 1 ).
   DATA(wrapper_c) = zcl_integer=>value_of( c ).
-
-  DATA: aa TYPE int4,
-        bb TYPE int4.
 
   aa = a.
   bb = b.
@@ -34,12 +36,12 @@ FORM add USING a TYPE int4 b TYPE int4 CHANGING cv_result TYPE int4.
     wrapper_a = zcl_integer=>value_of( _a ).
     wrapper_b = zcl_integer=>value_of( _b ).
     wrapper_c = zcl_integer=>value_of( c ).
-    DATA(_n) = wrapper_a->xor( wrapper_b )->xor( wrapper_c ).
+    DATA(_n_wrapper) = wrapper_a->xor( wrapper_b )->xor( wrapper_c ).
     DATA(b_or_c) = wrapper_b->or( wrapper_c ).
     DATA(b_and_c) = wrapper_b->and( wrapper_c ).
-    DATA(_c) = wrapper_a->and( b_or_c )->or( b_and_c ).
-    c = _c->get_raw_value( ).
-    DATA(_n_i0_wrapper) = zcl_integer=>value_of( COND int4( WHEN _n->get_raw_value( ) > 0 THEN i ELSE 0 ) ).
+    DATA(_c_wrapper) = wrapper_a->and( b_or_c )->or( b_and_c ).
+    c = _c_wrapper->get_raw_value( ).
+    DATA(_n_i0_wrapper) = zcl_integer=>value_of( COND int4( WHEN _n_wrapper->get_raw_value( ) > 0 THEN i ELSE 0 ) ).
     DATA(wrapper_n) = zcl_integer=>value_of( n ).
     n = wrapper_n->or( _n_i0_wrapper )->get_raw_value( ).
 
@@ -63,6 +65,6 @@ ENDFORM.
 START-OF-SELECTION.
   DATA: i TYPE int4.
 
-  PERFORM add USING 2023 3041 CHANGING i.
+  PERFORM add USING a b CHANGING i.
 
   WRITE: / i.
