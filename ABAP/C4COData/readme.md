@@ -90,3 +90,4 @@ SADL View generation failed
 # 2017-10-13
 
 I cannot save rule created in KUT!!
+rule visibility issue: https://youtu.be/Dv_cNrVFMzY
