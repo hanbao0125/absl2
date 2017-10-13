@@ -7,7 +7,9 @@ public section.
 
   methods SHIFT_LEFT
     importing
-      !IV_POSITION type INT4 default 1 .
+      !IV_POSITION type INT4 default 1
+    returning
+      value(RO_RESULT) type ref to ZCL_INTEGER .
   methods OR
     importing
       !IO_OTHER_INT type ref to ZCL_INTEGER
@@ -37,7 +39,9 @@ public section.
       value(RV_RAW) type INT4 .
   methods SHIFT_RIGHT
     importing
-      !IV_POSITION type INT4 default 1 .
+      !IV_POSITION type INT4 default 1
+    returning
+      value(RO_RESULT) type ref to ZCL_INTEGER .
   PROTECTED SECTION.
   PRIVATE SECTION.
 
@@ -318,6 +322,7 @@ CLASS ZCL_INTEGER IMPLEMENTATION.
 * | Instance Public Method ZCL_INTEGER->SHIFT_LEFT
 * +-------------------------------------------------------------------------------------------------+
 * | [--->] IV_POSITION                    TYPE        INT4 (default =1)
+* | [<-()] RO_RESULT                      TYPE REF TO ZCL_INTEGER
 * +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD shift_left.
     IF iv_position <= 0 OR iv_position >= cv_max_bit.
@@ -327,6 +332,8 @@ CLASS ZCL_INTEGER IMPLEMENTATION.
     DO iv_position TIMES.
       left_1_bit( ).
     ENDDO.
+
+    ro_result = zcl_integer=>value_of( me->get_raw_value( ) ).
   ENDMETHOD.
 
 
@@ -334,6 +341,7 @@ CLASS ZCL_INTEGER IMPLEMENTATION.
 * | Instance Public Method ZCL_INTEGER->SHIFT_RIGHT
 * +-------------------------------------------------------------------------------------------------+
 * | [--->] IV_POSITION                    TYPE        INT4 (default =1)
+* | [<-()] RO_RESULT                      TYPE REF TO ZCL_INTEGER
 * +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD shift_right.
     IF iv_position <= 0 OR iv_position >= cv_max_bit.
@@ -343,6 +351,8 @@ CLASS ZCL_INTEGER IMPLEMENTATION.
     DO iv_position TIMES.
       right_1_bit( ).
     ENDDO.
+
+    ro_result = zcl_integer=>value_of( me->get_raw_value( ) ).
   ENDMETHOD.
 
 
