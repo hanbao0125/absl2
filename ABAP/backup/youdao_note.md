@@ -1,4 +1,4 @@
-# table: CRMD_PROD_NOTE
+# table: CRMD_PROD_NOTE AG/001
 
 note title and picture size
 
