@@ -5,6 +5,6 @@
 
 ## Involved tables
 
-* CRMD_GIT_ISSUE
+* CRMD_GIT_ISSUE A3/815
 * CRMD_GIT_REPO
 * CRMD_GIT_ISSUE
