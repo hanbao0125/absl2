@@ -14,6 +14,6 @@ Actual: KM 559 Java:33 JS: 233 = 825 totally
 
 * CRMV_GIT_ISSUE: list total issue number per repository
 * CRMV_GIT_ISSUE_IMAGE_NUM: image number per issue + issue description
-* CRMV_ISSUE_CREATION_DATE_COUNT: creation date aggregation.
+* CRMV_ISSUE_CREATION_DATE_COUNT: creation date aggregation. For example 10-14: 23
 
 start: CL_ABAP_GIT_ISSUE_TOOL
