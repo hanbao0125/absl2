@@ -8,7 +8,7 @@
 * CRMD_GIT_ISSUE A3/815 - 805 ( 2017-10-14)
 Actual: KM 559 Java:33 JS: 233 = 825 totally
 * CRMD_GIT_REPO: JAVA,JS,KM
-* CRMD_GIT_IMAGE
+* CRMD_GIT_IMAGE: image binary data
 
 ## CDS view
 
