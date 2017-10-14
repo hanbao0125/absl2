@@ -6,5 +6,5 @@
 ## Involved tables
 
 * CRMD_GIT_ISSUE A3/815
-* CRMD_GIT_REPO
+* CRMD_GIT_REPO: JAVA
 * CRMD_GIT_ISSUE
