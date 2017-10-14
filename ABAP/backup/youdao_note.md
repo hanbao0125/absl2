@@ -13,3 +13,5 @@ post year, month and how many posts are issued per month
 posting date, note per day, total picture per day, total picture size per day
 
 * crmv_prod_note_posting_detail
+
+aggregation per year
