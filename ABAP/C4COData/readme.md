@@ -87,6 +87,10 @@ CX_OBERON_CONTROLLER_EXCEPTION. It seems I didn't find the OVS query. CL_OBERON_
 * error 2: Exception Message: XRepositoryException (4)Invalid model: query binding is missing in data field /Root/Items/FormattedName
 SADL View generation failed
 
+# Extensibility
+
+* If you create an embedded component and you would like that customer can add their own extension fields via key user tool adaptation mode into this embedded component, this is not possible.
+
 # 2017-10-13
 
 I cannot save rule created in KUT!! 烟草系统不行。203可以。
