@@ -95,3 +95,7 @@ SADL View generation failed
 
 I cannot save rule created in KUT!! 烟草系统不行。203可以。
 rule visibility issue: https://youtu.be/Dv_cNrVFMzY
+
+# 2017-10-16
+
+employee creation failed in 203.
