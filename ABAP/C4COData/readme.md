@@ -104,3 +104,5 @@ Shoud always activate Library first!
 Why mapping is needed? proxy structure can be deeply nested but database structure should be completely flat.
 CSP: Core Service Provider - used as part of all terms which refer to a real implementation model ( CDF,
 BOPF, UEO ... ).
+
+MR didn't use Service scenario.
