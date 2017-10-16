@@ -100,3 +100,5 @@ rule visibility issue: https://youtu.be/Dv_cNrVFMzY
 
 employee creation failed in 203. Partner代码引起。
 Shoud always activate Library first!
+
+Why mapping is needed?
