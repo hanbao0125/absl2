@@ -1,0 +1,18 @@
+import ABSL;
+import AP.Common.GDT;
+import AP.PC.IdentityManagement.Global;
+import AP.FO.BusinessPartner.Global;
+
+var result : DataType::UUID;
+
+var queryByIdentityUUID = Identity.QueryByElements;
+var queryByIdentityUUIDParameter = queryByIdentityUUID.CreateSelectionParams();
+var queryByEmployeeBPUUID = Employee.QueryByIdentification;
+var queryByEmployeeBPUUIDParameter = queryByEmployeeBPUUID.CreateSelectionParams();
+var id = Context.GetCurrentIdentityUUID().content;
+queryByIdentityUUIDParameter.Add( queryByIdentityUUID.UUID.content, "I", "EQ", id.ToString() );
+var queryResult = queryByIdentityUUID.Execute(queryByIdentityUUIDParameter);
+var first = queryResult.GetFirst(); // points to identity instance
+var person = first.Person;
+result = person.UUID;
+return result;
