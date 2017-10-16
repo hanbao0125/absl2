@@ -101,4 +101,4 @@ rule visibility issue: https://youtu.be/Dv_cNrVFMzY
 employee creation failed in 203. Partner代码引起。
 Shoud always activate Library first!
 
-Why mapping is needed?
+Why mapping is needed? proxy structure can be deeply nested but database structure should be completely flat.
