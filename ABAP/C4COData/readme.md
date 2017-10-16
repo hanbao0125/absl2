@@ -99,3 +99,4 @@ rule visibility issue: https://youtu.be/Dv_cNrVFMzY
 # 2017-10-16
 
 employee creation failed in 203. Partner代码引起。
+Shoud always activate Library first!
