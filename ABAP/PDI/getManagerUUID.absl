@@ -1,0 +1,17 @@
+import ABSL;
+import AP.Common.GDT;
+import AP.PC.IdentityManagement.Global;
+import AP.FO.BusinessPartner.Global;
+
+var result : DataType::UUID;
+var queryByEmployeeBPUUID = Employee.QueryByIdentification;
+var queryByEmployeeBPUUIDParameter = queryByEmployeeBPUUID.CreateSelectionParams();
+queryByEmployeeBPUUIDParameter.Add( queryByEmployeeBPUUID.UUID.content, "I", "EQ", ivEmployeeUUID.content);
+var employeeQueryResult = queryByEmployeeBPUUID.Execute(queryByEmployeeBPUUIDParameter);
+var EmployeeQueryResultCurrent = employeeQueryResult.GetFirst();
+var assignedOrg = EmployeeQueryResultCurrent.OrganisationalUnitAssignment.GetFirst();
+var org = assignedOrg.ToRoot;
+var manager = org.Manager.GetFirst();
+result = manager.EmployeeUUID;
+
+return result;
