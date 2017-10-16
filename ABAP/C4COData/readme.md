@@ -106,3 +106,5 @@ CSP: Core Service Provider - used as part of all terms which refer to a real imp
 BOPF, UEO ... ).
 
 MR didn't use Service scenario.
+
+AdvancedListPane needs manual refresh
