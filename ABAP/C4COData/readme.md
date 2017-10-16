@@ -107,4 +107,4 @@ BOPF, UEO ... ).
 
 MR didn't use Service scenario.
 
-AdvancedListPane needs manual refresh
+AdvancedListPane needs manual refresh to see the data on initialization phase.
