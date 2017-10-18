@@ -121,3 +121,4 @@ SRT_UTIL
 
 # CRM Middleware
 
+* ALE: Application Linking and Enabling
