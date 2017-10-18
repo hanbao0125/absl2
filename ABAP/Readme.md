@@ -123,3 +123,5 @@ SRT_UTIL
 
 * ALE: Application Linking and Enabling
 * IDOC: intermediate document
+
+BO can be sent in IDOC format using XIF - external interface.
