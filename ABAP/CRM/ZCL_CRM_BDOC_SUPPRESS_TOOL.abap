@@ -23,6 +23,8 @@ CLASS ZCL_CRM_BDOC_SUPPRESS_TOOL IMPLEMENTATION.
 * | [--->] IT_OBJECT_LIST                 TYPE        CRMT_OBJECT_GUID_TAB
 * +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD run.
+* Jerry 2017-10-18 14:05PM
+  
     CHECK sy-uname = 'WANGJER'.
     CHECK it_object_list IS NOT INITIAL.
     DATA lv_process_type    TYPE crmt_process_type.
