@@ -124,3 +124,5 @@ why 203 does not have determination time = F?
 cross-DU queries are supported in PDI, retrieve / retrieve by association not. 
 
 EXF: create FE on root and an AfterModify determination to copy the field from Root FE to item standard field. and when fields. When changes are done on DO, the determination is called as well.  
+
+why manual extension has issue in multi-tenant environment:
