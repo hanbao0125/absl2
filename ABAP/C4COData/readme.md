@@ -112,3 +112,5 @@ AdvancedListPane needs manual refresh to see the data on initialization phase.
 # 2017-10-20
 
 $YT42LIMGY_PRX dropdown list联动的research到此为止
+
+In 203, callstack is very clean: By
