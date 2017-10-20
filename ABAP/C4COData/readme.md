@@ -111,7 +111,7 @@ AdvancedListPane needs manual refresh to see the data on initialization phase.
 
 # 2017-10-20
 
-$YT42LIMGY_PRX dropdown list联动的research到此为止
+1. $YT42LIMGY_PRX dropdown list联动的research到此为止 - this morning terminated
 
 In 203, callstack is very clean: BusinessPartnerRelationship.BeforeSave, onSave validation.
 
@@ -131,3 +131,5 @@ The problem is not the isolation of data but of **metadata**. The table has this
 # no tenant on this system can be moved to another system on which this add-on is not installed.
 
 this also applied to those tenants that are not using this add-on.
+
+Extension field's type reused in Web Service message type
