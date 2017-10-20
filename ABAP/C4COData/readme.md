@@ -125,4 +125,9 @@ cross-DU queries are supported in PDI, retrieve / retrieve by association not.
 
 EXF: create FE on root and an AfterModify determination to copy the field from Root FE to item standard field. and when fields. When changes are done on DO, the determination is called as well.  
 
-why manual extension has issue in multi-tenant environment:
+why manual extension has issue in multi-tenant environment: 
+
+The problem is not the isolation of data but of **metadata**. The table has this extra field in **every client**. This means that 
+# no tenant on this system can be moved to another system on which this add-on is not installed.
+
+this also applied to those tenants that are not using this add-on.
