@@ -113,4 +113,4 @@ AdvancedListPane needs manual refresh to see the data on initialization phase.
 
 $YT42LIMGY_PRX dropdown list联动的research到此为止
 
-In 203, callstack is very clean: By
+In 203, callstack is very clean: BusinessPartnerRelationship.BeforeSave, onSave validation.
