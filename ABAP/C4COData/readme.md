@@ -118,3 +118,5 @@ In 203, callstack is very clean: BusinessPartnerRelationship.BeforeSave, onSave 
 why 203 does not have determination time = F?
 
 918: me->execute_dummy_update line 329 class CL_BUPA_ERP_REPL_OUT_EXT 203 not called!!!
+
+/EXT/CL_CUS_RT_CORE_SRV
