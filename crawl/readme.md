@@ -8,12 +8,10 @@
 
 在努力想要提升打腿效率的同时，打腿的幅度不要太大，因为你要尽量把双腿躲在身体后面，以减少身体面积增大而产生的阻力。
 
-##### 看看孙杨的打腿
+### 看看孙杨的打腿
 
 ![0](https://user-images.githubusercontent.com/5669954/31852714-05691d52-b6af-11e7-931b-4735cb8809c7.gif)
 
-
-![0](https://user-images.githubusercontent.com/5669954/31852665-3bd41096-b6ae-11e7-8553-d1b4304b08f3.gif)
 
 # 陈教练
 
