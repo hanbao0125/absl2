@@ -155,3 +155,5 @@ C4C, business configuration: Sales->New Business select Sales Lead Management, O
 Under Communication and Information Exchange Integration with External Application and
 Solutions, select Integration with SAP CRM, Integration of Master Data and Integration into
 Sales, Service and Marketing Processes.
+
+CRM: CRMPCD_INT_MENU
