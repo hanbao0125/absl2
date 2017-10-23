@@ -148,3 +148,7 @@ information is related to the CRM system, logical system name, SAP client, and s
 the exception of the host which, should be the hostname of how the SAP PI on-premise
 system will be accessed. Also make sure that you check the option of **SAP Business Suite**.
 6. Run this report in CRM system: CRMPCD_CUST_EXCHANGE - Merge C4C Business Configuration with CRM Customizing
+7. SPRO->Integration with SAP Cloud for
+Customer and choose IMG activity Download CRM Customizing Information for Code lists.
+
+Sales->New Business select Sales Lead Management, Opportunities.
