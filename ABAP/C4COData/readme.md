@@ -151,4 +151,7 @@ system will be accessed. Also make sure that you check the option of **SAP Busin
 7. SPRO->Integration with SAP Cloud for
 Customer and choose IMG activity Download CRM Customizing Information for Code lists.
 
-Sales->New Business select Sales Lead Management, Opportunities.
+C4C, business configuration: Sales->New Business select Sales Lead Management, Opportunities.
+Under Communication and Information Exchange Integration with External Application and
+Solutions, select Integration with SAP CRM, Integration of Master Data and Integration into
+Sales, Service and Marketing Processes.
