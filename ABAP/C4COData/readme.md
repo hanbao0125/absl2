@@ -136,4 +136,5 @@ Extension field's type reused in Web Service message type
 
 # 2017-10-23
 
-203 tenant上这个interface不是active状态，所以behavior和918不一样
+1. 203 tenant上这个interface不是active状态，所以behavior和918不一样
+2. Administrator->Input and Output->Integration->Communication Arrangement
