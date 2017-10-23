@@ -147,3 +147,4 @@ In C4C Administator->Input and output management, enter the information about th
 information is related to the CRM system, logical system name, SAP client, and so on , with
 the exception of the host which, should be the hostname of how the SAP PI on-premise
 system will be accessed. Also make sure that you check the option of **SAP Business Suite**.
+6. Run this report in CRM system: CRMPCD_CUST_EXCHANGE
