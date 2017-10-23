@@ -139,4 +139,4 @@ Extension field's type reused in Web Service message type
 1. 203 tenant上这个interface不是active状态，所以behavior和918不一样
 2. Administrator->Input and Output->Integration->Communication Arrangement
 3. [Integration with CRM](https://rapid.sap.com/bp/#/RDS_CFC_ERP)
-4. Prerequisite in PI: You have a user assigned to the LcrInstanceWriterLD role.
+4. Prerequisite in PI: You have a user assigned to the LcrInstanceWriterLD role. See SAP help.
