@@ -143,3 +143,7 @@ Extension field's type reused in Web Service message type
 Create an user in CRM system: Check SAP Note 1956819 for the authorization role to be assigned to the below user.
 5. In PI, create SM59 destination to CRM.
 The technical system of type AS ABAP for SAP CRM system should be created.
+In C4C Administator->Input and output management, enter the information about the backend CRM system. It is important to note that all the
+information is related to the CRM system, logical system name, SAP client, and so on , with
+the exception of the host which, should be the hostname of how the SAP PI on-premise
+system will be accessed. Also make sure that you check the option of **SAP Business Suite**.
