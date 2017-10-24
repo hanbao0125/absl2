@@ -157,3 +157,5 @@ Solutions, select Integration with SAP CRM, Integration of Master Data and Integ
 Sales, Service and Marketing Processes.
 
 CRM: CRMPCD_INT_MENU
+
+I can only see Web Service Message monitor in Silverlight UI.
