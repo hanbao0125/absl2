@@ -128,3 +128,6 @@ Transfer IDoc at once - Basis Type: CRMXIF_*_SAVE_M01
 Message Type: CRMXIF_*_SAVE_M
 
 BO can be sent in IDOC format using XIF - external interface.
+
+# Adobe form
+
