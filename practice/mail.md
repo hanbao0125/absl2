@@ -17,3 +17,7 @@
 # Disk
 
 169GB 10-24
+
+# Git repo itself (size on disk)
+
+10-25: 438,341,632
