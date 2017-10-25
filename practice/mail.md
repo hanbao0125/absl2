@@ -21,4 +21,4 @@
 # Git repo itself (size on disk)
 
 * 10-25: 438,341,632
-* after comment: 438,353,920 - increase 12k
+* after comment: 438,353,920 - increase 12k 392MB, 418MB
