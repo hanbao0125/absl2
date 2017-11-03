@@ -162,4 +162,4 @@ I can only see Web Service Message monitor in Silverlight UI.
 
 # OBN
 
-As told by XuHuan, 
+As told by XuHuan, BO name + ESR name + Select operation can determine an unique OBN target.
