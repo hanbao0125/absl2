@@ -7,6 +7,11 @@ At Jerry.
 <button onclick="myFunction()">Click me</button>
 <script>
 
+/*
+![clipboard3](https://user-images.githubusercontent.com/5669954/32415087-7b4d8a06-c26e-11e7-9122-c818d5f31586.png)
+*/
+
+
 function getNodeTobeReplaced(current, parent, newPicUrl ){
 	return {
 		"current": current,
@@ -15,52 +20,30 @@ function getNodeTobeReplaced(current, parent, newPicUrl ){
 	};
 }
 
-function getNewPicture(index, picRepository){
-	var pictureIndex = index + 1;
-	var searchKey = "![clipboard" + pictureIndex + "](";
-	var searchKeyLength = searchKey.length;
-	var startIndex = picRepository.indexOf(searchKey);
-	console.assert( startIndex > -1);
-	var currentImage = picRepository.substring(startIndex);
-	var endIndex = currentImage.indexOf(")");
-	console.assert( endIndex > -1);
-	return newPic = currentImage.substring(0, endIndex+1);
-}
-
 /*
 wefsdfs
 ![clipboard3](https://user-images.githubusercontent.com/5669954/32415087-7b4d8a06-c26e-11e7-9122-c818d5f31586.png)
 */
 
-function extractImage(source){
+var IMAGE_PATTERN = /^!\[(.*)\].*$/;
+
+function extractImage(source,raw){
 	const regex = /^.*clipboard.*$/g;
 	var result = regex.exec(source);
 	var splitted = source.split("\n");
-	debugger;
+	for( var i = 0; i < splitted.length; i++){
+		raw.push(splitted[i]);
+		var result = IMAGE_PATTERN.exec(splitted[i]);
+		debugger;
+	}
 }
 
 function myFunction(){
 	var source = document.getElementById("raw");
 	var html = source.value;
-	extractImage(html);
-	var div = document.createElement('div');
-	div.innerHTML = html;
-	var elements = div.childNodes;
-	var r1 = div.getElementsByTagName("ac:image");
-	var imageToRemove = [];
-	var picRepository = elements[elements.length - 1].data;
-	for( var i = 0; i < r1.length; i++){
-		var record = getNodeTobeReplaced(r1[i], r1[i].parentNode,
-			getNewPicture(i, picRepository));
-		imageToRemove.push(record);
-	}
-	for( var i = 0; i < imageToRemove.length;i++){
-		// Jerry 2017-05-29 14:50PM does not work, a line break is needed here
-		var newNode = document.createElement("div");
-		newNode.innerHTML = "\n\n" + imageToRemove[i].newPicUrl;
-		imageToRemove[i].parent.replaceChild(newNode, imageToRemove[i].current);
-	}
-	div.removeChild(elements[elements.length - 1]);
+	var rawItem = [];
+	extractImage(html,rawItem);
+	debugger;
 	var target = document.getElementById("result");
 	target.value = div.innerHTML;
 	copyToClipboard(target);
