@@ -12,6 +12,34 @@
 	}
 
 arr.sort(com);
+var TDC = [];
+customSort();
 debugger;
+
+function Person(name, age){
+	this.name = name;
+	this.age = age;
+}
+
+function customSort(){
+	var J1 = new Person("Jerry", 3);
+	var J2 = new Person("Tom", 1);
+	var J3 = new Person("Swim", 2);
+
+	TDC.push(J1);
+	TDC.push(J2);
+	TDC.push(J3);
+	TDC.sort(sortByAge);
+}
+
+function sortByAge(person1, person2){
+	if(person1.age < person2.age ){
+			return -1;
+		}
+		else if(person1.age > person2.age ){
+			return 1;
+		}
+		else return 0;
+}
 </script>
 </html>
