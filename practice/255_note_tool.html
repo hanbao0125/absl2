@@ -26,9 +26,23 @@ function getNewPicture(index, picRepository){
 	console.assert( endIndex > -1);
 	return newPic = currentImage.substring(0, endIndex+1);
 }
+
+/*
+wefsdfs
+![clipboard3](https://user-images.githubusercontent.com/5669954/32415087-7b4d8a06-c26e-11e7-9122-c818d5f31586.png)
+*/
+
+function extractImage(source){
+	const regex = /^.*clipboard.*$/g;
+	var result = regex.exec(source);
+	var splitted = source.split("\n");
+	debugger;
+}
+
 function myFunction(){
 	var source = document.getElementById("raw");
 	var html = source.value;
+	extractImage(html);
 	var div = document.createElement('div');
 	div.innerHTML = html;
 	var elements = div.childNodes;
