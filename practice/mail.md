@@ -24,6 +24,7 @@
 # Disk
 
 169GB 10-24
+used: 144GB
 
 # Git repo itself (size on disk)
 
