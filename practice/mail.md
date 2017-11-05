@@ -21,10 +21,11 @@
 7259/6364 11-03
 7215/6320 11-04
 7078/6183 11-05
+
 # Disk
 
 169GB 10-24
-used: 144GB
+used: 144GB 11-05
 
 # Git repo itself (size on disk)
 
