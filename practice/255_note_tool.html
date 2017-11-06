@@ -26,23 +26,69 @@ wefsdfs
 */
 
 var IMAGE_PATTERN = /^!\[(.*)\].*$/;
+var IMAGE_NAME = /^clipboard(\d+)$/;
+var IMAGE_TAG = "[图片]";
 
-function extractImage(source,raw){
-	const regex = /^.*clipboard.*$/g;
-	var result = regex.exec(source);
+function SortedImage(index, url){
+	this.index = index;
+	this.url = url;
+}
+
+function sortByIndex(v1,v2){
+		if(v1.index < v2.index ){
+			return -1;
+		}
+		else if(v1.index > v2.index ){
+			return 1;
+		}
+		else return 0;
+}
+
+function extractImage(source,raw,imagePool){
 	var splitted = source.split("\n");
 	for( var i = 0; i < splitted.length; i++){
 		raw.push(splitted[i]);
-		var result = IMAGE_PATTERN.exec(splitted[i]);
-		debugger;
+		if( splitted[i].indexOf("clipboard") > 0 ) { 
+			var result = IMAGE_PATTERN.exec(splitted[i]);
+			// result 0 : whole image markdown
+			// result 1 : "clipboard1"
+			if( result.length != 2){
+				continue;
+			}
+			var imageName = IMAGE_NAME.exec(result[1]);
+			if( imageName.length != 2) {
+				continue;
+			}
+			var index = parseInt(imageName[1]);
+			var storedImage = new SortedImage(index, result[0]);
+			imagePool.push(storedImage);
+		}
 	}
+	imagePool.sort(sortByIndex);
+}
+
+function replaceImageTag(raw,imagePool){
+	var formatted = "";
+	var line = "";
+	for( var i = 0; i < raw.length; i++){
+		if( raw[i].indexOf(IMAGE_TAG) < 0){
+			line = raw[i];
+		}
+		else{
+			line = imagePool.shift().url;
+		}
+		formatted = formatted + "\n" + line;
+	}
+	return formatted;
 }
 
 function myFunction(){
 	var source = document.getElementById("raw");
 	var html = source.value;
 	var rawItem = [];
-	extractImage(html,rawItem);
+	var imagePool = [];
+	extractImage(html,rawItem, imagePool);
+	var formatted = replaceImageTag(rawItem,imagePool);
 	debugger;
 	var target = document.getElementById("result");
 	target.value = div.innerHTML;
