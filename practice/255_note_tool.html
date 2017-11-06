@@ -2,7 +2,7 @@
 <textarea id="raw" rows="70" cols="80">
 </textarea>
 <textarea id="result" rows="70" cols="80">
-At Jerry.
+Paste the raw string copied from Cloud note in the Raw area
 </textarea>
 <button onclick="myFunction()">Click me</button>
 <script>
@@ -47,7 +47,7 @@ function sortByIndex(v1,v2){
 function extractImage(source,raw,imagePool){
 	var splitted = source.split("\n");
 	for( var i = 0; i < splitted.length; i++){
-		raw.push(splitted[i]);
+		
 		if( splitted[i].indexOf("clipboard") > 0 ) { 
 			var result = IMAGE_PATTERN.exec(splitted[i]);
 			// result 0 : whole image markdown
@@ -62,6 +62,9 @@ function extractImage(source,raw,imagePool){
 			var index = parseInt(imageName[1]);
 			var storedImage = new SortedImage(index, result[0]);
 			imagePool.push(storedImage);
+		}
+		else{
+			raw.push(splitted[i]);
 		}
 	}
 	imagePool.sort(sortByIndex);
@@ -89,9 +92,8 @@ function myFunction(){
 	var imagePool = [];
 	extractImage(html,rawItem, imagePool);
 	var formatted = replaceImageTag(rawItem,imagePool);
-	debugger;
 	var target = document.getElementById("result");
-	target.value = div.innerHTML;
+	target.value = formatted;
 	copyToClipboard(target);
 }
 
