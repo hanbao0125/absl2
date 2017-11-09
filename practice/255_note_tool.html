@@ -47,9 +47,9 @@ function sortByIndex(v1,v2){
 function extractImage(source,raw,imagePool){
 	var splitted = source.split("\n");
 	for( var i = 0; i < splitted.length; i++){
-		
-		if( splitted[i].indexOf("clipboard") > 0 ) { 
-			var result = IMAGE_PATTERN.exec(splitted[i]);
+		var trimed = splitted[i].trim();
+		if( trimed.indexOf("clipboard") > 0 ) { 
+			var result = IMAGE_PATTERN.exec(trimed);
 			// result 0 : whole image markdown
 			// result 1 : "clipboard1"
 			if( result.length != 2){
@@ -64,7 +64,7 @@ function extractImage(source,raw,imagePool){
 			imagePool.push(storedImage);
 		}
 		else{
-			raw.push(splitted[i]);
+			raw.push(trimed);
 		}
 	}
 	imagePool.sort(sortByIndex);
