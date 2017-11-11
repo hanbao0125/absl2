@@ -8,7 +8,8 @@
 
 REPORT ZACTIVATE.
 
-PARAMETERS: purl TYPE string OBLIGATORY LOWER CASE.
+PARAMETERS: purl TYPE string OBLIGATORY LOWER CASE,
+            subfold TYPE string OBLIGATORY LOWER CASE.
 
 DATA: lv_content TYPE string,
       lt_node    TYPE zcl_jerry_tool=>tt_sorted_node,
@@ -17,9 +18,12 @@ DATA: lv_content TYPE string,
       lv_offset  TYPE int4,
       lv_index   TYPE int4 VALUE 1,
       lv_first    TYPE int4,
+      lv_folder  TYPE string,
       lt_pic     TYPE string_table.
 
-CONSTANTS: folder TYPE string VALUE 'C:\Users\i042416\Desktop\pic\clipboard'.
+CONSTANTS: picture_name TYPE string value 'clipboard'.
+
+CONSTANTS: folder TYPE string VALUE 'C:\Users\i042416\Pictures\pic\'.
 
 START-OF-SELECTION.
 
@@ -56,7 +60,8 @@ START-OF-SELECTION.
 
   DATA(lv_total) = lines( lt_pic ).
   LOOP AT lt_pic ASSIGNING FIELD-SYMBOL(<pic>).
-    DATA(lv_name) = folder && lv_index && '.png'.
+    lv_folder = folder && subfold && '\'.
+    DATA(lv_name) = lv_folder && picture_name && lv_index && '.png'.
     DATA(lv_text) = 'Downloading file: ' && lv_name.
     DATA(lv_process) = lv_index * 100.
     DATA(lv_percent) = lv_process / lv_total.
