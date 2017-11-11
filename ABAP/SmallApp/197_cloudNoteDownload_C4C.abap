@@ -14,7 +14,9 @@ DATA: lv_content TYPE string,
       lt_node    TYPE zcl_jerry_tool=>tt_sorted_node,
       lv_number  TYPE int4,
       lv_size    TYPE int4,
+      lv_offset  TYPE int4,
       lv_index   TYPE int4 VALUE 1,
+      lv_first    TYPE int4,
       lt_pic     TYPE string_table.
 
 CONSTANTS: folder TYPE string VALUE 'C:\Users\i042416\Desktop\pic\clipboard'.
@@ -42,9 +44,14 @@ START-OF-SELECTION.
   SPLIT <node>-value AT space INTO TABLE DATA(lt_result).
 
   LOOP AT lt_result ASSIGNING FIELD-SYMBOL(<entry>) WHERE table_line CS 'src='.
-    lv_number = strlen( <entry> ) - 6.
+* src="http://note.youdao.com/yws6e99aa0AE/1301332"></div><div
+    lv_number = strlen( <entry> ) - 5. "src="
     DATA(url) = <entry>+5(lv_number).
-    APPEND url TO lt_pic.
+    FIND FIRST OCCURRENCE OF `"` IN url match OFFSET lv_offset.
+    IF sy-subrc = 0.
+       url = url+0(lv_offset).
+       APPEND url TO lt_pic.
+    ENDIF.
   ENDLOOP.
 
   DATA(lv_total) = lines( lt_pic ).
