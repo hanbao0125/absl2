@@ -165,3 +165,6 @@ I can only see Web Service Message monitor in Silverlight UI.
 As told by XuHuan, BO name + ESR name + Select operation can determine an unique OBN target.
 
 Boolean value in Rule editor should not be wrapped by "".
+
+# npm start
+
