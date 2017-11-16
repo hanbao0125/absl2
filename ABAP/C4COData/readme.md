@@ -168,13 +168,14 @@ Boolean value in Rule editor should not be wrapped by "".
 
 # npm start
 
-nexus is down (https://listserv.sap.corp/pipermail/nexus-announce/2017-November/000217.html).
+nexus is down.
 
 This might also affect the local development server.
 
-Do not use npm start for the next 2 hours.
-Instead use npm serve:dev if you have to start the server.
+Do not use **npm start** for the next 2 hours - that means npm start will download artifact from nexus?
 
-I you already face issues please try
-npm install –no-registry
+Instead use **npm serve:dev** if you have to start the server.
+
+If you already face issues please try
+**npm install –no-registry**
 npm serve:dev
