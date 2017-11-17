@@ -7,4 +7,5 @@
 
 ## Woc MainBO
 
-When this BO is created, you must assign a code list ID to it.
+* When this BO is created, you must assign a code list ID to it.
+* In TI page, there is a drop down list for Status field.
