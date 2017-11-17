@@ -44,3 +44,5 @@ if( !this.CodeListBOID.IsInitial() && !this.ToCodeList.IsSet() ){
 	this.OrderName = "AFTER MODIDY" + this.ToCodeList.CodeListBOID;
 }
 ```
+
+* DropDown list的value绑在某个具体的number field上，但是List的code 和text是绑在一个DataList的code和text上。
