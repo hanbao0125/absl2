@@ -26,6 +26,9 @@ CodeList的model:
 * In TI page, there is a drop down list for Status field.
 * Definition
 
+proxy name: **YT42LIMGY_MABO3E22777E9DB70018**
+
+
 ```JavaScript
 element CodeListBOID: ID
 association ToCodeList [0,1] to JerryCodeList using CodeListBOID;
