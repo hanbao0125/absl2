@@ -29,6 +29,7 @@ CodeList的model:
 ```JavaScript
 element CodeListBOID: ID
 association ToCodeList [0,1] to JerryCodeList using CodeListBOID;
+element OrderStatus: NumberValue;
 ```
 
 In AfterModify, fill this association:
