@@ -30,3 +30,16 @@ CodeList的model:
 element CodeListBOID: ID
 association ToCodeList [0,1] to JerryCodeList using CodeListBOID;
 ```
+
+In AfterModify, fill this association:
+
+```JavaScript
+if( !this.CodeListBOID.IsInitial() && !this.ToCodeList.IsSet() ){
+	var codeListQuery = JerryCodeList.QueryByElements;
+	var para = codeListQuery.CreateSelectionParams();
+	para.Add( codeListQuery.CodeListBOID, "I", "EQ", this.CodeListBOID);
+	var result = codeListQuery.Execute(para);
+	this.ToCodeList	= result.GetFirst();
+	this.OrderName = "AFTER MODIDY" + this.ToCodeList.CodeListBOID;
+}
+```
