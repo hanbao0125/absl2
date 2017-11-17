@@ -17,6 +17,7 @@ CodeList的model:
 
 * click hyperlink to enter Code list TI to maintain entry
 * in CodeList TI there is an ALP bound to CodeList datalist which is further bound to CodeList node in BO.
+* The AddRow button just simply call List Operation "AddRow".
 
 
 ## Woc MainBO
