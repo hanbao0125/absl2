@@ -24,3 +24,9 @@ CodeList的model:
 
 * When this BO is created, you must assign a code list ID to it.
 * In TI page, there is a drop down list for Status field.
+* Definition
+
+```JavaScript
+element CodeListBOID: ID
+association ToCodeList [0,1] to JerryCodeList using CodeListBOID;
+```
