@@ -45,4 +45,4 @@ if( !this.CodeListBOID.IsInitial() && !this.ToCodeList.IsSet() ){
 }
 ```
 
-* DropDown list的value绑在某个具体的number field上，但是List的code 和text是绑在一个DataList的code和text上。
+* DropDown list的value绑在某个具体的number field上，但是List的code 和text是绑在一个DataList的code和text上。OnValueChanged的事件也不是在Designer里维护，而是在DataModel tab里维护。
