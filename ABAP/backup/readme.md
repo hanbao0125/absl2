@@ -10,9 +10,10 @@ Actual: KM 559 Java:33 JS: 233 = 825 totally
 
 Date | KM | Java | Js
 -----|-----|-------|-----
-2017-10-14|1|1|1
+2017-10-14|559|33|233
+2017-11-21|1023|18|228
  ... | ... |...|...
- 
+
 * CRMD_GIT_REPO: JAVA,JS,KM
 * CRMD_GIT_IMAGE: image binary data
 
