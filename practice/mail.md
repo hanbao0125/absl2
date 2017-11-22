@@ -47,6 +47,7 @@
 169GB 10-24
 used: 144GB 11-05
       146GB 11-11
+      163GB 11-22
 
 # Git repo itself (size on disk)
 
