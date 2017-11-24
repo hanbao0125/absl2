@@ -1,6 +1,20 @@
 <html>
 <script>
-"use strict" // could handle everything
+// "use strict" // could handle everything
+
+
+Object.defineProperty(window, "i", {
+    get : function(){ returnwindow.i; },
+    set : function(newValue){ 
+    	debugger;
+    	window.i = newValue; 
+    },
+    enumerable : true,
+    configurable : true
+});
+
+// window.__defineSetter__('i', function(){ debugger }); // does not work!!
+
 function a(){
 	for( i = 0; i < 10; i++){
 		console.log(i);
