@@ -182,4 +182,4 @@ npm serve:dev
 
 # Integration
 
-* [SAP Cloud for Customer Prepackaged Integration Scenarios for SAP CRM and SAP ERP Integration]
+* [SAP Cloud for Customer Prepackaged Integration Scenarios for SAP CRM and SAP ERP Integration](https://blogs.sap.com/2014/03/26/sap-cloud-for-customer-prepackaged-integration-scenarios-for-sap-crm-and-sap-erp-integration/)
