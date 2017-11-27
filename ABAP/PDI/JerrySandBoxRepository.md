@@ -54,4 +54,4 @@ if( !this.CodeListBOID.IsInitial() && !this.ToCodeList.IsSet() ){
 
 # 上海烟草
 
-Service 
+Service list OWL has two buttons: once clicks, navigate to standard QC view. 
