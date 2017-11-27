@@ -179,3 +179,7 @@ Instead use **npm serve:dev** if you have to start the server.
 If you already face issues please try
 **npm install –no-registry**
 npm serve:dev
+
+# Integration
+
+* [SAP Cloud for Customer Prepackaged Integration Scenarios for SAP CRM and SAP ERP Integration]
