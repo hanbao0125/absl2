@@ -25,6 +25,7 @@ app.get('/c4c', function(req, res){
 });
 
 app.use(bodyParser.json()); // for parsing application/json
+
 app.post('/c4c', function(req, res){
   var body = "";
   req.on('data', function (chunk) {
@@ -37,7 +38,7 @@ app.post('/c4c', function(req, res){
     //res.send(body);
     //body = body + "\n" + "Server handled ok";
     //res.write(body);
-    console.log("Name: " + reqObj.Name.content);
+    console.log("Name: " + reqObj.Name);
 
     
   var sURL = "https://qxl-cust233.dev.sapbydesign.com/sap/byd/odata/v1/opportunity/OpportunityCollection('00163E06551B1EE79E9E69D7F8FBCDCF')";
