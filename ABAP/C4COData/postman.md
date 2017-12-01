@@ -1,0 +1,1 @@
+https://<host>/sap/c4c/odata/cust/v1/zjerrytestodataservice/TestBORootCollection?$filter=AgreementID eq 'A1' 
