@@ -1,0 +1,17 @@
+<html>
+<script>
+function Person(name){
+	this.name = name;
+}
+
+Person.prototype.greet = function(greet){
+	var aa = {
+		score: 10
+	};
+	alert(greet + ", " + this.name);
+}
+
+var person = new Person("Jerry");
+person.greet("Hello ");
+</script>
+</html>
