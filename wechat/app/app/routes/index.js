@@ -4,26 +4,20 @@ var request = require('request'),
 module.exports = function (app) {
   app.route('/')
       .get(function (req, res) {
-        var url = "https://axp-cust220.dev.sapbydesign.com/sap/byd/odata/v1/c4codata";
+        var url = "http://www.baidu.com";
+        console.log('/:' + url);
+        // res.send("Hello");
           var options = {
             url: url,
-            method: "POST",
-            json:true,
-            headers: {
-                "content-type": "application/json"
-            },
-            auth:{
-              'Username': "Administration01",
-              'Password': "Welcome1"
-            },
-            host:'proxy.hkg.sap.corp',
-            port:'8080'
+            host:'proxy.hkg.sap.corp',
+            port:'8080',
+            method: "GET"
           };
           request(options,function(error,response,data){
             if(data){
               res.send(data);
             }else {
-              res.send(error);
+              res.send("Jerry error: " + error);
             }
           });
         });

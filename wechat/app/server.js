@@ -16,6 +16,7 @@ var express = require('express'),
   // It serves static files and is based on serve-static.
     app.use('/public', express.static(process.cwd() + '/public'));
     app.use('/client', express.static(process.cwd() + '/client'));
+    // mount sub application
     app.use('/controllers', express.static(process.cwd() + '/app/controllers'));
 
   // 该方法用于在所有请求方法的路径中装入中间件函数。
