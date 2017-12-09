@@ -4,13 +4,14 @@ var request = require('request'),
 module.exports = function (app) {
   app.route('/')
       .get(function (req, res) {
-        var url = "http://www.baidu.com";
+        var url = "https://www.baidu.com";
         console.log('/:' + url);
         // res.send("Hello");
           var options = {
             url: url,
-            host:'proxy.hkg.sap.corp',
-            port:'8080',
+            /*
+            host:'proxy.wdf.sap.corp',
+            port:'8080', */
             method: "GET"
           };
           request(options,function(error,response,data){
@@ -18,6 +19,7 @@ module.exports = function (app) {
               res.send(data);
             }else {
               res.send("Jerry error: " + error);
+              console.log(error);
             }
           });
         });
