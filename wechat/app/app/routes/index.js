@@ -7,6 +7,7 @@ module.exports = function (app) {
         var url = "https://www.baidu.com";
         console.log('/:' + url);
         // res.send("Hello");
+        // Jerry 2017-12-9 11:04AM - no proxy works under normal network environment
           var options = {
             url: url,
             /*
