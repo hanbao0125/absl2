@@ -13,6 +13,10 @@ require 并不是全局性命令，而是每个模块提供的一个内部方法
 只有在模块内部才能使用 require 命令（唯一的例外是 REPL 环境）。
 另外，require 其实内部调用 Module._load 方法。
 
+模块的加载实质上就是，注入exports、require、module三个全局变量，
+然后执行模块的源码，然后将模块的 exports 变量的值输出。
+
+
 output:
 module.id:  .
 module.exports:  {}
