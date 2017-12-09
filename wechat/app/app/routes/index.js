@@ -11,7 +11,7 @@ module.exports = function (app) {
           var options = {
             url: url,
             /*
-            host:'proxy.wdf.sap.corp',
+            host:'proxy.sha.sap.corp',
             port:'8080', */
             method: "GET"
           };
