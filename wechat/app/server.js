@@ -1,6 +1,7 @@
 var port = 18080;
 var express = require('express'),
-    routes = require('./app/routes/index.js'),
+    routes = require('./app/routes/index'), // index.js actually
+    // X, X.js, X.json and X.node see blog http://www.ruanyifeng.com/blog/2015/05/require.html
     session = require("./app/session/session.js"),
     cookieParser = require('cookie-parser'),
     babelCore = require('babel-core'),
