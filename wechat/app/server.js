@@ -12,6 +12,8 @@ var express = require('express'),
     extended: true
   }));
 
+  // express.static: This is a built-in middleware function in Express. 
+  // It serves static files and is based on serve-static.
     app.use('/public', express.static(process.cwd() + '/public'));
     app.use('/client', express.static(process.cwd() + '/client'));
     app.use('/controllers', express.static(process.cwd() + '/app/controllers'));
@@ -32,7 +34,3 @@ var express = require('express'),
     app.listen(port, function () {
         console.log('Listening on port 18080...');
     });
-
-
-
-//});
