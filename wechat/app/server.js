@@ -1,5 +1,3 @@
-
-var http = require('http');
 var port = 18080;
 var express = require('express'),
     routes = require('./app/routes/index.js'),
