@@ -8,7 +8,12 @@ console.log('module.loaded: ', module.loaded);
 console.log('module.children: ', module.children);
 console.log('module.paths: ', module.paths);
 
-/* output:
+/*
+require 并不是全局性命令，而是每个模块提供的一个内部方法，也就是说，
+只有在模块内部才能使用 require 命令（唯一的例外是 REPL 环境）。
+另外，require 其实内部调用 Module._load 方法。
+
+output:
 module.id:  .
 module.exports:  {}
 module.parent:  null
