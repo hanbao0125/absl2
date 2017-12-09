@@ -15,8 +15,9 @@ var express = require('express'),
     app.use('/public', express.static(process.cwd() + '/public'));
     app.use('/client', express.static(process.cwd() + '/client'));
     app.use('/controllers', express.static(process.cwd() + '/app/controllers'));
-    // app.use(cookieParser('session_ygsd'));
-//cross domain
+
+  // 该方法用于在所有请求方法的路径中装入中间件函数。
+  
     app.all('*', function(req, res, next) {
       res.header("Access-Control-Allow-Origin", "*");
       res.header("Access-Control-Allow-Headers", "X-Requested-With");
