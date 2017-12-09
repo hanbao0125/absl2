@@ -34,5 +34,6 @@ var express = require('express'),
 
 
     app.listen(port, function () {
-        console.log('Listening on port 18080...');
+      // c:\\code\\git\\wechat\\app
+        console.log('Listening on port 18080, process.cwd(): ' + process.cwd());
     });
