@@ -1,10 +1,21 @@
 <html>
+<meta charset="UTF-8"/>
 <script>
 var  regexp = /aabb/g; //g可省
 // var  regexp = new Regexp("xyz","g"); //第二个参数可省 syntax error!!
 var str = "_a_x_x";
 var reg = /_(x)_(x)/;
 var result = reg.exec(str);
+
+var wechat = "<![CDATA[你好]]>";
+var wechat = wechat.toString("utf-8");
+var reg = /<!\[CDATA\[(.*)\]\]>/;
+var result = reg.exec(wechat);
+alert(result[0]);
+alert(result[1]);
+
+var aa = "{\"code\":100000,\"text\":\"明日复明日，明日何其多！既然这么多，不妨再拖拖\"}";
+debugger;
 
 var number = /^[0-9]+\.{0,1}[0-9]{0,2}$/;
 console.log( number.test("3435"));
