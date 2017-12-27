@@ -1,6 +1,32 @@
 <html>
 <meta charset="UTF-8"/>
 <script>
+
+var soapxml = '<soap-env:Envelope xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/"><soap-env:Header/><soap-env:Body><n0:SocialMediaActivityBundleMaintainConfirmationsync xmlns:n0="http://sap.com/xi/SAPGlobal20/Global" xmlns:prx="urn:sap.com:proxy:QXL:/1SAI/TAE2C89B62935E25D62C8AE:804"><SocialMediaActivity><UUID>00163e0b-d0a3-1ee7-bac1-0812dcf198e2</UUID><ID>59226</ID><ChangeStateID>                 20171226064442.5352610</ChangeStateID></SocialMediaActivity></n0:SocialMediaActivityBundleMaintainConfirmationsync></soap-env:Body></soap-env:Envelope>';
+
+var soapreg = /.*<ID>(.*)<\/ID>.*/;
+var soapresult = soapreg.exec(soapxml);
+
+var response2 = '<soap-env:Envelope xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/">' + '<soap-env:Header/><soap-env:Body>' + 
+'n0:SocialMediaUserProfileBundleMaintainConfirmation_sync xmlns:n0="http://sap.' + 
+'com/xi/SAPGlobal20/Global" xmlns:prx="urn:sap.com:proxy:QXL:/1SAI/TAE380CF5298475959BCE4F:804"' + '><SocialMediaUserProfile><ID>6071</ID><UUID>00163e0b-d0a3-1ee7-bac1-a07e3c3d9ba0</UUID' + '><ChangeStateID>20171226071848.2066790</ChangeStateID></SocialMediaUserProfile>' + 
+        '</n0:SocialMediaUserProfileBundleMaintainConfirmation_sync></soap-env:Body></soap-env:Envelope>';
+
+var soapreg2 = /.*<ID>(.*)<\/ID>.*<UUID>(.*)<\/UUID>.*/;
+
+var soapresult2 = soapreg2.exec(response2);
+debugger;
+/*parseString(xml, function (err, result) {
+    console.log(result);
+    var obj = JSON.parse(result);
+    // console.log("id: " + obj.ID);
+});*/
+
+var reg = /.*<ID>(.*)\]\]>/;
+var result = reg.exec(wechat);
+alert(result[0]);
+alert(result[1]);
+
 var  regexp = /aabb/g; //g可省
 // var  regexp = new Regexp("xyz","g"); //第二个参数可省 syntax error!!
 var str = "_a_x_x";
