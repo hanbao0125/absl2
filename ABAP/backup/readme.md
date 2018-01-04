@@ -24,3 +24,11 @@ Date | KM | Java | Js
 * CRMV_ISSUE_CREATION_DATE_COUNT: creation date aggregation. For example 10-14: 23
 
 start: CL_ABAP_GIT_ISSUE_TOOL
+
+# blog number
+
+2017: 183
+2016: 136
+2015: 70
+2014: 30
+
