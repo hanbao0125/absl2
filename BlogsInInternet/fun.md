@@ -9,3 +9,5 @@
 4. [Node.js VS PHP：Web 开发的史诗级对决，你支持谁？](https://www.oschina.net/news/91783/node-js-vs-php)
 
 5. [“懒”的妙用——浅析图片懒加载技术](http://mp.weixin.qq.com/s/JYglEGYN9tnGpDg7ARPx7w)
+
+6. [技术的成长曲线](zhangtielei.com/posts/blog-growth-curve.html) 有一张好的曲线图
