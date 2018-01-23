@@ -11,3 +11,7 @@
 5. [“懒”的妙用——浅析图片懒加载技术](http://mp.weixin.qq.com/s/JYglEGYN9tnGpDg7ARPx7w)
 
 6. [技术的成长曲线](zhangtielei.com/posts/blog-growth-curve.html) 有一张好的曲线图
+
+7. [浏览器的渲染：过程与原理](zhuanlan.zhihu.com/p/29418126)
+
+8. [为什么有些技术人员不写博客?](2017-10-07伯乐在线)
