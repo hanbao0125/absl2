@@ -17,3 +17,5 @@
 8. 为什么有些技术人员不写博客? - 2017-10-07伯乐在线
 
 9. 从密码到token,一个授权的故事 - 2017-08-11程序猿
+
+10. [深入理解 webpack 文件打包机制](https://github.com/happylindz/blog/issues/6)
