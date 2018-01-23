@@ -19,3 +19,5 @@
 9. 从密码到token,一个授权的故事 - 2017-08-11程序猿
 
 10. [深入理解 webpack 文件打包机制](https://github.com/happylindz/blog/issues/6)
+
+11. [有前途的程序员的14个习惯，你有几个](www.techug.com/post/good-programmer-good-habit.html)
