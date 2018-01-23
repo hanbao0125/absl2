@@ -166,20 +166,6 @@ As told by XuHuan, BO name + ESR name + Select operation can determine an unique
 
 Boolean value in Rule editor should not be wrapped by "".
 
-# npm start
-
-nexus is down.
-
-This might also affect the local development server.
-
-Do not use **npm start** for the next 2 hours - that means npm start will download artifact from nexus?
-
-Instead use **npm serve:dev** if you have to start the server.
-
-If you already face issues please try
-**npm install –no-registry**
-npm serve:dev
-
 # Integration
 
 * [SAP Cloud for Customer Prepackaged Integration Scenarios for SAP CRM and SAP ERP Integration](https://blogs.sap.com/2014/03/26/sap-cloud-for-customer-prepackaged-integration-scenarios-for-sap-crm-and-sap-erp-integration/)
