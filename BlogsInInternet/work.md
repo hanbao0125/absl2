@@ -29,3 +29,5 @@
 14. [造成代码难以维护的35个恶习](https://www.linkedin.com/pulse/avoid-35-habits-lead-unmaintainable-code-christian-maioli-mackeprang)
 
 15. [也许这样理解 HTTPS 更容易](showme.codes/2017-02-20/understand-https/)
+
+16. [有前途的程序员的14个习惯，你有几个？](www.techug.com/post/good-programmer-good-habit.html)
