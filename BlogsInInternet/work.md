@@ -35,3 +35,8 @@
 17. 用 Jekyll 在 GitHub 上搭建你的个人网站 - 唐思楠影子练习SinanTalk
 
 18. [45岁以后的IT人生](www.ruanyifeng.com/blog/2017/06/life-after-45.html)
+
+19. [前端小知识:为什么你写的 height:100% 不起作用？](https://segmentfault.com/a/1190000012707337)
+
+为什么想要设置一个全屏元素的时候，高度不受%的控制？
+
