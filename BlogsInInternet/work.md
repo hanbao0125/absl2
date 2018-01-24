@@ -23,3 +23,5 @@
 11. [有前途的程序员的14个习惯，你有几个](www.techug.com/post/good-programmer-good-habit.html)
 
 12. 前端开发 “性能”有多重要 - 2017-10-29 前端你别闹
+
+13. [一名 40 岁“老”程序员的反思](https://www.oschina.net/news/84850/reflections-of-an-old-programmer)
