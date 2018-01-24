@@ -31,3 +31,5 @@
 15. [也许这样理解 HTTPS 更容易](showme.codes/2017-02-20/understand-https/)
 
 16. [有前途的程序员的14个习惯，你有几个？](www.techug.com/post/good-programmer-good-habit.html)
+
+17. 用 Jekyll 在 GitHub 上搭建你的个人网站 - 唐思楠影子练习SinanTalk
