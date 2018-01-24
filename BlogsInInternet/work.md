@@ -27,3 +27,5 @@
 13. [一名 40 岁“老”程序员的反思](https://www.oschina.net/news/84850/reflections-of-an-old-programmer)
 
 14. [造成代码难以维护的35个恶习](https://www.linkedin.com/pulse/avoid-35-habits-lead-unmaintainable-code-christian-maioli-mackeprang)
+
+15. [也许这样理解 HTTPS 更容易](showme.codes/2017-02-20/understand-https/)
