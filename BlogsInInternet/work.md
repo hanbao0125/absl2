@@ -25,3 +25,5 @@
 12. 前端开发 “性能”有多重要 - 2017-10-29 前端你别闹
 
 13. [一名 40 岁“老”程序员的反思](https://www.oschina.net/news/84850/reflections-of-an-old-programmer)
+
+14. [造成代码难以维护的35个恶习](https://www.linkedin.com/pulse/avoid-35-habits-lead-unmaintainable-code-christian-maioli-mackeprang)
