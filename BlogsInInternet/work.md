@@ -33,3 +33,5 @@
 16. [有前途的程序员的14个习惯，你有几个？](www.techug.com/post/good-programmer-good-habit.html)
 
 17. 用 Jekyll 在 GitHub 上搭建你的个人网站 - 唐思楠影子练习SinanTalk
+
+18. [45岁以后的IT人生](www.ruanyifeng.com/blog/2017/06/life-after-45.html)
