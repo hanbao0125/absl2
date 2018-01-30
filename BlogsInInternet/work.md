@@ -41,3 +41,5 @@
 为什么想要设置一个全屏元素的时候，高度不受%的控制？
 
 20. 一文看懂Web服务器、应用服务器、Web容器、反向代理服务器区别与联系
+
+21. [IoT with OData on HCP and Java](https://blogs.sap.com/2016/04/25/iot-with-odata-on-hcp-and-java/)
