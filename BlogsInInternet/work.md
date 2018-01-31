@@ -53,3 +53,5 @@
 25. JavaScript 启动性能瓶颈分析与解决方案
 
 26. 彻底找到Tomcat启动速度慢的元凶
+
+27. [Nginx 教程之基本概念](www.oschina.net/translate/nginx-tutorial-basics-concepts)
