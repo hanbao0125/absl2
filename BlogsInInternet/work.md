@@ -49,3 +49,5 @@
 23. [用 canvas 实现 Web 手势解锁](segmentfault.com/a/1190000008923731)
 
 24. [JVM5-Tomcat 性能调优和性能监控之visualvm](www.cnblogs.com/ityouknow/p/5378874.html)
+
+25. JavaScript 启动性能瓶颈分析与解决方案
