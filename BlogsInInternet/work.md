@@ -57,3 +57,5 @@
 27. [Nginx 教程之基本概念](www.oschina.net/translate/nginx-tutorial-basics-concepts)
 
 28. [通向架构师的道路第四天之 Tomcat 性能调优](blog.csdn.net/lifetragedy/article/details/7708724)
+
+29. [优秀的程序员，必须懒惰](https://cloud.tencent.com/developer/article/1033362)
