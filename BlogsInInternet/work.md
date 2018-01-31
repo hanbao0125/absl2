@@ -55,3 +55,5 @@
 26. 彻底找到Tomcat启动速度慢的元凶
 
 27. [Nginx 教程之基本概念](www.oschina.net/translate/nginx-tutorial-basics-concepts)
+
+28. [通向架构师的道路第四天之 Tomcat 性能调优](blog.csdn.net/lifetragedy/article/details/7708724)
