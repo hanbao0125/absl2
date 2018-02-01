@@ -59,3 +59,5 @@
 28. [通向架构师的道路第四天之 Tomcat 性能调优](blog.csdn.net/lifetragedy/article/details/7708724)
 
 29. [优秀的程序员，必须懒惰](https://cloud.tencent.com/developer/article/1033362)
+
+30. [http2.0的时代真的来了...](https://www.jianshu.com/p/712eb3a65d33)
