@@ -61,3 +61,5 @@
 29. [优秀的程序员，必须懒惰](https://cloud.tencent.com/developer/article/1033362)
 
 30. [http2.0的时代真的来了...](https://www.jianshu.com/p/712eb3a65d33)
+
+31. 一个项目做完以后，不能就让它这么“完”了 - 码农翻身
