@@ -63,3 +63,5 @@
 30. [http2.0的时代真的来了...](https://www.jianshu.com/p/712eb3a65d33)
 
 31. 一个项目做完以后，不能就让它这么“完”了 - 码农翻身
+
+32. [工作了5年，发现很多的坚持都是错的](https://www.jianshu.com/p/b36d883aedd1)
