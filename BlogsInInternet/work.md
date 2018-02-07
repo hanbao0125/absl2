@@ -92,4 +92,6 @@
 
 45. [Java 多线程编程 — 锁优化](www.cnblogs.com/QG-whz/p/8351298.html)
 
-46. 
+46. [移动 APP 网络优化概述](blog.cnbang.net/tech/3531/)
+
+47. 
