@@ -89,3 +89,7 @@
 43. 想从技术转管理？这些坑你可要注意了！
 
 44. [史上最难的一道 Java 面试题-分析篇](http://blog.csdn.net/lirenzuo/article/details/78253481)
+
+45. [Java 多线程编程 — 锁优化](www.cnblogs.com/QG-whz/p/8351298.html)
+
+46. 
