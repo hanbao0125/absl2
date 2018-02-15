@@ -97,3 +97,5 @@
 47. [好的程序员到底好在哪里](http://codebay.cn/post/7589.html)
 
 48. 再谈CRM与ERP，内与外之别
+
+49. 即使用了 https 也不要通过 query strings 传敏感数据
