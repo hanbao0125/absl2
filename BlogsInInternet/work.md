@@ -99,3 +99,5 @@
 48. 再谈CRM与ERP，内与外之别
 
 49. 即使用了 https 也不要通过 query strings 传敏感数据
+
+50. [技术文章如何写，才能有较好的阅读体验](www.cnblogs.com/cj723/archive/2012/03/15/2396422.html)
