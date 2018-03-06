@@ -101,3 +101,5 @@
 49. 即使用了 https 也不要通过 query strings 传敏感数据
 
 50. [技术文章如何写，才能有较好的阅读体验](www.cnblogs.com/cj723/archive/2012/03/15/2396422.html)
+
+51. SpringBoot 如何在一分钟内整合SSM
