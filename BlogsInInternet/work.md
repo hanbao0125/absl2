@@ -103,3 +103,7 @@
 50. [技术文章如何写，才能有较好的阅读体验](www.cnblogs.com/cj723/archive/2012/03/15/2396422.html)
 
 51. SpringBoot 如何在一分钟内整合SSM
+
+52. [如何练习一万小时](http://www.geekonomics10000.com/519)
+
+53. 聊聊成为大神路上的过程
