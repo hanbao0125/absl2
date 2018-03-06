@@ -107,3 +107,5 @@
 52. [如何练习一万小时](http://www.geekonomics10000.com/519)
 
 53. 聊聊成为大神路上的过程
+
+54. [Spring 中无处不在的 Properties](javadoop.com/post/spring-properties)
