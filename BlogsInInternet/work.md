@@ -113,3 +113,7 @@
 55. [Spring AOP 的实现原理](listenzhangbin.com/post/2016/09/spring-aop-cglib/)
 
 56. 从开发者角度谈Mysql（2）：建议列设置为NOT NULL
+
+57. [ES6 换种思路处理数据](https://segmentfault.com/a/1190000013099221)
+
+58. 
