@@ -120,4 +120,6 @@
 
 59. 一次CMS GC严重耗时问题的排查分析
 
-60. 
+60. [JUnit 源码解析](blog.saymagic.cn/2016/09/30/understand-Junit.html#post__title)
+
+61. [Java8 函数式编程探秘](www.cnblogs.com/lovesqcc/p/7965387.html)
