@@ -109,3 +109,5 @@
 53. 聊聊成为大神路上的过程
 
 54. [Spring 中无处不在的 Properties](javadoop.com/post/spring-properties)
+
+55. [Spring AOP 的实现原理](listenzhangbin.com/post/2016/09/spring-aop-cglib/)
