@@ -125,3 +125,5 @@
 61. [Java8 函数式编程探秘](www.cnblogs.com/lovesqcc/p/7965387.html)
 
 62. Tomcat 单机多实例部署
+
+63. [如何构建你的第一个 Vue.js 组件](www.oschina.net/translate/build-your-first-vue-js-component)
