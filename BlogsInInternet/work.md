@@ -129,3 +129,5 @@
 63. [如何构建你的第一个 Vue.js 组件](www.oschina.net/translate/build-your-first-vue-js-component)
 
 64. 三条路线告诉你如何掌握Spring IoC容器的核心原理
+
+65. [写给非技术人员评估技术同事的参考](http://gulu-dev.com/post/2015-11-05-tips-for-non-programmers)
