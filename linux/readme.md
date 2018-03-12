@@ -3,3 +3,4 @@
 grep -rn "" * 显示行号 *当前目录下所有文件
 
 find /dir -name filename  在/dir目录及其子目录下面查找名字为filename的文件
+需要从安装folder下sudo + 脚本名
