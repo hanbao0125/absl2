@@ -24,3 +24,5 @@ Clipboard sharing requires that the VirtualBox Guest Additions be installed. As 
 For drag and drop to work the Guest Additions need to be installed **on the guest**.
 
 To make this work, a special mouse driver is **installed in the guest** that communicates with the "real" mouse driver on your host and moves the guest mouse pointer accordingly.
+
+prepare your guest system for building external kernel modules.
