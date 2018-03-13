@@ -16,3 +16,5 @@ sudo env PATH=/home/ubuntu/.rbenv/shims:/home/ubuntu/.rbenv/bin:/home/ubuntu/bin
 ## start successfully
 Login : 'cf login -a https://api.172.16.0.13.xip.io -u admin -p c1oudc0w --skip-ssl-validation'
 Download CF CLI from https://github.com/cloudfoundry/cli
+
+sudo /var/vcap/bosh/bin/monit summary
