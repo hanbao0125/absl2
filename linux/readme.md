@@ -19,3 +19,5 @@ sudo env PATH=/home/ubuntu/.rbenv/shims:/home/ubuntu/.rbenv/bin:/home/ubuntu/bin
 * Download CF CLI from https://github.com/cloudfoundry/cli
 
 sudo /var/vcap/bosh/bin/monit summary
+
+Clipboard sharing requires that the VirtualBox Guest Additions be installed. As a result, this setting has no effect otherwise;
