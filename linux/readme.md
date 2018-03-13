@@ -28,3 +28,7 @@ To make this work, a special mouse driver is **installed in the guest** that com
 prepare your guest system for building external kernel modules.
 
 [uːˈbuːntuː] 
+
+What is **vboxdrv** ?
+
+In order to run other operating systems in virtual machines alongside your main operating system, VirtualBox needs to integrate very tightly into the system. To do this it installs a "driver" module called vboxdrv which does a lot of that work into the system kernel, which is the part of the operating system which controls your processor and physical hardware.
