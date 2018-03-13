@@ -21,3 +21,4 @@ sudo env PATH=/home/ubuntu/.rbenv/shims:/home/ubuntu/.rbenv/bin:/home/ubuntu/bin
 sudo /var/vcap/bosh/bin/monit summary
 
 Clipboard sharing requires that the VirtualBox Guest Additions be installed. As a result, this setting has no effect otherwise;
+For drag and drop to work the Guest Additions need to be installed **on the guest**.
