@@ -14,7 +14,8 @@ sudo nethogs
 sudo env PATH=/home/ubuntu/.rbenv/shims:/home/ubuntu/.rbenv/bin:/home/ubuntu/bin:/home/ubuntu/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin bundle exec ./bin/nise-bosh --keep-monit-files -y ../cf-release ../manifests/deploy.yml micro_ng -n 172.16.0.13
 
 ## start successfully
-Login : 'cf login -a https://api.172.16.0.13.xip.io -u admin -p c1oudc0w --skip-ssl-validation'
-Download CF CLI from https://github.com/cloudfoundry/cli
+
+* Login: cf login -a https://api.172.16.0.13.xip.io -u admin -p c1oudc0w --skip-ssl-validation
+* Download CF CLI from https://github.com/cloudfoundry/cli
 
 sudo /var/vcap/bosh/bin/monit summary
