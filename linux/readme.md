@@ -47,3 +47,10 @@ sudo apt-get install virtualbox-guest-additions-iso,after that the iso is in fol
 $ sudo apt-get clean
 $ sudo apt-get autoclean
 $ sudo apt-get -f install
+
+This system is currently not set up to build kernel modules.
+Please install the gcc make perl packages from your distribution.
+
+The install tells you what is missing and what to do about it.
+
+To simplify it further, on Ubuntu you need to install the linux-headers and build-essential.
