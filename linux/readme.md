@@ -63,3 +63,5 @@ in case of a failure call of apt=get update due to network issue: sudo rm -vf /v
 
 * apt-get clean: clears out the local repository of retrieved package files (the .deb files). It removes everything but the lock file from /var/cache/apt/archives/ and /var/cache/apt/archives/partial/.
 * apt-get autoclean: clears out the local repository of retrieved package files, but unlike apt-get clean, it only removes package files that can no longer be downloaded, and are largely useless.
+
+sudo apt-get install build-essential
