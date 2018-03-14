@@ -79,3 +79,4 @@ sudo apt-get install build-essential
 登录界面ctrl+alt+f1进入命令行
 ctrl+alt+f1,f2切换终端。
 /var/log folder
+Xorg.0.log
