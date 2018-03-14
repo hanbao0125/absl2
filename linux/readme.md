@@ -67,3 +67,5 @@ in case of a failure call of apt=get update due to network issue: sudo rm -vf /v
 sudo apt-get install build-essential
 
 先确认你是下载的service（服务器无图形界面）还是desktop版
+
+sudo apt install xinit
