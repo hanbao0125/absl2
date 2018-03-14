@@ -36,3 +36,7 @@ In order to run other operating systems in virtual machines alongside your main 
 Like the Windows Guest Additions, the VirtualBox Guest Additions for Linux are a set of device drivers and system applications which may be installed in the guest operating system.
 
 lsb_release -a
+
+# 2018-03-14
+
+finding the version name of your kernel using the command **uname -r** in a terminal
