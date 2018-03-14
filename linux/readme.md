@@ -75,3 +75,5 @@ sudo apt-get install build-essential
 * apt-get update 更新软件源中的所有软件列表。 
 * apt-get upgrade 更新软件。 
 * apt-get dist-upgrade 更新系统版本。如果你对新版本软件的需求不是那么迫切，可以不执行
+
+登录界面ctrl+alt+f1进入命令行
