@@ -51,6 +51,10 @@ $ sudo apt-get -f install
 This system is currently not set up to build kernel modules.
 Please install the gcc make perl packages from your distribution.
 
-The install tells you what is missing and what to do about it.
+1. The install tells you what is missing and what to do about it.
 
 To simplify it further, on Ubuntu you need to install the linux-headers and build-essential.
+
+2. Did you try installing the missing packages like the error message you posted suggested would fix this issue?
+
+Usually need build-essential and linux-headers ( that match your running kernel )
