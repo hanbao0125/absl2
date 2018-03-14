@@ -77,3 +77,4 @@ sudo apt-get install build-essential
 * apt-get dist-upgrade 更新系统版本。如果你对新版本软件的需求不是那么迫切，可以不执行
 
 登录界面ctrl+alt+f1进入命令行
+ctrl+alt+f1,f2切换终端。
