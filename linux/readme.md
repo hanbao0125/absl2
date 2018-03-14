@@ -40,3 +40,4 @@ lsb_release -a
 # 2018-03-14
 
 finding the version name of your kernel using the command **uname -r** in a terminal
+APT is a package management system for Debian and other Linux distributions based on it, such as Ubuntu.
