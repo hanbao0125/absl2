@@ -58,3 +58,5 @@ To simplify it further, on Ubuntu you need to install the **linux-headers** and 
 2. Did you try installing the missing packages like the error message you posted suggested would fix this issue?
 
 Usually need **build-essential** and **linux-headers** ( that match your running kernel )
+
+in case of a failure call of apt=get update due to network issue: sudo rm -vf /var/lib/apt/lists/*
