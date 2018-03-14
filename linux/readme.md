@@ -60,3 +60,6 @@ To simplify it further, on Ubuntu you need to install the **linux-headers** and 
 Usually need **build-essential** and **linux-headers** ( that match your running kernel )
 
 in case of a failure call of apt=get update due to network issue: sudo rm -vf /var/lib/apt/lists/*
+
+* apt-get clean: clears out the local repository of retrieved package files (the .deb files). It removes everything but the lock file from /var/cache/apt/archives/ and /var/cache/apt/archives/partial/.
+* apt-get autoclean: clears out the local repository of retrieved package files, but unlike apt-get clean, it only removes package files that can no longer be downloaded, and are largely useless.
