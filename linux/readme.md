@@ -41,3 +41,4 @@ lsb_release -a
 
 finding the version name of your kernel using the command **uname -r** in a terminal
 APT is a package management system for Debian and other Linux distributions based on it, such as Ubuntu.
+sudo apt-get install virtualbox-guest-additions-iso,after that the iso is in folder /usr/share/virtualbox/VBoxGuestAdditions.iso
