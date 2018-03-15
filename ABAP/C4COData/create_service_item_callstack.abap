@@ -9,3 +9,8 @@ YTEJ8CJ8Y_CL_S975A99AC46E3924A~create_node
       CL_ESF_BO_ACCESS2CR_MAPPER->create
        ls_runtime_context-core_runtime->_map_and_modify: CL_ESF_CORE_RUNTIME
         CL_ESF_CORE_RUNTIME~_modify
+         mo_locker->lock_for_modify
+         determine_delete_cascade "Jerry: as always in ABAP, deletion is considered FIRST
+         " create a snapshot to support before modify image for layered extensions and
+         "to roll back changes in case reject modify validations fail
+         mo_service_manager->create_snapshot
