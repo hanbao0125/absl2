@@ -132,3 +132,6 @@ BO can be sent in IDOC format using XIF - external interface.
 # Adobe form
 
 role ZCHENGDU AG3, Social post
+
+# Mics
+001. from Sean: 我们现在在中国大陆落地的云产品包括：ERP Cloud－SAP S/4HANA Cloud (ERP 云商务套件)
