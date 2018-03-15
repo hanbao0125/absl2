@@ -1,0 +1,83 @@
+import ABSL;
+import AP.PC.IdentityManagement.Global;
+
+foreach(var insTicket in this){
+       //var elSplitOrder: elementsof SplitOrder;
+       //var insSplitOrder;
+       //var itemQuan = 1000;     // change this
+//
+       //elSplitOrder.sid.content = "1002";     // item quantity
+       //elSplitOrder.zcph = "A1000items";
+       //elSplitOrder.zbxjsrq = Context.GetCurrentSystemDate();
+       //elSplitOrder.zbxksrq = Context.GetCurrentUserDate();
+//
+       //insSplitOrder = SplitOrder.Create(elSplitOrder);
+       //insSplitOrder.zclys = Context.GetCurrentSystemTimeStamp().ToString();
+       //var i = 1;
+       //var eleItem: elementsof SplitOrder.Item;
+       //var insItem;
+       //var itemno;
+       //while(i<=itemQuan){                                        // item quantity            
+             //eleItem.Clear();
+             //itemno = i * 10;
+             //eleItem.itemno = itemno.ToString();
+             //eleItem.ZItemDescountPrice.content = i*1000;
+             //eleItem.ZItemDiscount = 0.7;
+             //eleItem.ZItemFinalDiscount = 0.6;
+             //eleItem.ZItemManualPrice.content = eleItem.ZItemDescountPrice.content * eleItem.ZItemDiscount;
+             //eleItem.ZItemPrice.content = i * 1000;
+             //eleItem.zsplitAmount.content = eleItem.ZItemPrice.content - eleItem.ZItemManualPrice.content;
+             //eleItem.zsplitRate = eleItem.ZItemDiscount;
+             //eleItem.zsuopeisqje = eleItem.ZItemPrice;
+             //eleItem.zwwfwf = eleItem.zsuopeisqje;
+             //eleItem.zwwsggys = "testing item";
+             //eleItem.zxmlb = "test";
+//
+             //insSplitOrder.Item.Create(eleItem);
+             //i = i + 1;
+       //}
+       //insSplitOrder.zclys_code = Context.GetCurrentSystemTimeStamp().ToString();
+
+       //var eleBTD: elementsof ServiceRequest.BusinessTransactionDocumentReference;
+       //eleBTD.BusinessTransactionDocumentReference.ID.content = "6452";
+       //eleBTD.BusinessTransactionDocumentReference.TypeCode = "118";
+       //eleBTD.BusinessTransactionDocumentRelationshipRoleCode = "2";
+       //insTicket.BusinessTransactionDocumentReference.Create(eleBTD);
+
+       var elItem: elementsof ServiceRequest.Item;
+       var elItemProduct: elementsof ServiceRequest.Item.ItemProduct;
+
+       var insItem;
+       var counter = 0;
+       while(counter < 2){
+             elItem.Description.content = "Split item";
+             //elItem.ID = "50";
+             elItem.UserServiceTransactionProcessingTypeCode = "YSRS";
+             insItem = insTicket.Item.Create(elItem);
+
+             elItemProduct.ProductKey.ProductID.content = "P200252";
+             elItemProduct.QuantityMeasureUnitCode = "EA";
+             insItem.ItemProduct.Create(elItemProduct);
+
+             var t1 = Context.GetCurrentSystemTimeStamp();
+             var FirstFulfilledItemScheduleLine : elementsof ServiceRequest.Item.ItemScheduleLine;
+             FirstFulfilledItemScheduleLine.Quantity.content = 5;
+          insItem.FirstFulfilledItemScheduleLine.Create(FirstFulfilledItemScheduleLine);
+             var t2 = Context.GetCurrentSystemTimeStamp();
+
+             var requestItem = insItem.FirstRequestedItemScheduleLine.Create();
+             requestItem.Quantity.content = 2;
+             requestItem.Quantity.unitCode = "EA";
+             var t3 = Context.GetCurrentSystemTimeStamp();
+
+             Trace.Info((t2 - t1).ToString());
+
+             Trace.Info((t3 - t2).ToString());
+             counter = counter + 1;
+       }
+       
+}
+
+
+
+
