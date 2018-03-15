@@ -1,0 +1,1 @@
+this.numcCode.content = Numeric.ParseFromString("05"); // string to number
