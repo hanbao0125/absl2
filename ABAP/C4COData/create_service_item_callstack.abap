@@ -8,7 +8,7 @@ YTEJ8CJ8Y_CL_S975A99AC46E3924A~create_node
        (1) mapper = get_runtime_mapper( 'SERVICE_REQUEST' ): result->CL_ESF_BO_ACCESS2CR_MAPPER
        (2) CL_ESF_BO_ACCESS2CR_MAPPER->create
          ls_runtime_context-core_runtime->_map_and_modify: CL_ESF_CORE_RUNTIME
-          CL_ESF_CORE_RUNTIME~_modify
+          a.CL_ESF_CORE_RUNTIME~_modify
            (1) mo_locker->lock_for_modify
            (2) determine_delete_cascade "Jerry: as always in ABAP, deletion is considered FIRST
            " create a snapshot to support before modify image for layered extensions and
@@ -28,7 +28,12 @@ YTEJ8CJ8Y_CL_S975A99AC46E3924A~create_node
                        "Jerry: SAM notification
                        (4) mo_notification_handler->notify
                   WHEN update.
-              " Jerry: entry point for AFTER_MODIFY determination by CL_ESF_CORE_RUNTIME
-              (3) do_determinations(cl_esf_rt_metadata_access=>gcs_det_exec_time-after_modify ))
-                (1) 
            (5) mo_sam->process_sam_changes
+           " Jerry: entry point for AFTER_MODIFY determination by CL_ESF_CORE_RUNTIME
+           (6) do_determinations(cl_esf_rt_metadata_access=>gcs_det_exec_time-after_modify ))
+              (1) get all determinations by CL_ESF_RT_METADATA_ACCESS_SHM~get_determination_triggers
+              (2) LOOP all those determinations, calculate relevance, if not relevant, CONTINUE.
+              (3) "Jerry: instantiate determination class instance by class name: 
+              lo_determination = mo_provider_factory->get_provider('CL_AP_SRQ_D_ITEM')
+              (4) lo_determination->execute
+          b. CL_ESF_CORE_RUNTIME~do_validations
