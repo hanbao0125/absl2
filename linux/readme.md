@@ -82,3 +82,6 @@ ctrl+alt+f1,f2切换终端。
 Xorg.0.log
 uninstall: sudo apt-get remove softname1
 df -H
+/dev/mapper/ubuntu--vg-root  8.9G  8.0G  487M  95% /
+你用了LVM逻辑卷管理，sdb5作为物理卷，建了卷组ubuntu-vg，然后上面建了逻辑卷root
+然后逻辑卷上做了文件系统，挂载为根
