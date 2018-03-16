@@ -94,3 +94,5 @@ Check size: du -sh *
 1. sudo apt-get autoclean（已卸载软件的安装包）
 2. sudo apt-get clean（未卸载软件的安装包）
 3. 清理系统不再需要的孤立的软件包。sudo apt-get autoremove
+
+sudo vgdisplay
