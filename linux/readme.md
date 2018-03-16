@@ -80,3 +80,4 @@ sudo apt-get install build-essential
 ctrl+alt+f1,f2切换终端。
 /var/log folder
 Xorg.0.log
+uninstall: sudo apt-get remove softname1
