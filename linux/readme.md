@@ -80,3 +80,19 @@ sudo apt-get install build-essential
 ctrl+alt+f1,f2切换终端。
 /var/log folder
 Xorg.0.log
+uninstall: sudo apt-get remove softname1
+df -H
+* /dev/mapper/ubuntu--vg-root  8.9G  8.0G  487M  95% /
+* 你用了LVM逻辑卷管理，建了卷组ubuntu-vg，然后上面建了逻辑卷root 然后逻辑卷上做了文件系统，挂载为根
+* 逻辑分区管理是一个存在于磁盘/分区和操作系统之间的一个抽象层。在传统的磁盘管理中，你的操作系统寻找有哪些磁盘可用（/dev/sda、/dev/sdb等等），并且这些磁盘有哪些可用的分区（如/dev/sda1、/dev/sda2等等）。
+在LVM下，磁盘和分区可以抽象成一个含有多个磁盘和分区的设备。你的操作系统将不会知道这些区别，因为LVM只会给操作系统展示你设置的卷组（磁盘）和逻辑卷（分区）
+
+因为卷组和逻辑卷并不物理地对应到影片，因此可以很容易地动态调整和创建新的磁盘和分区。
+fdisk -l
+logical volume management
+Check size: du -sh *
+1. sudo apt-get autoclean（已卸载软件的安装包）
+2. sudo apt-get clean（未卸载软件的安装包）
+3. 清理系统不再需要的孤立的软件包。sudo apt-get autoremove
+
+sudo vgdisplay
