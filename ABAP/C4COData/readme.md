@@ -170,6 +170,8 @@ Boolean value in Rule editor should not be wrapped by "".
 
 * [SAP Cloud for Customer Prepackaged Integration Scenarios for SAP CRM and SAP ERP Integration](https://blogs.sap.com/2014/03/26/sap-cloud-for-customer-prepackaged-integration-scenarios-for-sap-crm-and-sap-erp-integration/)
 
+* https://blogs.sap.com/2017/10/05/how-to-call-standard-webservice-in-absl-script/
+
 # ESI/ESF
 
 * modify: LCP-Service manager-CL_ESF_CORE_RUNTIME~modify~_modify
