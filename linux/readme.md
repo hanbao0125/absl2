@@ -99,3 +99,4 @@ sudo vgdisplay
 
 # 2018-04-03
 Linux下感叹号用法：https://www.cnblogs.com/wxywxy/p/7756596.html
+rbenv 用来管理多个版本的 ruby 在用户目录的安装和使用, 和 rvm 二选一使用. 具体区别 rbenv 的文档里有说明, 社区里也有讨论.
