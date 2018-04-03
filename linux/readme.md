@@ -101,3 +101,4 @@ sudo vgdisplay
 Linux下感叹号用法：https://www.cnblogs.com/wxywxy/p/7756596.html
 rbenv 用来管理多个版本的 ruby 在用户目录的安装和使用, 和 rvm 二选一使用. 
 单独使用它或者其后跟一个斜线（~/），代表了当前用户的宿主目录。（在shell下可以通过命令“echo ~(~\)”来查看）。例如“~/bin”代表“/home/username/bin/”（当前用户宿主目录下的bin目录）
+build-essential is a package which contains references to numerous packages needed for building software in general.
