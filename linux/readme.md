@@ -96,3 +96,6 @@ Check size: du -sh *
 3. 清理系统不再需要的孤立的软件包。sudo apt-get autoremove
 
 sudo vgdisplay
+
+# 2018-04-03
+Linux下感叹号用法：https://www.cnblogs.com/wxywxy/p/7756596.html
