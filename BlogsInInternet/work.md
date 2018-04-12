@@ -131,3 +131,5 @@
 64. 三条路线告诉你如何掌握Spring IoC容器的核心原理
 
 65. [写给非技术人员评估技术同事的参考](http://gulu-dev.com/post/2015-11-05-tips-for-non-programmers)
+
+66. [DispatcherServlet详解](http://jinnianshilongnian.iteye.com/blog/1602617)
