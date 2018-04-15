@@ -60,6 +60,9 @@ public section.
     importing
       !IV_LOCAL_PATH type STRING
       !IV_BINARY type XSTRING .
+  class-methods GET_PIC_FROM_CLIPBOARD
+    returning
+      value(ET_PIC) type STRING_TABLE .
 protected section.
 private section.
 ENDCLASS.
@@ -388,6 +391,46 @@ CLASS ZCL_CRM_CM_TOOL IMPLEMENTATION.
 
 
 * <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Static Public Method ZCL_CRM_CM_TOOL=>GET_PIC_FROM_CLIPBOARD
+* +-------------------------------------------------------------------------------------------------+
+* | [<-()] ET_PIC                         TYPE        STRING_TABLE
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD get_pic_from_clipboard.
+    TYPES:
+      BEGIN OF ty_clipdata,
+        data TYPE c LENGTH 1000,
+      END   OF ty_clipdata.
+    DATA: lt_markdown TYPE STANDARD TABLE OF ty_clipdata,
+          lt_result_tab  TYPE match_result_tab.
+
+    CONSTANTS: sv_image_pattern TYPE string VALUE '(!\[.*\])(\((.*)\))'.
+
+    CALL METHOD cl_gui_frontend_services=>clipboard_import
+      IMPORTING
+        data                 = lt_markdown
+      EXCEPTIONS
+        cntl_error           = 1
+        error_no_gui         = 2
+        not_supported_by_gui = 3
+        OTHERS               = 4.
+
+    CHECK sy-subrc = 0.
+
+    LOOP AT lt_markdown ASSIGNING FIELD-SYMBOL(<markdown>) WHERE table_line CS '![]'.
+      CLEAR: lt_result_tab.
+      FIND REGEX sv_image_pattern IN <markdown> RESULTS lt_result_tab.
+      DATA(lv_final) = lines( lt_result_tab[ 1 ]-submatches ).
+      DATA(offset) = lt_result_tab[ 1 ]-submatches[ lv_final ].
+      DATA(lv_start) = offset-offset.
+      DATA(lv_length) = offset-length.
+      data(pic) = conv String( <markdown>+lv_start(lv_length) ).
+      REPLACE 'https' in pic with 'http'.
+      APPEND pic TO et_pic.
+    ENDLOOP.
+  ENDMETHOD.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
 * | Static Public Method ZCL_CRM_CM_TOOL=>GET_PRODUCT_DOC_URL
 * +-------------------------------------------------------------------------------------------------+
 * | [--->] IV_PROD_ID                     TYPE        COMM_PRODUCT-PRODUCT_ID
@@ -472,7 +515,7 @@ CLASS ZCL_CRM_CM_TOOL IMPLEMENTATION.
     CALL METHOD cl_http_client=>create_by_url
       EXPORTING
         url                = iv_url
-        proxy_host         = 'PROXY.WDF.SAP.CORP'
+        proxy_host         = 'PROXY.SHA.SAP.CORP'
         proxy_service      = '8080'
 *        ssl_id             = 'ANONYM'
 *        sap_username       = ''
