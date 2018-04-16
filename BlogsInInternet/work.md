@@ -139,3 +139,5 @@
 68. How Much Do ABAP Method Calls (Really) Cost?
 
 69. [Quartz Quick Start Guide](http://www.quartz-scheduler.org/documentation/quartz-2.x/quick-start.html)
+
+70. java的(PO,VO,BO,DAO,DTO,POJO)解释-菜鸟要飞
