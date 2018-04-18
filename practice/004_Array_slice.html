@@ -19,9 +19,23 @@ var a5 = a4.slice(0); // = slice()
 
 var a6 = a5.concat([6,7]);
 
+/*
 setTimeout(function(){ 
 	 while (true) {
 	 	eval("debugger");
 	 }
 	});
+*/
+setInterval( function(){
+  var startTime = performance.now(), check,diff;
+  /*for (check = 0; check < 1000; check++){
+    console.log(check);
+    console.clear();
+  }*/
+  diff = performance.now() - startTime;
+  if (diff > 200){
+    alert("Debugger detected!");
+  }
+},500);
+
 </script>
