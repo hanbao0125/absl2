@@ -26,16 +26,28 @@ setTimeout(function(){
 	 }
 	});
 */
+
+/*
 setInterval( function(){
   var startTime = performance.now(), check,diff;
   /*for (check = 0; check < 1000; check++){
     console.log(check);
     console.clear();
-  }*/
+  }
   diff = performance.now() - startTime;
   if (diff > 200){
     alert("Debugger detected!");
   }
-},500);
+},500);*/
+
+let div = document.createElement('div');
+let loop = setInterval(() => {
+    console.log(div);
+    console.clear();
+});
+Object.defineProperty(div,"id", {get: () => {
+    clearInterval(loop);
+    alert("Dev Tools detected!");
+}});
 
 </script>
