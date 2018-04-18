@@ -1,0 +1,25 @@
+<html>
+<script>
+function getCallStack() {
+    var stack = "Callstack:", fn =arguments.callee;
+    while ( (fn = fn.caller) ) {
+        stack = stack + "\n" +fn.name;
+    }
+    return stack;
+}
+
+function test1() {
+    console.log(getCallStack());
+}
+function test2() {
+    test1();
+}
+function test3() {
+    test2();
+}
+function test4() {
+    test3();
+}
+test4();
+</script>
+</html>
