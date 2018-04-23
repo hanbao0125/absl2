@@ -36,7 +36,7 @@ After I changed it to Maven project on 2017-05-07, [new url](https://helloworldi
 # Open SAP
 
 Unit 2: Digital Transformation: Connecting People, Things, and Businesses
-
+Unit 3: Architecture and Capabilities - done 2018-04-23
 
 # blogs
 
