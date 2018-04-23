@@ -1,4 +1,4 @@
-# Console Client
+# Console Client(only valid for Neo)
 
 1. [help](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/76132306711e1014839a8273b0e91070.html)
 
