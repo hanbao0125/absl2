@@ -113,4 +113,5 @@ Vicky: https://blogs.sap.com/2017/02/07/how-to-deploy-ui5-application-on-hcpclou
 
 2. [12-factor application](https://12factor.net/zh_cn/)
 
-BYOL Bring your own language
+* BYOL Bring your own language
+* backing service: 后端服务是指程序运行所需要的通过网络调用的各种服务，如数据库（MySQL，CouchDB），消息/队列系统（RabbitMQ，Beanstalkd），SMTP 邮件发送服务（Postfix），以及缓存系统（Memcached）。
