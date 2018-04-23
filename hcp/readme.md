@@ -112,3 +112,5 @@ Vicky: https://blogs.sap.com/2017/02/07/how-to-deploy-ui5-application-on-hcpclou
 1. 定义的开发程序必须放在SAP Cloud Platform里，想要与S/4交互，请使用API。
 
 2. [12-factor application](https://12factor.net/zh_cn/)
+
+BYOL Bring your own license
