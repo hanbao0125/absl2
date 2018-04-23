@@ -87,3 +87,7 @@ password: the one to access my laptop!!!
 # 2017-08-06
 
 Vicky: https://blogs.sap.com/2017/02/07/how-to-deploy-ui5-application-on-hcpcloudfoundry/
+
+# 2018-04-23
+
+定义的开发程序必须放在SAP Cloud Platform里，想要与S/4交互，请使用API。
