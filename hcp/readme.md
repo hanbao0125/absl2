@@ -113,4 +113,4 @@ Vicky: https://blogs.sap.com/2017/02/07/how-to-deploy-ui5-application-on-hcpclou
 
 2. [12-factor application](https://12factor.net/zh_cn/)
 
-BYOL Bring your own license
+BYOL Bring your own language
