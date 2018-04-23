@@ -33,6 +33,11 @@ hanatrial.ondemand.com
 
 After I changed it to Maven project on 2017-05-07, [new url](https://helloworldi042416trial.hanatrial.ondemand.com/jerrytest/)
 
+# Open SAP
+
+Unit 2: Digital Transformation: Connecting People, Things, and Businesses
+
+
 # blogs
 
 1. [Logging in HCP Cloud foundry with Java and Tomee using slf4j, logback, Jolokia](https://blogs.sap.com/2016/12/02/logging-in-hcp-cloud-foundry-with-java-and-tomee-using-slf4j-logback-jolokia/)
