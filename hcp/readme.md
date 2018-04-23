@@ -1,5 +1,9 @@
 # Console Client
+
 1. [help](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/76132306711e1014839a8273b0e91070.html)
+
+SAP Cloud Platform console client for the Neo environment enables development, deployment and configuration of an application outside the Eclipse IDE as well as continuous integration and automation tasks. The tool is part of the SAP Cloud Platform SDK for Neo environment. You can find it in the tools folder of your SDK location.
+
 
 # Supported Java API
 1. [help](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/e836a95cbb571014b3c4c422837fcde4.html)
