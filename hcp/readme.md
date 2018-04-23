@@ -25,10 +25,12 @@ hanatrial.ondemand.com
 
 # Url
 
-1. [cockpit](https://account.hanatrial.ondemand.com/)
 2. [How To Use A Servlet As Your Main Web Page](http://wiki.metawerx.net/wiki/HowToUseAServletAsYourMainWebPage)
+
 3. install new software with url:  https://tools.hana.ondemand.com/neon
+
 4. [My test application url](https://helloworldi042416trial.hanatrial.ondemand.com/JerryTest/)
+
 After I changed it to Maven project on 2017-05-07, [new url](https://helloworldi042416trial.hanatrial.ondemand.com/jerrytest/)
 
 # blogs
@@ -36,7 +38,9 @@ After I changed it to Maven project on 2017-05-07, [new url](https://helloworldi
 1. [Logging in HCP Cloud foundry with Java and Tomee using slf4j, logback, Jolokia](https://blogs.sap.com/2016/12/02/logging-in-hcp-cloud-foundry-with-java-and-tomee-using-slf4j-logback-jolokia/)
 
 # work log
+
 ## 2017-05-01
+
 956我为什么没办法publish 到cloud 上去？
 1004可能我有个工具没装。新Eclipse还是需要配proxy
 Possible hint: https://archive.sap.com/discussions/thread/3857381
@@ -45,7 +49,9 @@ finally it works: https://helloworldi042416trial.hanatrial.ondemand.com/JerryTes
 1613: 果然重启大法好。。。
 
 ## 2017-05-07
+
 1. Sometimes after restart, I need to Maven->Update project or else the servlet could not be successfully instantiated again!
+
 2. workaround does not work for resources in HCP?! Verified, workaround can still works if the web application is started in local server, but does not work in HCP.
 
 ## 2017-05-20
@@ -63,8 +69,6 @@ package.json is missing
 
 npm install express - lots of file generated in my project folder :)
 
-http://localhost:3000/ui5/ - can work!
-
 cf api https://api.cf.us10.hana.ondemand.com
 
 cf api https://api.cf.eu10.hana.ondemand.com - Jerry 2017-07-15
@@ -79,9 +83,11 @@ https://jerrylist.cfapps.eu10.hana.ondemand.com - 囧，要加https
 set HTTPS_PROXY=http://proxy.wdf.sap.corp:8080
 
 # 2017-05-27
+
 1. https://jerryordercount.cfapps.eu10.hana.ondemand.com
 
 https://jerryordercount.cfapps.eu10.hana.ondemand.com/jerry/OneOrderHCP.html --Jerry checks on 2017-07-15 that it could still be accessed.
+2018-04-23 12:44PM - down.
 
 # 2017-07-15
 
