@@ -192,3 +192,16 @@ Lead ESR name: LeanLead.
 * https://my500096.c4c.saphybriscloud.cn/sap/c4c/odata/v1/c4codata/LeanLeadCollection?$skip=0&$top=1
 
 * https://my500096.c4c.saphybriscloud.cn/sap/c4c/odata/v1/c4codata/LeanLeadCollection?$filter=ID eq '25153' 
+
+QXL create individual customer:
+
+```json
+{
+          "LastName" :"Wang",
+          "FirstName": "Jerry",
+          "StreetName": "Chengdu Tianfu",
+          "RoleCode": "CRM000",
+          "Mobile":"028",
+          "Phone":"139"
+}
+```
