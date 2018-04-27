@@ -175,3 +175,9 @@ Boolean value in Rule editor should not be wrapped by "".
 # ESI/ESF
 
 * modify: LCP-Service manager-CL_ESF_CORE_RUNTIME~modify~_modify
+
+# 2018-04-27
+
+[SCN](https://archive.sap.com/discussions/thread/3741609)
+
+Sales Leads have been made obsolete in favor of Leads as regards the C4C public cloud SaaS offering. 需要创建不必要的BP。
