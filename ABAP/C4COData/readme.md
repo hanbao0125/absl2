@@ -187,6 +187,8 @@ lead TI: /BYD_COD/SalesOnDemand/Marketing/Prospect/COD_Mkt_Prospect.TI.uicompone
 field internal tenant和客户的tenant url不一样。
 Lead ESR name: LeanLead.
 
-https://my500096.c4c.saphybriscloud.cn/sap/c4c/odata/v1/c4codata/$metadata
+* https://my500096.c4c.saphybriscloud.cn/sap/c4c/odata/v1/c4codata/$metadata
 
-https://my500096.c4c.saphybriscloud.cn/sap/c4c/odata/v1/c4codata/LeanLeadCollection?$skip=0&$top=1
+* https://my500096.c4c.saphybriscloud.cn/sap/c4c/odata/v1/c4codata/LeanLeadCollection?$skip=0&$top=1
+
+* https://my500096.c4c.saphybriscloud.cn/sap/c4c/odata/v1/c4codata/LeanLeadCollection?$filter=ID eq '24431' 
