@@ -183,3 +183,5 @@ Boolean value in Rule editor should not be wrapped by "".
 Sales Leads have been made obsolete in favor of Leads as regards the C4C public cloud SaaS offering. 需要创建不必要的BP。
 
 lead TI: /BYD_COD/SalesOnDemand/Marketing/Prospect/COD_Mkt_Prospect.TI.uicomponent
+
+field internal tenant和客户的tenant url不一样。
