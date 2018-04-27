@@ -205,3 +205,5 @@ QXL create individual customer:
           "Phone":"139"
 }
 ```
+
+12:10PM 2018-04-27: we can configure log file in jMeter to log request detail.
