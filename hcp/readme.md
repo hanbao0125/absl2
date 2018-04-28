@@ -138,3 +138,6 @@ javax.naming.AuthenticationNotSupportedException: [LDAP: error code 48 - Authent
 http://proxy.sha.sap.corp:8080
 
 have your account on Trial deleted, please do the following: create a BCP ticket on BC-NEO-CIS and reqeust the account deletion for Trial. Please provide your email address and account ID and also state that only the account is to be deleted, not your user. Hope this helps!
+
+For doing CF Development you need to request for trial account on internal Cloud Foundry CANARY instance as described in the below jam page
+
