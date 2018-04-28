@@ -153,3 +153,5 @@
 75. [JavaScript 反调试技巧](www.freebuf.com/articles/system/163579.html)
 
 76. [Angular和Vue.js 深度对比](www.cnblogs.com/powertoolsteam/p/angular_vs_vue.html)
+
+77. [DOM 操作成本到底高在哪儿？](segmentfault.com/a/1190000014070240)
