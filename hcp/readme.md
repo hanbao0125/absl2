@@ -141,3 +141,5 @@ have your account on Trial deleted, please do the following: create a BCP ticket
 
 For doing CF Development you need to request for trial account on internal Cloud Foundry CANARY instance as described in the below jam page
 
+{"error":"unauthorized","error_description":"[LDAP: error code 48 - Authentication failed]; nested exception is javax.naming.AuthenticationNotSupportedException: [LDAP: error code 48 - Authentication failed]"}
+
