@@ -127,3 +127,5 @@ polyglot
 Credentials were rejected - fuck
 
 >cf auth
+
+用IE试试能否用密码登录前台。
