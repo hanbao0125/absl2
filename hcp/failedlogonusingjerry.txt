@@ -8,7 +8,6 @@ Content-Type: application/json
 User-Agent: go-cli 6.36.1+e3799ad7e.2018-04-04 / windows
 
 
-
 RESPONSE: [2018-04-28T21:24:05+08:00]
 HTTP/1.1 200 OK
 Connection: close
@@ -27,8 +26,6 @@ Host: login.cf.eu10.hana.ondemand.com
 Accept: application/json
 Content-Type: application/json
 User-Agent: go-cli 6.36.1+e3799ad7e.2018-04-04 / windows
-
-
 
 RESPONSE: [2018-04-28T21:24:06+08:00]
 HTTP/1.1 200 OK
