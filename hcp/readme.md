@@ -158,3 +158,5 @@ Process failed: Error starting application "shine-web": Controller operation fai
 Use "cf deploy -i 22681535 -a abort" to abort the process.
 Use "cf deploy -i 22681535 -a retry" to retry the process.
 Use "cf dmol -i 22681535" to download the logs of the process.
+
+cf quotas
