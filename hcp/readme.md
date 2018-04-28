@@ -128,4 +128,4 @@ Credentials were rejected - fuck
 
 >cf auth
 
-用IE试试能否用密码登录前台。
+用IE试试能否用密码登录前台。-12:20 SCN都能用邮件和开机密码登录啊！
