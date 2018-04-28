@@ -132,3 +132,9 @@ Credentials were rejected - fuck
 SCP UI也能用邮件和密码登录，太怪了。
 
 CF_TRACE=true 2018-04-28 12:34PM
+
+javax.naming.AuthenticationNotSupportedException: [LDAP: error code 48 - Authentication failed]
+
+http://proxy.sha.sap.corp:8080
+
+have your account on Trial deleted, please do the following: create a BCP ticket on BC-NEO-CIS and reqeust the account deletion for Trial. Please provide your email address and account ID and also state that only the account is to be deleted, not your user. Hope this helps!
