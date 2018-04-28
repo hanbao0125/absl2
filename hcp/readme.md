@@ -122,4 +122,8 @@ polyglot
 
 [how to set proxy for cf login](https://docs.cloudfoundry.org/cf-cli/http-proxy.html#windows)
 
-12:04PM - password不对？？
+12:04PM - password不对？？I should use this one: https://api.cf.eu10.hana.ondemand.com
+
+Credentials were rejected - fuck
+
+>cf auth
