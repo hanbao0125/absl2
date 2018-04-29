@@ -169,4 +169,4 @@ MDC - multi-tenant database container
 
 com.sap.core.persistence.sql.trace
 
-jpa - java persistence api
+jpa - java persistence api - 只需要定义annotation即可访问DB。
