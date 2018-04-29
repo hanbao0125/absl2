@@ -162,3 +162,7 @@ Use "cf dmol -i 22681535" to download the logs of the process.
 cf quotas
 
 1870220149 -  cf login failed: javax.naming.AuthenticationNotSupportedException
+
+# 2018-04-29
+
+MDC - multi-tenant database container
