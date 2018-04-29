@@ -170,3 +170,7 @@ MDC - multi-tenant database container
 com.sap.core.persistence.sql.trace
 
 jpa - java persistence api - 只需要定义annotation即可访问DB。
+
+p1942399991trial
+
+10:10PM - 不出所料要出幺蛾子，部署上去之后404 error。
