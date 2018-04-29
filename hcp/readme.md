@@ -166,3 +166,7 @@ cf quotas
 # 2018-04-29
 
 MDC - multi-tenant database container
+
+com.sap.core.persistence.sql.trace
+
+jpa - java persistence api
