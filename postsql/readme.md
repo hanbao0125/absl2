@@ -36,3 +36,7 @@ INSERT INTO public.comm_product(
 
 2018-04-30 11:30:58 [INFO] : Get:1 https://s3.amazonaws.com/pgcentral pgadmin3-1.23.0b-win64
 2018-04-30 11:31:09 [ERROR] : URL Error while dowloading file pgadmin3-1.23.0b-win64.tar.bz2 (<urlopen error timed out>)
+
+CREATE USER jerry WITH PASSWORD 'Sap12345';
+
+SELECT * FROM public.person ORDER BY "ID" ASC 
