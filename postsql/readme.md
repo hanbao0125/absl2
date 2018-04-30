@@ -40,3 +40,12 @@ INSERT INTO public.comm_product(
 CREATE USER jerry WITH PASSWORD 'Sap12345';
 
 SELECT * FROM public.person ORDER BY "ID" ASC 
+
+INSERT INTO public.person("ID", "FirstName", "LastName") VALUES ('102', 'Jerry', 'Wang');
+
+12:49PM
+Exception in thread "main" javax.persistence.PersistenceException: No Persistence provider for EntityManager named persistence-with-jpa
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:85)
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:54)
+	at com.sap.cloud.sample.persistence.Test.main(Test.java:23)
+	
