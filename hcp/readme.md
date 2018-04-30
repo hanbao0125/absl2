@@ -190,3 +190,5 @@ JPA支持XML和JDK5.注解两种元数据的形式，元数据描述对象和表
 10:03AM SCP sample用的也是EclipseLink作为JPA实现。
 
 the transaction-type defines the application type (J2EE of JSE). The value RESOURCE_LOCAL defines a JSE application
+
+org.eclipse.persistence.jpa.PersistenceProvider:EclipseLink class
