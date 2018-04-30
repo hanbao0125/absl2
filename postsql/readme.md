@@ -26,3 +26,7 @@ INSERT INTO public.comm_product(
 
 # 2017-05-11
 1. import 1ggg;2;2011-05-16 15:36:38
+
+# 2018-04-30
+
+第一次出错貌似因为我没有用admin去run安装exe
