@@ -192,3 +192,5 @@ JPA支持XML和JDK5.注解两种元数据的形式，元数据描述对象和表
 the transaction-type defines the application type (J2EE of JSE). The value RESOURCE_LOCAL defines a JSE application
 
 org.eclipse.persistence.jpa.PersistenceProvider:EclipseLink class
+
+11:24am 还是没进展。
