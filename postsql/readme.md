@@ -48,4 +48,28 @@ Exception in thread "main" javax.persistence.PersistenceException: No Persistenc
 	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:85)
 	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:54)
 	at com.sap.cloud.sample.persistence.Test.main(Test.java:23)
-	
+
+1:31PM - good news - exception message has changed:
+
+[EL Info]: 2018-04-30 13:30:33.745--ServerSession(1860513229)--EclipseLink, version: Eclipse Persistence Services - 2.5.1.v20130918-f2b9fc5
+[EL Severe]: ejb: 2018-04-30 13:30:33.755--ServerSession(1860513229)--Exception [EclipseLink-4003] (Eclipse Persistence Services - 2.5.1.v20130918-f2b9fc5): org.eclipse.persistence.exceptions.DatabaseException
+Exception Description: Configuration error.  Class [org.postgresql.Driver] not found.
+Exception in thread "main" javax.persistence.PersistenceException: Exception [EclipseLink-4003] (Eclipse Persistence Services - 2.5.1.v20130918-f2b9fc5): org.eclipse.persistence.exceptions.DatabaseException
+Exception Description: Configuration error.  Class [org.postgresql.Driver] not found.
+	at org.eclipse.persistence.internal.jpa.EntityManagerSetupImpl.deploy(EntityManagerSetupImpl.java:766)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryDelegate.getAbstractSession(EntityManagerFactoryDelegate.java:204)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryDelegate.createEntityManagerImpl(EntityManagerFactoryDelegate.java:304)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryImpl.createEntityManagerImpl(EntityManagerFactoryImpl.java:336)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryImpl.createEntityManager(EntityManagerFactoryImpl.java:302)
+	at jpatest.Test.main(Test.java:16)
+Caused by: Exception [EclipseLink-4003] (Eclipse Persistence Services - 2.5.1.v20130918-f2b9fc5): org.eclipse.persistence.exceptions.DatabaseException
+Exception Description: Configuration error.  Class [org.postgresql.Driver] not found.
+	at org.eclipse.persistence.exceptions.DatabaseException.configurationErrorClassNotFound(DatabaseException.java:89)
+	at org.eclipse.persistence.sessions.DefaultConnector.loadDriverClass(DefaultConnector.java:267)
+	at org.eclipse.persistence.sessions.DefaultConnector.connect(DefaultConnector.java:85)
+	at org.eclipse.persistence.sessions.DatasourceLogin.connectToDatasource(DatasourceLogin.java:162)
+	at org.eclipse.persistence.internal.sessions.DatabaseSessionImpl.setOrDetectDatasource(DatabaseSessionImpl.java:204)
+	at org.eclipse.persistence.internal.sessions.DatabaseSessionImpl.loginAndDetectDatasource(DatabaseSessionImpl.java:741)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryProvider.login(EntityManagerFactoryProvider.java:239)
+	at org.eclipse.persistence.internal.jpa.EntityManagerSetupImpl.deploy(EntityManagerSetupImpl.java:685)
+	... 5 more
