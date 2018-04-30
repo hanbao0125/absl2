@@ -194,3 +194,5 @@ the transaction-type defines the application type (J2EE of JSE). The value RESOU
 org.eclipse.persistence.jpa.PersistenceProvider:EclipseLink class
 
 11:24am 还是没进展。
+
+5:15PM - Server jerryjdbc.p1942399991trial at hanatrial.ondemand.com was unable to start within 120 seconds. If the server requires more time, try increasing the timeout in the server editor.
