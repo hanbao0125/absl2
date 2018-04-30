@@ -188,3 +188,5 @@ JPA支持XML和JDK5.注解两种元数据的形式，元数据描述对象和表
 这是持久化操作中很重要的一个方面，通过面向对象而非面向数据库的查询语言查询数据，避免程序的SQL语句紧密耦合。
 
 10:03AM SCP sample用的也是EclipseLink作为JPA实现。
+
+the transaction-type defines the application type (J2EE of JSE). The value RESOURCE_LOCAL defines a JSE application
