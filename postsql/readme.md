@@ -32,3 +32,4 @@ INSERT INTO public.comm_product(
 第一次出错貌似因为我没有用admin去run安装exe
 
 图形管理界面: sudo apt-get install pgadmin3
+从log看是因为pgadmin3下载失败。
