@@ -211,3 +211,5 @@ http://services.odata.org/v2/Northwind/Northwind.svc/
 
 A 501 error is not something you can fix, but requires a fix by the web server you are trying to access.
 A 501 response is cacheable by default.
+
+7:05PM - no answer: https://archive.sap.com/discussions/thread/3607977
