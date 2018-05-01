@@ -129,7 +129,7 @@ Credentials were rejected - fuck
 >cf auth
 
 用IE试试能否用密码登录前台。-12:20 SCN都能用邮件和开机密码登录啊！
-SCP UI也能用邮件和密码登录，太怪了。
+SCP UI也能用邮件和密码登录，太怪了。---2018-05-01 12：16PM - 自动就好了。
 
 CF_TRACE=true 2018-04-28 12:34PM
 
