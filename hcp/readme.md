@@ -223,3 +223,5 @@ Actual url observed in my Chrome: https://webidetesting5799545-i042416trial.disp
 > At runtime, the relative URL /V2/Northwind/Northwind.svc/ is prefixed with /destinations/northwind. As a result, all our Northwind OData requests will be proxied via the Northwind OData Service destination that is defined in the SAP HANA Cloud Platform Cockpit. The destination contains the URL to the resource http://services.odata.org and has the proxy type Internet. From this configuration the proxy knows where the requests shall go to.
 
 8:06PM works :)
+
+url: https://webidetesting5799545-i042416trial.dispatcher.hanatrial.ondemand.com/Jerry_destination_northwind/v2/Northwind/Northwind.svc/$batch
