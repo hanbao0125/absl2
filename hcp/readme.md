@@ -215,3 +215,5 @@ A 501 response is cacheable by default.
 7:05PM - no answer: https://archive.sap.com/discussions/thread/3607977
 
 7:21PM - error message: Content is unexpected for the Get operation
+
+> With this configuration you can use the destination for any app inside SAP Web IDE. Whenever an app calls a (local) service beginning with /destinations/northwind/*, the created destination becomes active as a simple proxy. This helps to prevent any possible issues related to the same-origin policy of browsers.
