@@ -206,3 +206,8 @@ JDBC done on 5:23PM
 6:27PM - week 3 done.
 
 http://services.odata.org/v2/Northwind/Northwind.svc/
+
+6:58PM - Failure reason: "Not Implemented" Received status code: "501"
+
+A 501 error is not something you can fix, but requires a fix by the web server you are trying to access.
+A 501 response is cacheable by default.
