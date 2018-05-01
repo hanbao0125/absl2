@@ -205,4 +205,4 @@ JDBC done on 5:23PM
 
 6:27PM - week 3 done.
 
-services.odata.org/v2/Northwind/Northwind.svc/
+http://services.odata.org/v2/Northwind/Northwind.svc/
