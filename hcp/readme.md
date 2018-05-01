@@ -213,3 +213,5 @@ A 501 error is not something you can fix, but requires a fix by the web server y
 A 501 response is cacheable by default.
 
 7:05PM - no answer: https://archive.sap.com/discussions/thread/3607977
+
+7:21PM - error message: Content is unexpected for the Get operation
