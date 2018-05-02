@@ -67,3 +67,5 @@ savjeeCoin.chain[1].data = { amount: 100 };
 console.log("Blockchain valid? " + savjeeCoin.isChainValid());
 
 // code: https://github.com/SavjeeTutorials/SavjeeCoin/tree/master/src
+
+// 知乎：https://zhuanlan.zhihu.com/p/34522746
