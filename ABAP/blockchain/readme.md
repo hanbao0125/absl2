@@ -1,0 +1,1 @@
+The first part of this test program comes from SAP blog [ABAP Meets Blockchain](https://blogs.sap.com/2018/03/03/abap-meets-blockchain/), author: Nabheet Madan.
