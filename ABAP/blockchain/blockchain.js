@@ -66,3 +66,4 @@ savjeeCoin.chain[1].data = { amount: 100 };
 // 再次检查是否有效 (将会返回false)
 console.log("Blockchain valid? " + savjeeCoin.isChainValid());
 
+// code: https://github.com/SavjeeTutorials/SavjeeCoin/tree/master/src
