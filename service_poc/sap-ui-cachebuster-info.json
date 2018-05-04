@@ -1,0 +1,17 @@
+{
+  "webapp/test/flpSandboxMockServer.html": "1461226756000",
+  "webapp/test/fakeLRep.json": "1461226756000",
+  "webapp/test/flpSandbox.html": "1461226756000",
+  "webapp/localService/mockserver.js": "1461226756000",
+  "webapp/localService/metadata.xml": "1461226759000",
+  "webapp/localService/ZSERVICE_POC_ANNO_MDL.xml": "1461226761000",
+  "webapp/WEB-INF/web.xml": "1461226756000",
+  "webapp/i18n/i18n.properties": "1461226756000",
+  "webapp/i18n/ListReport/Z_C_Service_Order_View/i18n.properties": "1461226756000",
+  "webapp/i18n/ObjectPage/Z_C_Service_Order_View/i18n.properties": "1461226756000",
+  "webapp/i18n/ObjectPage/Z_I_Item_Detail/i18n.properties": "1461226756000",
+  "webapp/annotations/annotations.xml": "1461226756000",
+  "webapp/manifest.json": "1461574941000",
+  "webapp/Component.js": "1461573631000",
+  "webapp/ext/controller/smartTableHook.controller.js": "1461576000000"
+}
