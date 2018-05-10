@@ -238,3 +238,10 @@ unit 2 in Jinan hotel:幺蛾子又来了。我点test connection结果和video�
 6:00PM - neo-java-web-sdk-2.73.15 - Java Web Tomcat 7
 
 to consume connectivity configuration using JNDI, you need to define the ConnectivityConfiguration API as a resource in the web.xml file. Below is an example of a ConnectivityConfiguration resource, named connectivityConfiguration.
+
+```xml
+<resource-ref>
+    <res-ref-name>connectivityConfiguration</res-ref-name>
+    <res-type>com.sap.core.connectivity.api.configuration.ConnectivityConfiguration</res-type>
+</resource-ref>
+```
