@@ -265,3 +265,5 @@ Fetch the lastest SDK version - 6:40死在这里了。
 !MESSAGE Failed to get latest neo-java-web version from maven central
 !STACK 0
 java.net.SocketException: Connection reset
+
+6:55PM java8的SDK老是下载不下来。
