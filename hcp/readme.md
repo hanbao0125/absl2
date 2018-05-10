@@ -251,3 +251,5 @@ to consume connectivity configuration using JNDI, you need to define the Connect
 6:26PM - 一大堆编译错误！
 
 6:32PM try neo-java-web-sdk-3.52.15.zip Tomcat 8
+
+Application Runtime Container
