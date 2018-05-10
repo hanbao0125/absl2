@@ -253,3 +253,5 @@ to consume connectivity configuration using JNDI, you need to define the Connect
 6:32PM try neo-java-web-sdk-3.52.15.zip Tomcat 8
 
 [Application Runtime Container](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/7613bd28711e1014839a8273b0e91070.html)
+
+SAP Cloud Platform applications run on a modular and lightweight application runtime container where they can use the platform services APIs and Java EE APIs according to standard patterns.
