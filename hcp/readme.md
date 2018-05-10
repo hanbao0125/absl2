@@ -259,3 +259,8 @@ SAP Cloud Platform applications run on a modular and lightweight application run
 Eclipse log location: C:\Users\i042416\scp20180425\.metadata
 
 Fetch the lastest SDK version - 6:40死在这里了。
+
+!ENTRY com.sap.core.tools.eclipse.server.javaweb 4 0 2018-05-10 18:41:22.609
+!MESSAGE Failed to get latest neo-java-web version from maven central
+!STACK 0
+java.net.SocketException: Connection reset
