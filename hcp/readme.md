@@ -276,3 +276,5 @@ http://maps.googleapis.com/maps/api/distancematrix - 404 not found during test
 7:59pm - application部署不上去-启动不起来。 8:04PM
 
 Server jerryconnecttest.i042416trial at hanatrial.ondemand.com was unable to start within 120 seconds. If the server requires more time, try increasing the timeout in the server editor.
+
+8:17PM server在Eclipse里显示一直是Not authenticated状态
