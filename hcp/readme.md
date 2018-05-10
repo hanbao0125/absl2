@@ -231,3 +231,4 @@ unit 1 done
 # 2018-05-10
 
 unit 2 in Jinan hotel:幺蛾子又来了。我点test connection结果和video不一样。3:49PM
+预料中的500 error：4:28PM
