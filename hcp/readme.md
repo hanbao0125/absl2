@@ -268,3 +268,5 @@ java.net.SocketException: Connection reset
 
 6:55PM java8的SDK老是下载不下来。
 7:02PM download via WTS
+
+http://maps.googleapis.com/maps/api/distancematrix - 404 not found during test
