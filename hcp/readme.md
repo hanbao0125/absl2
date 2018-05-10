@@ -257,3 +257,5 @@ to consume connectivity configuration using JNDI, you need to define the Connect
 SAP Cloud Platform applications run on a modular and lightweight application runtime container where they can use the platform services APIs and Java EE APIs according to standard patterns.
 
 Eclipse log location: C:\Users\i042416\scp20180425\.metadata
+
+Fetch the lastest SDK version - 6:40死在这里了。
