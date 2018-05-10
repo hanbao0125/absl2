@@ -247,3 +247,5 @@ to consume connectivity configuration using JNDI, you need to define the Connect
 ```
 
 要在 SCP 上展示 Fiori 应用程序，需要启用 Portal 服务,是指 Cloud 版本的 Fiori Launchpad的界面，用于在云端一站式显示各种 Fiori 或者 SAP UI5 类型的 APP。这和以前推出的 SAP Enterprise Portal 完全不是同一个事物。
+
+6:26PM - 一大堆编译错误！
