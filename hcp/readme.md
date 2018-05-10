@@ -270,3 +270,5 @@ java.net.SocketException: Connection reset
 7:02PM download via WTS
 
 http://maps.googleapis.com/maps/api/distancematrix - 404 not found during test
+
+7:16PM - 至少学会了如何local调试。
