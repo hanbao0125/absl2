@@ -3,8 +3,14 @@
 // 2018-5-11 7:11PM from Jinan to Chengdu
 // jimliu.net/2017/03/31/adventure-of-js-iterators-and-compare-to-observables/
 // 使得构造拥有自定义迭代器的集合变得相当容易
+/*
+可以看到调用Symbol.iterator所得到的iter对象只是负责next()工作，而其不断next所得到的it对象则负责value和done工作。
+
+也就是说，在不借助yield的情况下，要实现Symbol.iterator只需要构造一个满足上述接口的对象就OK了，举个例子
+*/
+
 var fakeArray = {
-  _values: [1, 2, 3, 4, 5],
+  _values: [1, 2, 3, 4, 5, 6],
   [Symbol.iterator]() {
 
     var _values = this._values;
@@ -16,6 +22,7 @@ var fakeArray = {
 
     var iter = {
       next() {
+        console.log("Jerry's own iterator, current index: " + _index);
         var it = {
           value: _values[_index],
           done: done() //_index >= _values.length
