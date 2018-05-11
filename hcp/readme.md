@@ -291,3 +291,7 @@ The server refused to fulfill the request.
 10:50 SAP HANA Web-Based Development Workbench [403 error](http://saphanatutorial.com/how-to-resolve-403-forbidden-error-while-accessing-sap-hana-web-based-development-workbench/) - 还真有人和我遇到一样的问题。
 
 10:55 问题解决。
+
+# 2018-05-11
+
+11:02AM - 还是403 error
