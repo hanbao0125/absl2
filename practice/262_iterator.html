@@ -9,25 +9,20 @@ var fakeArray = {
 
     var _values = this._values;
     var _index = 0;
-    /*
-    function fuck(){
-       console.log("index: " + _index);
-    };*/
 
-    var fuck = function(){
-      console.log("index: " + _index);
+    var done = function(){
+       return _index >= _values.length;
     };
 
     var iter = {
       next() {
         var it = {
           value: _values[_index],
-          done: _index >= _values.length
+          done: done() //_index >= _values.length
         }; // end of temporary variable it
         if (!it.done) {
           _index++;
         }
-        fuck();
         return it;
       } // end of next()
     }; // end of iter definition
