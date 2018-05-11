@@ -6,14 +6,14 @@
 var fakeArray = {
   _values: [1, 2, 3, 4, 5],
   [Symbol.iterator]() {
-    var _values = this._values
-    var _index = 0
+    var _values = this._values;
+    var _index = 0;
     var iter = {
       next() {
         var it = {
           value: _values[_index],
           done: _index >= _values.length
-        }
+        }; // end of temporary variable it
         if (!it.done) {
           _index++
         }
