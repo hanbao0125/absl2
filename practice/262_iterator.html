@@ -15,16 +15,18 @@ var fakeArray = {
           done: _index >= _values.length
         }; // end of temporary variable it
         if (!it.done) {
-          _index++
+          _index++;
         }
-        return it
-      }
-    }
-    return iter
-  }
+        return it;
+      } // end of next()
+    }; // end of iter definition
+    return iter;
+  } // end of Symbol iterator
 }
+
 for (var n of fakeArray) {
   console.log(n)
 }
+
 </script>
 </html>
