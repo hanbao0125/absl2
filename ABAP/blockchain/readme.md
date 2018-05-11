@@ -11,3 +11,6 @@ for my Wechat article [300行ABAP代码实现一个最简单的区块链原型](
 3. GUI status:
 ![image](https://user-images.githubusercontent.com/5669954/39633288-1d431fb6-4fea-11e8-9f7d-1fa3fef357a4.png)
 
+# Other information collected from internet
+
+Ethereum platform - the biggest public decentralized platform for applications that run smart contracts. 
