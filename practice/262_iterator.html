@@ -1,0 +1,27 @@
+<html>
+<script>
+var fakeArray = {
+  _values: [1, 2, 3, 4, 5],
+  [Symbol.iterator]() {
+    var _values = this._values
+    var _index = 0
+    var iter = {
+      next() {
+        var it = {
+          value: _values[_index],
+          done: _index >= _values.length
+        }
+        if (!it.done) {
+          _index++
+        }
+        return it
+      }
+    }
+    return iter
+  }
+}
+for (var n of fakeArray) {
+  console.log(n)
+}
+</script>
+</html>
