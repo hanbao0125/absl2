@@ -30,6 +30,7 @@ wefsdfs
 var IMAGE_PATTERN = /^!\[(.*)\].*$/;
 var IMAGE_NAME = /^clipboard(\d+)\..*$/;
 var IMAGE_TAG = "[图片]";
+var IMAGE_URL = /^.*(\(.*\))$/;
 
 function SortedImage(index, url){
 	this.index = index;
@@ -62,7 +63,12 @@ function extractImage(source,raw,imagePool){
 				continue;
 			}
 			var index = parseInt(imageName[1]);
-			var storedImage = new SortedImage(index, result[0]);
+			var urls = IMAGE_URL.exec(result[0]);
+			if( urls.length != 2){
+				alert("something bad happends :(");
+			}
+			var url = "![]" + urls[1];
+			var storedImage = new SortedImage(index, url);
 			imagePool.push(storedImage);
 		}
 		else{
