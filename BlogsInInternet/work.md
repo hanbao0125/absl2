@@ -157,3 +157,5 @@
 77. [DOM 操作成本到底高在哪儿？](segmentfault.com/a/1190000014070240)
 
 78. [别再让你的web页面在用户浏览器端裸奔](https://segmentfault.com/a/1190000014070240)
+
+79. PaaS将吞噬云计算？Kubernetes的市场冲击波
