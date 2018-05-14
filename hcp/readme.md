@@ -301,3 +301,5 @@ The server refused to fulfill the request.
 
 3:03PM week4 unit 2 done.
 3:41PM [gradle in Jianshu](https://www.jianshu.com/p/b5a02e360ec4)
+
+4:04PM - Exception in thread "main" com.google.gson.JsonSyntaxException: java.lang.IllegalStateException: Expected a string but was BEGIN_OBJECT at line 31 column 15 path $.request
