@@ -305,3 +305,5 @@ The server refused to fulfill the request.
 4:04PM - Exception in thread "main" com.google.gson.JsonSyntaxException: java.lang.IllegalStateException: Expected a string but was BEGIN_OBJECT at line 31 column 15 path $.request
 
 4:27PM - 在request属性挂了。
+
+4:50PM - Expected BEGIN_ARRAY but was BEGIN_OBJECT at line 31 column 15 path $.request
