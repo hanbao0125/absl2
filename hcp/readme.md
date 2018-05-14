@@ -297,5 +297,7 @@ The server refused to fulfill the request.
 11:02AM - 还是403 error 
 11:09AM - issue resolved.
 
-5-14 3:03PM week4 unit 2 done.
+# 2018-05-14 
+
+3:03PM week4 unit 2 done.
 3:41PM [gradle in Jianshu](https://www.jianshu.com/p/b5a02e360ec4)
