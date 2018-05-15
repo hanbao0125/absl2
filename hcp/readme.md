@@ -309,3 +309,7 @@ The server refused to fulfill the request.
 4:50PM - Expected BEGIN_ARRAY but was BEGIN_OBJECT at line 31 column 15 path $.request
 
 5:04PM - Expected a string but was BEGIN_OBJECT at line 35 column 17 path $.request.options
+
+# 2018-05-15
+
+11:24AM - once cloud connector is installed, service could not be launched!
