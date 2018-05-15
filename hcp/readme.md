@@ -315,3 +315,5 @@ The server refused to fulfill the request.
 11:24AM - once cloud connector is installed, service could not be launched!
 
 11:46AM - 500 Failed to sign the cloud connector certificate for subaccount i042416trial@hanatrial.ondemand.com. Verify configuration and proxy settings — see ''Log And Trace Files'' for details
+
+root cause: proxy should be proxy.wdf.sap.corp
