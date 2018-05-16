@@ -1,0 +1,30 @@
+<html>
+<script>
+
+var binarySearch = function(dataArr, target, start, end) {
+    var middle;
+    if (start == null) {
+      start = 0;
+    }
+    if (end == null) {
+      end = dataArr.length - 1;
+    }
+    middle = parseInt((start + end) / 2);
+
+    if (dataArr[middle] === target) {
+      return middle;
+    }
+    if (middle === start || middle === end) {
+      return -1;
+    }
+    if (target < dataArr[middle]) {
+      return binarySearch(dataArr, target, 0, middle - 1);
+    } else {
+      return binarySearch(dataArr, target, middle + 1, end);
+    }
+  };
+
+ console.log(binarySearch([0,1,2,3,4], 3));
+
+</script>
+</html>
