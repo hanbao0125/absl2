@@ -325,3 +325,7 @@ Problem during deploymentDeploy REST API failed to process request
 Deploy REST API failed to process request
 
 Connector维护的是SCP的用户和密码，proxy为proxy.sha.
+
+# 2018-05-16
+
+6:01PM - Unit 5: Connecting Cloud Databases
