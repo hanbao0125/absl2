@@ -8,4 +8,4 @@ for my SAP community blog [A compare tool: Download and analyze the runtime perf
 
 11:28AM try X3C. 根本没装。
 11:35AM AG3选了TPM—PRO之后都需要等很久。进去之后选择Product二级菜单需要10秒。
-12:04PM caused by 302 redirect, but why?!
+12:04PM caused by 302 redirect, but why?! 执行到redirect断点停下来时，已经很快了。
