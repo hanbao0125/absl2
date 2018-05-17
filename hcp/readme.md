@@ -333,3 +333,9 @@ Connector维护的是SCP的用户和密码，proxy为proxy.sha.
 # 2018-05-17
 
 3:45PM - some one also has the same question as me: https://archive.sap.com/discussions/thread/3953840
+
+5:34PM if I change with this one:
+
+javax.persistence.jdbc.driver=com.sap.dbtech.jdbc.DriverSapDB
+
+
