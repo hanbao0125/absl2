@@ -338,4 +338,22 @@ Connector维护的是SCP的用户和密码，proxy为proxy.sha.
 
 javax.persistence.jdbc.driver=com.sap.dbtech.jdbc.DriverSapDB
 
+I will end up with error:
+
+> Type Exception Report
+
+Message javax.naming.NamingException: Cannot create resource object instance due to exception in the object factory [Root exception is java.lang.NullPointerException]
+
+Description The server encountered an unexpected condition that prevented it from fulfilling the request.
+
+Exception
+
+javax.servlet.ServletException: javax.naming.NamingException: Cannot create resource  object instance due to exception in the object factory [Root exception is java.lang.NullPointerException]
+	com.sap.cloud.sample.persistence.PersistenceWithJDBCServlet.init(PersistenceWithJDBCServlet.java:40)
+	javax.servlet.GenericServlet.init(GenericServlet.java:158)
+	org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:504)
+	com.sap.cloud.runtime.impl.bridge.security.AbstractAuthenticator.invoke(AbstractAuthenticator.java:206)
+
+
+
 
