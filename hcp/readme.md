@@ -354,6 +354,8 @@ javax.servlet.ServletException: javax.naming.NamingException: Cannot create reso
 	org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:504)
 	com.sap.cloud.runtime.impl.bridge.security.AbstractAuthenticator.invoke(AbstractAuthenticator.java:206)
 
+correct: com.sap.db.jdbc.Driver
+
 
 
 
