@@ -12,4 +12,4 @@ for my SAP community blog [A compare tool: Download and analyze the runtime perf
 
 WorkAreaViewSet.htm-_ONLAYOUT: 1 second
 
-handler class: CL_HTTP_EXT_BSP
+handler class: CL_HTTP_EXT_BSP~HANDLE_REQUEST, end: CL_HTTP_RESPONSE~REDIRECT
