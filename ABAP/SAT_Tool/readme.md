@@ -11,3 +11,5 @@ for my SAP community blog [A compare tool: Download and analyze the runtime perf
 12:04PM caused by 302 redirect, but why?! 执行到redirect断点停下来时，已经很快了。
 
 WorkAreaViewSet.htm-_ONLAYOUT: 1 second
+
+handler class: CL_HTTP_EXT_BSP
