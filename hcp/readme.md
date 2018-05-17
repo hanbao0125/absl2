@@ -329,3 +329,7 @@ Connector维护的是SCP的用户和密码，proxy为proxy.sha.
 # 2018-05-16
 
 6:01PM - Unit 5: Connecting Cloud Databases
+
+# 2018-05-17
+
+3:45PM - some one also has the same question as me: https://archive.sap.com/discussions/thread/3953840
