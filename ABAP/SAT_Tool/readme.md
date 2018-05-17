@@ -6,4 +6,4 @@ for my SAP community blog [A compare tool: Download and analyze the runtime perf
 
 11:17AM still does not work even if I select "ALL Server", 难道因为没有http变化，所以就没有trace？那我做一些navigation试试。
 
-11:28AM try X3C.
+11:28AM try X3C. 根本没装。
