@@ -358,4 +358,4 @@ correct: com.sap.db.jdbc.Driver
 
 # 2018-05-28
 
-for RFC, the host ldciag3.wdf.sap.corp:sapgw54 works. If I type port number 54, it will be written to sapgw54 automatically.
+for RFC, the host ldciag3.wdf.sap.corp:sapgw54 works. If I type port number 54, it will be written to sapgw54 automatically. If I manually remove sapgw, only reserve 54, the ping connection does not work any more.
