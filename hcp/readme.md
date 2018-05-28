@@ -358,6 +358,4 @@ correct: com.sap.db.jdbc.Driver
 
 # 2018-05-28
 
-for RFC, the host ldciag3.wdf.sap.corp:sapgw54 works.
-
-
+for RFC, the host ldciag3.wdf.sap.corp:sapgw54 works. If I type port number 54, it will be written to sapgw54 automatically.
