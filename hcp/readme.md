@@ -365,3 +365,5 @@ ldai1ag3.wdf.sap.corp:44355 does not work as well! 12:03PM
 vete2015ld001.dhcp.wdf.sap.corp:8010 in video - can work! 12:05PM
 
 ldai2gm6.wdf.sap.corp:50033 - can work as well! 12:08PM
+
+[Part 1: How to use SAP Cloud Platform Connectivity and Cloud Connector in the Cloud Foundry environment](https://blogs.sap.com/2017/07/09/how-to-use-the-sap-cloud-platform-connectivity-and-the-cloud-connector-in-the-cloud-foundry-environment-part-1/)
