@@ -361,3 +361,5 @@ correct: com.sap.db.jdbc.Driver
 for RFC, the host ldciag3.wdf.sap.corp:sapgw54 works. If I type port number 54, it will be written to sapgw54 automatically. If I manually remove sapgw, only reserve 54, the ping connection does not work any more.
 
 ldai1ag3.wdf.sap.corp:44355 does not work as well! 12:03PM
+
+vete2015ld001.dhcp.wdf.sap.corp:8010 in video - can work! 12:05PM
