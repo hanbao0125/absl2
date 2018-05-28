@@ -356,6 +356,8 @@ javax.servlet.ServletException: javax.naming.NamingException: Cannot create reso
 
 correct: com.sap.db.jdbc.Driver
 
+# 2018-05-28
 
+for RFC, the host ldciag3.wdf.sap.corp:sapgw54 works.
 
 
