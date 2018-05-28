@@ -363,3 +363,5 @@ for RFC, the host ldciag3.wdf.sap.corp:sapgw54 works. If I type port number 54, 
 ldai1ag3.wdf.sap.corp:44355 does not work as well! 12:03PM
 
 vete2015ld001.dhcp.wdf.sap.corp:8010 in video - can work! 12:05PM
+
+ldai2gm6.wdf.sap.corp:50033 - can work as well! 12:08PM
