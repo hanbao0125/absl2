@@ -409,3 +409,8 @@ parameter:
 # 2018-05-29 
 
 幺蛾子又开始了 11:46AM npm config set @sap:registry https://npm.sap.com/
+
+ The operation was rejected by your operating system.
+npm ERR! It's possible that the file was already in use (by a text editor or antivirus),
+npm ERR! or that you lack permissions to access it.
+
