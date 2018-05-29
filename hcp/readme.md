@@ -373,3 +373,5 @@ ldai2gm6.wdf.sap.corp:50033 - can work as well! 12:08PM
 [secure tunnel](https://blogs.sap.com/wp-content/uploads/2017/07/SAP-CP-Connectivity-CF-01.png)
 
 1. create a destination based on my virtual system in Cloud-Foundry: http://my-backend:80
+
+2. create a destination instance in Service MarketPlace.
