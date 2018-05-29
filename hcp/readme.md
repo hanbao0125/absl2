@@ -386,3 +386,12 @@ SAP Cloud Platform Connectivity provides a standard HTTP proxy for on-premise co
 In order to consume the data coming from the on-premise in the application via the HTTP proxy, we need to create an SAP Cloud Platform Connectivity instance and bind it to the application. When a binding is created the application gets connectivity credentials in its environment variables.
 
 name: connectivity-jerry-demo
+
+4. XSUAA instance creation
+
+This central identity management service for the Cloud Foundry environment manages application authorizations and the trust to identity providers.
+
+By calling the application, the user will be redirected to the XSUAA and will be prompt to give his credentials. It will then achieve certain checks like verifying the OAuth client, client’s scopes, user’s scopes (Scopes are permissions to access one or more resources). Assuming everything is fine, the user will be authenticated and the XSUAA will redirect the browser to the application.
+
+In a second step the application will take the client Id and the client secret and will talk directly with the XSUAA to get an access token. Then the application will sent both tokens as HTTP header so that it can consume the backend system via the SAP Cloud Platform Connectivity.
+
