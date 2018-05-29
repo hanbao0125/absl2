@@ -414,3 +414,23 @@ parameter:
 npm ERR! It's possible that the file was already in use (by a text editor or antivirus),
 npm ERR! or that you lack permissions to access it.
 
+ Error: EPERM: operation not permitted, open 'C:\Users\i042416\.npmrc'
+npm ERR!     at Error (native)
+npm ERR!  { Error: EPERM: operation not permitted, open 'C:\Users\i042416\.npmrc'
+npm ERR!     at Error (native)
+npm ERR!   stack: 'Error: EPERM: operation not permitted, open \'C:\\Users\\i042416\\.npmrc\'\n    at Error (native)',
+npm ERR!   errno: -4048,
+npm ERR!   code: 'EPERM',
+npm ERR!   syscall: 'open',
+npm ERR!   path: 'C:\\Users\\i042416\\.npmrc' }
+npm ERR!
+npm ERR! The operation was rejected by your operating system.
+npm ERR! It's possible that the file was already in use (by a text editor or antivirus),
+npm ERR! or that you lack permissions to access it.
+npm ERR!
+npm ERR! If you believe this might be a permissions issue, please double-check the
+npm ERR! permissions of the file and its containing directories, or try running
+npm ERR! the command again as root/Administrator (though this is not recommended).
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     C:\Users\i042416\AppData\Roaming\npm-cache\_logs\2018-05-29T04_20_06_965Z-debug.log
