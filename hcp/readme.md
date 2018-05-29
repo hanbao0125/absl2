@@ -395,3 +395,14 @@ By calling the application, the user will be redirected to the XSUAA and will be
 
 In a second step the application will take the client Id and the client secret and will talk directly with the XSUAA to get an access token. Then the application will sent both tokens as HTTP header so that it can consume the backend system via the SAP Cloud Platform Connectivity.
 
+name: 
+
+parameter:
+
+```json
+{
+        "xsappname" : "connectivity-jerryapp-demo",
+        "tenant-mode": "dedicated"
+}
+```
+
