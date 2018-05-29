@@ -385,3 +385,4 @@ SAP Cloud Platform Connectivity provides a standard HTTP proxy for on-premise co
 
 In order to consume the data coming from the on-premise in the application via the HTTP proxy, we need to create an SAP Cloud Platform Connectivity instance and bind it to the application. When a binding is created the application gets connectivity credentials in its environment variables.
 
+name: connectivity-jerry-demo
