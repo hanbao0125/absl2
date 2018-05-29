@@ -378,3 +378,10 @@ ldai2gm6.wdf.sap.corp:50033 - can work as well! 12:08PM
 how to bind this instance with application?
 
 adding the name of the destination instance in the manifest of the application. During the deployment of the app, the binding will be then added automatically.
+
+3. create connectivity instance. 
+
+SAP Cloud Platform Connectivity provides a standard HTTP proxy for on-premise connectivity to be accessible by any application. 
+
+In order to consume the data coming from the on-premise in the application via the HTTP proxy, we need to create an SAP Cloud Platform Connectivity instance and bind it to the application. When a binding is created the application gets connectivity credentials in its environment variables.
+
