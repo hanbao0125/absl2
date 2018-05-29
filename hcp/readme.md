@@ -406,3 +406,6 @@ parameter:
 }
 ```
 
+# 2018-05-29 
+
+幺蛾子又开始了 11:46AM npm config set @sap:registry https://npm.sap.com/
