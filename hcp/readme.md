@@ -368,4 +368,6 @@ ldai2gm6.wdf.sap.corp:50033 - can work as well! 12:08PM
 
 [Part 1: How to use SAP Cloud Platform Connectivity and Cloud Connector in the Cloud Foundry environment](https://blogs.sap.com/2017/07/09/how-to-use-the-sap-cloud-platform-connectivity-and-the-cloud-connector-in-the-cloud-foundry-environment-part-1/)
 
+[part 2: How to use SAP Cloud Platform Connectivity and Cloud Connector in the Cloud Foundry environment](https://blogs.sap.com/2017/07/13/part-2-how-to-use-the-sap-cloud-platform-connectivity-and-the-cloud-connector-in-the-cloud-foundry-environment/)
+
 [secure tunnel](https://blogs.sap.com/wp-content/uploads/2017/07/SAP-CP-Connectivity-CF-01.png)
