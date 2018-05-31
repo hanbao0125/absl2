@@ -440,3 +440,6 @@ npm ERR!     C:\Users\i042416\AppData\Roaming\npm-cache\_logs\2018-05-29T04_20_0
 The HANA DB runs as a service as part of SAP CF. Hence all the DB artifacts are deployed into its runtime container of Hana DB on CF.
 
 [SAP Cloud Platform regions and service portfolio](https://help.sap.com/doc/aa1ccd10da6c4337aa737df2ead1855b/Cloud/en-US/3b642f68227b4b1398d2ce1a5351389a.html)
+
+XS Classic has been deprecated since HANA 2.0 SPS02. It means that if you choose to develop on top of it now, you will eventually have to migrate. 
+
