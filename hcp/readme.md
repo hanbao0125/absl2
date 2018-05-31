@@ -438,3 +438,5 @@ npm ERR!     C:\Users\i042416\AppData\Roaming\npm-cache\_logs\2018-05-29T04_20_0
 [multiple target application in SAP help](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/f1caa871360c40e7be7ce4264ab9c336.html)
 
 The HANA DB runs as a service as part of SAP CF. Hence all the DB artifacts are deployed into its runtime container of Hana DB on CF.
+
+[SAP Cloud Platform regions and service portfolio](https://help.sap.com/doc/aa1ccd10da6c4337aa737df2ead1855b/Cloud/en-US/3b642f68227b4b1398d2ce1a5351389a.html)
