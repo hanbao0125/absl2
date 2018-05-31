@@ -448,3 +448,5 @@ XS Classic has been deprecated since HANA 2.0 SPS02. It means that if you choose
 * [SAP HANA SPS 11: New Developer Features; XS Advanced](https://blogs.sap.com/2015/12/08/sap-hana-sps-11-new-developer-features-xs-advanced/)
 
 * [Comparing SAP HANA to HANA Cloud Platform: Is it Apples to Oranges?](https://blogs.sap.com/2015/07/30/comparing-sap-hana-to-hana-cloud-platform-is-it-apples-to-oranges/)
+
+* [some ways of developing OData service in HANA](https://answers.sap.com/questions/406082/how-to-connect-between-hanatrial-and-ui5-applicati-1.html)
