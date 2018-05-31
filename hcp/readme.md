@@ -450,3 +450,5 @@ XS Classic has been deprecated since HANA 2.0 SPS02. It means that if you choose
 * [Comparing SAP HANA to HANA Cloud Platform: Is it Apples to Oranges?](https://blogs.sap.com/2015/07/30/comparing-sap-hana-to-hana-cloud-platform-is-it-apples-to-oranges/)
 
 * [some ways of developing OData service in HANA](https://answers.sap.com/questions/406082/how-to-connect-between-hanatrial-and-ui5-applicati-1.html)
+
+* [About Trial Accounts in the Cloud Foundry Environment](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/7da580474d654d96ad4d4fc05c778a18.html#loioa81ed0494d99471382f3e2d51b8ffd5e)
