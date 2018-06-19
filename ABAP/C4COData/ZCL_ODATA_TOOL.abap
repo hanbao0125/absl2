@@ -84,7 +84,6 @@ CLASS ZCL_ODATA_TOOL IMPLEMENTATION.
     insert_line '{'.
     insert_line '"AccountID": "8000018122",'.
     insert_line '"OwnerID": "8000018122",'.
-    insert_line `"Name": {"content": "Testing ticket creation via OData Jerry1"}`.
     insert_line '}'.
     insert_line '--changeset_1--'.
     lv_body = lv_body && cl_abap_char_utilities=>cr_lf.
