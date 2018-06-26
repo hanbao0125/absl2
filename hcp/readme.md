@@ -456,3 +456,8 @@ XS Classic has been deprecated since HANA 2.0 SPS02. It means that if you choose
 * [SCP Cloud Foundry – Playing around with Node.js, MongoDB and UI5](https://blogs.sap.com/2016/09/05/hcp-cloud-foundry-playing-around-with-node-mongodb-and-ui5/)
 
 * [SCP SCN wiki](https://wiki.scn.sap.com/wiki/display/SAPHCP/Cloud+Foundry)
+
+# 2018-06-26
+
+SAP HANA Enterprise Cloud. It's a private managed cloud solution, so in some ways, it's similar to hosting.
+
