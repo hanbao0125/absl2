@@ -3,3 +3,5 @@
 * quotient[] 指数
 
 * suffice 满足…的需要; 使满足;
+
+* monolith
