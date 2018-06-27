@@ -1,1 +1,3 @@
 * salient 英[ˈseɪliənt] 显著的，突出的; 重要的，主要的; 跳跃的
+
+* quotient[] 指数
