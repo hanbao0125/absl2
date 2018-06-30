@@ -2,21 +2,20 @@
 <script>
 "use strict";
 function test(){
-	Object.defineProperty(window, "i", {
-    	get : function(){ debugger; }, // it will be triggered in for loop
+	Object.defineProperty(window, "_name", {
+    	get : function(){ console.log("gett is called ") },
     	set : function(newValue){ 
     		debugger;
-    		console.log("hey,global variable assign data hook triggered!");
-    		//window.i = newValue; 
+    		console.log("_name is filled!!!!");
     	},
     	enumerable : true,
     	configurable : true
 	});
 
-	/*for( var i = 0; i < 5; i++)
-		console.log(i);*/
-	for( i = 0; i < 2; i++) 
+	for( var i = 0; i < 2; i++) 
 		console.log(i);
+
+    window._name = "2";
 };
 
 test();
