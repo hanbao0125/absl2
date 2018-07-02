@@ -1,54 +1,44 @@
-<!--
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
--->
-
 <html onclick="keepFocusInTextbox(event)">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<title>JavaScript Shell 1.4</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF8">
+  <title>JavaScript控制台</title>
 
-<script type="text/javascript">
-var
-histList = [""],
-histPos = 0,
-_scope = {},
-_win, // a top-level context 2016-04-04 10:55AM pregnancy
-question,
-_in,
-_out,
-tooManyMatches = null,
-lastError = null;
+  <script type="text/javascript">
+  var histList = [""],
+  histPos = 0, _scope = {},
+  _win, 
+  question,
+  _in, _out,
+  tooManyMatches = null, lastError = null;
 
-function refocus()
-{
-  _in.blur(); // Needed for Mozilla to scroll correctly.
-  _in.focus();
-}
-
-function init()
-{
-  _in = document.getElementById("input");
-  _out = document.getElementById("output");
-
-  _win = window;
-
-  if (opener && !opener.closed)
-  {
-    println("Using bookmarklet version of shell: commands will run in opener's context.", "message");
-    _win = opener;
+  function refocus() {
+    _in.blur(); 
+    _in.focus();
   }
 
-  initTarget();
+  function init() {
+    _in = document.getElementById("input");
+    _out = document.getElementById("output");
 
-  recalculateInputHeight();
-  refocus();
-}
+    _win = window;
 
-function initTarget()
-{
-  _win.Shell = window;
-  _win.print = shellCommands.print;
-}
+    if (opener && !opener.closed)
+    {
+      println("Using bookmarklet version of shell: commands will run in opener's context.", "message");
+      _win = opener;
+    }
+
+    initTarget();
+
+    recalculateInputHeight();
+    refocus();
+  }
+
+  function initTarget()
+  {
+    _win.Shell = window;
+    _win.print = shellCommands.print;
+  }
 
 
 // Unless the user is selected something, refocus the textbox.
@@ -166,23 +156,23 @@ function printWithRunin(h, s, type)
 
 var shellCommands =
 {
-load : function load(url)
-{
-  var s = _win.document.createElement("script");
-  s.type = "text/javascript";
-  s.src = url;
-  _win.document.getElementsByTagName("head")[0].appendChild(s);
-  println("Loading " + url + "...", "message");
-},
+  load : function load(url)
+  {
+    var s = _win.document.createElement("script");
+    s.type = "text/javascript";
+    s.src = url;
+    _win.document.getElementsByTagName("head")[0].appendChild(s);
+    println("Loading " + url + "...", "message");
+  },
 
-clear : function clear()
-{
-  var CHILDREN_TO_PRESERVE = 3;
-  while (_out.childNodes[CHILDREN_TO_PRESERVE])
-    _out.removeChild(_out.childNodes[CHILDREN_TO_PRESERVE]);
-},
+  clear : function clear()
+  {
+    var CHILDREN_TO_PRESERVE = 3;
+    while (_out.childNodes[CHILDREN_TO_PRESERVE])
+      _out.removeChild(_out.childNodes[CHILDREN_TO_PRESERVE]);
+  },
 
-print : function print(s) { println(s, "print"); },
+  print : function print(s) { println(s, "print"); },
 
 // the normal function, "print", shouldn't return a value
 // (suggested by brendan; later noticed it was a problem when showing others)
@@ -249,19 +239,19 @@ props : function props(e, onePerLine)
           ns[i] + times(" of prototype", j),
           (onePerLine ? "\n\n" : "") + as[i][j].sort().join(onePerLine ? "\n" : ", ") + (onePerLine ? "\n\n" : ""),
           "propList"
-        );
-},
+          );
+    },
 
-blink : function blink(node)
-{
-  if (!node)                     throw("blink: argument is null or undefined.");
-  if (node.nodeType == null)     throw("blink: argument must be a node.");
-  if (node.nodeType == 3)        throw("blink: argument must not be a text node");
-  if (node.documentElement)      throw("blink: argument must not be the document object");
+    blink : function blink(node)
+    {
+      if (!node)                     throw("blink: argument is null or undefined.");
+      if (node.nodeType == null)     throw("blink: argument must be a node.");
+      if (node.nodeType == 3)        throw("blink: argument must not be a text node");
+      if (node.documentElement)      throw("blink: argument must not be the document object");
 
-  function setOutline(o) {
-    return function() {
-      if (node.style.outline != node.style.bogusProperty) {
+      function setOutline(o) {
+        return function() {
+          if (node.style.outline != node.style.bogusProperty) {
         // browser supports outline (Firefox 1.1 and newer, CSS3, Opera 8).
         node.style.outline = o;
       }
@@ -346,7 +336,7 @@ function hist(up)
             _in.setSelectionRange(caretPos, caretPos);
         },
         0
-      );
+        );
     }
   }
   else // down
@@ -378,16 +368,16 @@ function tabcomplete()
    * but it skips over quoted strings.
    * If stopAtDot is true, stop at a '.'
    */
-  function findbeginning(s, from, stopAtDot)
-  {
+   function findbeginning(s, from, stopAtDot)
+   {
     /*
      *  Complicated function.
      *
      *  Return true if s[i] == q BUT ONLY IF
      *  s[i-1] is not a backslash.
      */
-    function equalButNotEscaped(s,i,q)
-    {
+     function equalButNotEscaped(s,i,q)
+     {
       if(s.charAt(i) != q) // not equal go no further
         return false;
 
@@ -415,8 +405,8 @@ function tabcomplete()
       else if(s.charAt(i) == '(')
         nparens--;
 
-      if(nparens < 0)
-        break;
+        if(nparens < 0)
+          break;
 
       // skip quoted strings
       if(s.charAt(i) == '\'' || s.charAt(i) == '\"')
@@ -471,7 +461,7 @@ function tabcomplete()
       inp.select();
       if(_win.Shell.document.getSelection())
         _win.Shell.document.getSelection() = "";
-        */
+      */
     }
   }
     // get position of cursor within the input box
@@ -487,7 +477,7 @@ function tabcomplete()
       if(dotpos == -1 || _in.value.charAt(dotpos) != '.') {
         dotpos = caret;
 //dump("changed dot pos: " + dotpos + "\n");
-      }
+}
 
       // look backwards for a non-variable-name character
       spacepos = findbeginning(_in.value, dotpos-1, false);
@@ -497,30 +487,30 @@ function tabcomplete()
       {
         // try completing function args
         if(_in.value.charAt(dotpos) == '(' ||
- (_in.value.charAt(spacepos) == '(' && (spacepos+1) == dotpos))
-        {
+         (_in.value.charAt(spacepos) == '(' && (spacepos+1) == dotpos))
+         {
           var fn,fname;
-  var from = (_in.value.charAt(dotpos) == '(') ? dotpos : spacepos;
-          spacepos = findbeginning(_in.value, from-1, false);
+          var from = (_in.value.charAt(dotpos) == '(') ? dotpos : spacepos;
+            spacepos = findbeginning(_in.value, from-1, false);
 
-          fname = _in.value.substr(spacepos+1,from-(spacepos+1));
+            fname = _in.value.substr(spacepos+1,from-(spacepos+1));
   //dump("fname: " + fname + "\n");
-          try {
-            with(_win.Shell._scope)
-              with(_win)
-                with(Shell.shellCommands)
-                  fn = eval(fname);
-          }
-          catch(er) {
+  try {
+    with(_win.Shell._scope)
+    with(_win)
+    with(Shell.shellCommands)
+    fn = eval(fname);
+  }
+  catch(er) {
             //dump('fn is not a valid object\n');
             return;
           }
           if(fn == undefined) {
              //dump('fn is undefined');
              return;
-          }
-          if(fn instanceof Function)
-          {
+           }
+           if(fn instanceof Function)
+           {
             // Print function definition, including argument names, but not function body
             if(!fn.toString().match(/function .+?\(\) +\{\n +\[native code\]\n\}/))
               println(fn.toString().match(/function .+?\(.*?\)/), "tabcomplete");
@@ -537,8 +527,8 @@ function tabcomplete()
         //dump("objname: |" + objname + "|\n");
         try {
           with(_win.Shell._scope)
-            with(_win)
-                obj = eval(objname);
+          with(_win)
+          obj = eval(objname);
         }
         catch(er) {
           printError(er);
@@ -627,29 +617,29 @@ function tabcomplete()
           sstart = dotpos+1;
         }
         _in.value = _in.value.substr(0, sstart)
-                  + bestmatch
-                  + _in.value.substr(caret);
+        + bestmatch
+        + _in.value.substr(caret);
         setselectionto(_in,caret + (bestmatch.length - complete.length));
       }
     }
-}
-
-function printQuestion(q)
-{
-  println(q, "input");
-}
-
-function printAnswer(a)
-{
-  if (a !== undefined) {
-    println(a, "normalOutput");
-    shellCommands.ans = a;
   }
-}
 
-function printError(er)
-{
-  var lineNumberString;
+  function printQuestion(q)
+  {
+    println(q, "input");
+  }
+
+  function printAnswer(a)
+  {
+    if (a !== undefined) {
+      println(a, "normalOutput");
+      shellCommands.ans = a;
+    }
+  }
+
+  function printError(er)
+  {
+    var lineNumberString;
 
   lastError = er; // for debugging the shell
   if (er.name)
@@ -723,9 +713,9 @@ form { margin: 0; padding: 0; }
 
 <body onload="init()">
 
-<div id="output"><h3>JavaScript Shell 1.4</h3><div>Features: autocompletion of property names with Tab, multiline input with Shift+Enter, input history with (Ctrl+) Up/Down, <a accesskey="M" href="javascript:go('scope(Math); mathHelp();');" title="Accesskey: M">Math</a>, <a accesskey="H" href="http://www.squarefree.com/shell/?ignoreReferrerFrom=shell1.4"  title="Accesskey: H">help</a></div><div>Values and functions: ans, print(string), <a accesskey="P" href="javascript:go('props(ans)')" title="Accesskey: P">props(object)</a>, <a accesskey="B" href="javascript:go('blink(ans)')" title="Accesskey: B">blink(node)</a>, <a accesskey="C" href="javascript:go('clear()')" title="Accesskey: C">clear()</a>, load(scriptURL), scope(object)</div></div>
+  <div id="output"><h3>JavaScript 控制台 版本1.0</h3><div>Features: autocompletion of property names with Tab, multiline input with Shift+Enter, input history with (Ctrl+) Up/Down, <a accesskey="M" href="javascript:go('scope(Math); mathHelp();');" title="Accesskey: M">Math</a>, <a accesskey="H" href="http://www.squarefree.com/shell/?ignoreReferrerFrom=shell1.4"  title="Accesskey: H">help</a></div><div>Values and functions: ans, print(string), <a accesskey="P" href="javascript:go('props(ans)')" title="Accesskey: P">props(object)</a>, <a accesskey="B" href="javascript:go('blink(ans)')" title="Accesskey: B">blink(node)</a>, <a accesskey="C" href="javascript:go('clear()')" title="Accesskey: C">clear()</a>, load(scriptURL), scope(object)</div></div>
 
-<div><textarea id="input" class="input" wrap="off" onkeydown="inputKeydown(event)" rows="1"></textarea></div>
+  <div><textarea id="input" class="input" wrap="off" onkeydown="inputKeydown(event)" rows="1"></textarea></div>
 
 </body>
 
