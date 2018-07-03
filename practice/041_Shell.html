@@ -361,21 +361,10 @@ function hist(up)
 
 function tabcomplete()
 {
-  /*
-   * Working backwards from s[from], find the spot
-   * where this expression starts.  It will scan
-   * until it hits a mismatched ( or a space,
-   * but it skips over quoted strings.
-   * If stopAtDot is true, stop at a '.'
-   */
+
    function findbeginning(s, from, stopAtDot)
    {
-    /*
-     *  Complicated function.
-     *
-     *  Return true if s[i] == q BUT ONLY IF
-     *  s[i-1] is not a backslash.
-     */
+
      function equalButNotEscaped(s,i,q)
      {
       if(s.charAt(i) != q) // not equal go no further
