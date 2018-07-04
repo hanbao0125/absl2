@@ -19,8 +19,7 @@ var count = 0;
 var print = function() {
     console.log("count: " + count++);
 }
-var newFunction = print.debounce(500);
-//for( var i = 0; i < 1000; i++)
+var newFunction = print.debounce(10);
     newFunction();
     newFunction();
 </script>
