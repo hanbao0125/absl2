@@ -461,3 +461,6 @@ XS Classic has been deprecated since HANA 2.0 SPS02. It means that if you choose
 
 SAP HANA Enterprise Cloud. It's a private managed cloud solution, so in some ways, it's similar to hosting.
 
+# 2018-07-08
+
+Reminder: by default my SAP Cloud Connector has been configured under corporate proxy, so if you are at home, please establish connection via VPN!!
