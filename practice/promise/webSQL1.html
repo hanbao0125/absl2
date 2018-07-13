@@ -9,6 +9,14 @@ function setupDB(){
 	return this.createDatabase().then(createTable).then(insertEntry).then(readEntry).then(printResult);
 }
 
+function createDatabase(){
+	return new Promise(function(resovle, reject) {
+		console.log("prepare to create database..." + Date.now());
+		this._db = openDatabase('mydb','1.0', 'JerryTestdb',1024);
+		setTimeout( _createDatabaseOK.bind(this, resovle), 1000);
+	});
+}
+
 function createTable(){
 	return new Promise(function(resovle, reject) {
 		console.log("prepare to create table..." + Date.now());
@@ -22,14 +30,6 @@ function createTable(){
 function _createTableOK(resovle){
 	console.log("table created successfully..." + Date.now());
 	resovle();
-}
-
-function createDatabase(){
-	return new Promise(function(resovle, reject) {
-		console.log("prepare to create database..." + Date.now());
-		this._db = openDatabase('mydb','1.0', 'JerryTestdb',1024);
-		setTimeout( _createDatabaseOK.bind(this, resovle), 1000);
-	});
 }
 
 function _createDatabaseOK(resovle){
