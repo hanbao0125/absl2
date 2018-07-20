@@ -5,3 +5,5 @@
 * suffice 满足…的需要; 使满足;
 
 * monolith
+
+* propensity 倾向，习性，癖好，偏爱
