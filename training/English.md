@@ -8,4 +8,8 @@
 
 * propensity 倾向，习性，癖好，偏爱
 
-* 
+* Using Bombora for Account Surge Score 
+
+the buying propensity score
+
+* taxonomy:（生物） 分类学，分类系统;
