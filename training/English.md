@@ -13,3 +13,5 @@
 the buying propensity score
 
 * taxonomy:（生物） 分类学，分类系统;
+
+* Tenure 占有（职位，不动产等）; 占有期; 终身职位;
