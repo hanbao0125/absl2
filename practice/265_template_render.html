@@ -1,0 +1,18 @@
+<html>
+<script>
+function parseString(str, obj) {
+  Object.keys(obj).forEach(key => {
+    str = str.replace(new RegExp(`{{${key}}}`,'g'), obj[key]);
+  });
+  return str;
+}
+
+const str = "My name is:{{name}}, I work with Java for {{time}} years";
+const obj = { name: "Jerry", time: 5 };
+
+console.log(parseString(str, obj));
+
+</script>
+
+
+</html>
