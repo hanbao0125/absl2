@@ -1,8 +1,19 @@
 <html>
 <script>
-function parseString(str, obj) {
+function parseAndMerge(str, obj) {
   Object.keys(obj).forEach(key => {
-    str = str.replace(new RegExp(`{{${key}}}`,'g'), obj[key]);
+  	var regularSourceForKeyParse = `{{${key}}}`;
+  	var keyForParse = obj[key];
+  	var oRegular = new RegExp(regularSourceForKeyParse, "g");
+
+  	console.log("Regular expression source code: " + regularSourceForKeyParse);
+  	console.log("Key for Parse: " + keyForParse);
+  	console.log("regular expression instance: " + oRegular);
+
+    str = str.replace(oRegular, keyForParse);
+
+    console.log("current iteration end: " + str);
+    console.log("***********************************");
   });
   return str;
 }
@@ -10,9 +21,7 @@ function parseString(str, obj) {
 const str = "My name is:{{name}}, I work with Java for {{time}} years";
 const obj = { name: "Jerry", time: 5 };
 
-console.log(parseString(str, obj));
+console.log(parseAndMerge(str, obj));
 
 </script>
-
-
 </html>
