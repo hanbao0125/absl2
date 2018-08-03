@@ -1,9 +1,10 @@
 <html>
 <style>
 
-#myChart1, #myChart2,#myChart3,#myChart4,#myChart5,#myChart6 {
+#myChart1, #myChart2,#myChart3,#myChart4,#myChart5,#myChart6,
+#barChart1, #barChart2,#barChart3,#barChart4,#barChart5,#barChart6
+ {
 	display: inline !important;
-
 }
 
 </style>
@@ -15,8 +16,17 @@
 <canvas id="myChart4" height="400px"></canvas>
 <canvas id="myChart5" height="400px"></canvas>
 <canvas id="myChart6" height="400px"></canvas>
-
 </div>
+
+<div>
+<canvas id="barChart1" height="400px"></canvas>
+<canvas id="barChart2" height="400px"></canvas>
+<canvas id="barChart3" height="400px"></canvas>
+<canvas id="barChart4" height="400px"></canvas>
+<canvas id="barChart5" height="400px"></canvas>
+<canvas id="barChart6" height="400px"></canvas>
+</div>
+
 </body>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
@@ -33,7 +43,7 @@ function loaded(){
 
 	var aCharts = document.getElementsByTagName("canvas");
 	for( var i = 0; i < aCharts.length; i++){
-		aCharts[i].width = totalWidth / 7;
+		aCharts[i].width = totalWidth / 6.5;
 	}
 
 	var option = {
@@ -46,6 +56,12 @@ function loaded(){
 	for( var i = 1; i <= 6; i++ ){
 		createChartOnCanvas("myChart" + i, option);
 	}
+
+    option.type = "bar";
+
+    for( var i = 1; i <= 6; i++ ){
+        createChartOnCanvas("barChart" + i, option);
+    }
 }
 
 /*
