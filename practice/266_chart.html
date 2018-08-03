@@ -1,20 +1,21 @@
 <html>
 <style>
 
-#myChart1 {
+#myChart1, #myChart2,#myChart3,#myChart4,#myChart5,#myChart6 {
 	display: inline !important;
 
-}
-
-#myChart2 {
-	display: inline !important;
 }
 
 </style>
 <body id="body" onload="loaded()">
 <div>
-<canvas id="myChart1" width="200px" height="200px"></canvas>
-<canvas id="myChart2" width="200px" height="200px"></canvas>
+<canvas id="myChart1" height="400px"></canvas>
+<canvas id="myChart2" height="400px"></canvas>
+<canvas id="myChart3" height="400px"></canvas>
+<canvas id="myChart4" height="400px"></canvas>
+<canvas id="myChart5" height="400px"></canvas>
+<canvas id="myChart6" height="400px"></canvas>
+
 </div>
 </body>
 
@@ -27,7 +28,13 @@ function getBodyNode(){
 }
 
 function loaded(){
-	console.log("width in load: " + getBodyNode().clientWidth);
+	var totalWidth = getBodyNode().clientWidth;
+	console.log("width in load: " + totalWidth);
+
+	var aCharts = document.getElementsByTagName("canvas");
+	for( var i = 0; i < aCharts.length; i++){
+		aCharts[i].width = totalWidth / 7;
+	}
 
 	var option = {
 		type: "pie",
@@ -36,8 +43,9 @@ function loaded(){
 		yAxisLabel: "Number of Votes"
 	};
 
-	createChartOnCanvas("myChart1", option);
-	createChartOnCanvas("myChart2", option);
+	for( var i = 1; i <= 6; i++ ){
+		createChartOnCanvas("myChart" + i, option);
+	}
 }
 
 /*
