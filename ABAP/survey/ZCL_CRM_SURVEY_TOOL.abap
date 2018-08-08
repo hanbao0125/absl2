@@ -5,22 +5,41 @@ class ZCL_CRM_SURVEY_TOOL definition
 
 public section.
 
+  methods CONSTRUCTOR .
   methods SUBMIT
     importing
-      !IV_QUESTION1 type ABAP_BOOL
-      !IV_QUESTION2 type ABAP_BOOL .
+      !IV_ANSWER_LIST type STRING
+    returning
+      value(RV_RESPONSE_MESSAGE) type STRING .
+  methods GET_SURVEY_ANSWER
+    returning
+      value(RV_RESULT) type STRING .
   PROTECTED SECTION.
 private section.
 
+  types:
+    BEGIN OF ty_question,
+        answer TYPE string_table,
+      END OF ty_question .
+  types:
+    tt_question TYPE TABLE OF ty_question .
+
   data MV_QUESTION_TEMPLATE type STRING .
-  constants CV_QUESTION1_YES type STRING value 'survey/result/question1/answer1_placeholder=answer1_yes' ##NO_TEXT.
-  constants CV_QUESTION2_YES type STRING value 'survey/result/question2/answer2_placeholder=answer2_yes' ##NO_TEXT.
   constants CV_GUID_PATTERN type STRING value '.*svyValueGuid(?:.*)value="(.*)">.*svyValueVersion.*' ##NO_TEXT.
+  constants CV_APP_ID type CRM_SVY_DB_APPL_ID value 'CRM_SURVEY_SERVICE' ##NO_TEXT.
+  constants CV_SURVEY_ID type STRING value 'ZDIS_SERVICE_FEEDBACK' ##NO_TEXT.
+  constants CV_SURVEY_VERSION type STRING value '0000000011' ##NO_TEXT.
+  constants CV_Q1 type STRING value 'survey/result/q1_last_buy_date/q1_last_buy_date=' ##NO_TEXT.
+  constants CV_Q2 type STRING value 'survey/result/q2_service_attitude/q2_service_attitude=' ##NO_TEXT.
+  constants CV_Q3 type STRING value 'survey/result/q3_service_level/q3_service_level=' ##NO_TEXT.
+  constants CV_Q4 type STRING value 'survey/result/q4_service_engineer/q4_service_engineer=' ##NO_TEXT.
+  constants CV_Q5 type STRING value 'survey/result/q5_response_time/q5_response_time=' ##NO_TEXT.
+  constants CV_Q6 type STRING value 'survey/result/q6_training/q6_training=' ##NO_TEXT.
+  data MT_QUESTION_LIST type TT_QUESTION .
 
   methods ASSEMBLE_REQUEST_BODY
     importing
-      !IV_QUESTION1 type ABAP_BOOL
-      !IV_QUESTION2 type ABAP_BOOL
+      !IV_ANSWER_LIST type STRING
       !IV_GUID type CRMT_OBJECT_GUID
     returning
       value(RV_REQUEST_BODY) type STRING .
@@ -47,23 +66,101 @@ CLASS ZCL_CRM_SURVEY_TOOL IMPLEMENTATION.
 * <SIGNATURE>---------------------------------------------------------------------------------------+
 * | Instance Private Method ZCL_CRM_SURVEY_TOOL->ASSEMBLE_REQUEST_BODY
 * +-------------------------------------------------------------------------------------------------+
-* | [--->] IV_QUESTION1                   TYPE        ABAP_BOOL
-* | [--->] IV_QUESTION2                   TYPE        ABAP_BOOL
+* | [--->] IV_ANSWER_LIST                 TYPE        STRING
 * | [--->] IV_GUID                        TYPE        CRMT_OBJECT_GUID
 * | [<-()] RV_REQUEST_BODY                TYPE        STRING
 * +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD assemble_request_body.
+    DATA: lv_name TYPE string.
+    FIELD-SYMBOLS:<answer_prefix> TYPE string.
+
+    CONSTANTS: cv_question TYPE string VALUE 'CV_Q'.
+
     rv_request_body = get_request_payload_header( iv_guid ).
 
-    IF iv_question1 = abap_true AND iv_question2 = abap_true.
-      rv_request_body = rv_request_body && cv_question1_yes && '&' && cv_question2_yes.
-    ELSEIF iv_question1 = abap_true.
-      rv_request_body = rv_request_body && cv_question1_yes.
-    ELSEIF iv_question2 = abap_true.
-      rv_request_body = rv_request_body && cv_question2_yes.
-    ENDIF.
+    SPLIT iv_answer_list AT ',' INTO TABLE DATA(lt_answer).
 
+    LOOP AT lt_answer ASSIGNING FIELD-SYMBOL(<answer>).
+      DATA(lv_index) = sy-tabix.
+      READ TABLE mt_question_list ASSIGNING FIELD-SYMBOL(<question_answer_id>) INDEX lv_index.
+      " CV_Q1
+      lv_name = |CV_Q{ lv_index }|.
+      ASSIGN (lv_name) TO <answer_prefix>.
+      CHECK sy-subrc = 0.
+
+      READ TABLE <question_answer_id>-answer ASSIGNING FIELD-SYMBOL(<answer_id>) INDEX <answer>.
+      rv_request_body = rv_request_body && <answer_prefix> && <answer_id> && '&'.
+    ENDLOOP.
+
+    "RV_REQUEST_BODY = RV_REQUEST_BODY && CV_q1_buy_date.
     rv_request_body = rv_request_body && '&onInputProcessing=SUBMIT'.
+  ENDMETHOD.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Public Method ZCL_CRM_SURVEY_TOOL->CONSTRUCTOR
+* +-------------------------------------------------------------------------------------------------+
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD constructor.
+    DATA: ls_question TYPE ty_question.
+* question1 :
+    APPEND 'a1o_1_one_week_before' TO ls_question-answer.
+    APPEND 'a1o_2_one_month_before' TO ls_question-answer.
+    APPEND 'a1o_3_twothree_month_before' TO ls_question-answer.
+    APPEND 'a1o_4_half_year_before' TO ls_question-answer.
+    APPEND 'a1o_5_one_year_before' TO ls_question-answer.
+    APPEND 'a1o_6_more_than_year' TO ls_question-answer.
+
+    APPEND ls_question TO mt_question_list.
+    CLEAR: ls_question.
+
+* question2 :
+    APPEND 'a2o_very_satisfied' TO ls_question-answer.
+    APPEND 'a2o_satisfied' TO ls_question-answer.
+    APPEND 'a2o_just_soso' TO ls_question-answer.
+    APPEND 'a2o_not_satisfied' TO ls_question-answer.
+    APPEND 'a2o_very_unsatisfied' TO ls_question-answer.
+
+    APPEND ls_question TO mt_question_list.
+    CLEAR: ls_question.
+
+* question3
+    APPEND 'a3o_very_satisfied' TO ls_question-answer.
+    APPEND 'a3o_satisfied' TO ls_question-answer.
+    APPEND 'a3o_just_soso' TO ls_question-answer.
+    APPEND 'a3o_not_satisfied' TO ls_question-answer.
+    APPEND 'a3o_very_unsatisfied' TO ls_question-answer.
+
+    APPEND ls_question TO mt_question_list.
+    CLEAR: ls_question.
+
+* question4
+    APPEND 'a4o_very_satisfied' TO ls_question-answer.
+    APPEND 'a4o_satisfied' TO ls_question-answer.
+    APPEND 'a4o_just_soso' TO ls_question-answer.
+    APPEND 'a4o_not_satisfied' TO ls_question-answer.
+    APPEND 'a4o_very_unsatisfied' TO ls_question-answer.
+    APPEND ls_question TO mt_question_list.
+    CLEAR: ls_question.
+
+
+* question5
+    APPEND 'a5o_very_satisfied' TO ls_question-answer.
+    APPEND 'a5o_satisfied' TO ls_question-answer.
+    APPEND 'a5o_just_soso' TO ls_question-answer.
+    APPEND 'a5o_not_satisfied' TO ls_question-answer.
+    APPEND 'a5o_very_unsatisfied' TO ls_question-answer.
+    APPEND ls_question TO mt_question_list.
+    CLEAR: ls_question.
+
+* question6
+    APPEND 'a6o_very_satisfied' TO ls_question-answer.
+    APPEND 'a6o_satisfied' TO ls_question-answer.
+    APPEND 'a6o_just_soso' TO ls_question-answer.
+    APPEND 'a6o_not_satisfied' TO ls_question-answer.
+    APPEND 'a6o_very_unsatisfied' TO ls_question-answer.
+    APPEND ls_question TO mt_question_list.
+
   ENDMETHOD.
 
 
@@ -89,7 +186,7 @@ CLASS ZCL_CRM_SURVEY_TOOL IMPLEMENTATION.
 
         READ TABLE lt_reg_match_result ASSIGNING FIELD-SYMBOL(<match>) INDEX 1.
 
-        READ TABLE <match>-submatches ASSIGNING FIELD-SYMBOL(<sub>) INDEX 1.
+        READ TABLE <match>-submatches ASSIGNING FIELD-SYMBOL(<sub>) INDEX 1..
 
         rv_guid = iv_template+<sub>-offset(<sub>-length).
 
@@ -107,10 +204,62 @@ CLASS ZCL_CRM_SURVEY_TOOL IMPLEMENTATION.
 * | [<-()] RV_RESULT                      TYPE        STRING
 * +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD get_request_payload_header.
-    rv_result = 'svyApplicationId=CRM_SURVEY_ACTIVITY&SurveyId=JERRY_TEST&svySurveyId=JERRY_TEST&svyVersion=0000000003&'
+    rv_result = 'svyApplicationId=' && cv_app_id && '&SurveyId=' && cv_survey_id && '&svySurveyId='
+    && cv_survey_id && '&svyVersion=' && cv_survey_version && '&'
     && 'SchemaVersion=1&svySchemaVersion=1&svyLanguage=EN&conid=&svyValueGuid='
     && iv_value_guid && '&svyValueVersion=0000000001&svyMandatoryMessage='
     && 'Fill all mandatory fields before saving&'.
+  ENDMETHOD.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Public Method ZCL_CRM_SURVEY_TOOL->GET_SURVEY_ANSWER
+* +-------------------------------------------------------------------------------------------------+
+* | [<-()] RV_RESULT                      TYPE        STRING
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD get_survey_answer.
+    DATA: lt_result TYPE zdis_question_feedback_t,
+          ls_result TYPE ZDIS_QUESTION_FEEDBACK_result,
+          ls_answer TYPE zdis_question_feedback.
+
+    SELECT * INTO TABLE @DATA(lt_data) FROM zsurvey_value_agg.
+
+    CHECK sy-subrc = 0.
+
+    SELECT * INTO TABLE @DATA(lt_text) FROM zdis_survey_text.
+
+    SORT lt_data BY question_index ASCENDING.
+
+    LOOP AT lt_data ASSIGNING FIELD-SYMBOL(<data>).
+
+      AT NEW question_index.
+        CLEAR: ls_answer.
+        DATA(lv_question_id) = to_upper( <data>-question ).
+
+        READ TABLE lt_text ASSIGNING FIELD-SYMBOL(<question_text>)
+          WITH KEY id = lv_question_id.
+        ASSERT sy-subrc = 0.
+        ls_answer-question_text = <question_text>-text.
+      ENDAT.
+      DATA(lv_answer_id) = to_upper( <data>-answer ).
+
+      READ TABLE lt_text ASSIGNING FIELD-SYMBOL(<answer_text>)
+       WITH KEY id = lv_answer_id.
+      ASSERT sy-subrc = 0.
+
+      APPEND <answer_text>-text  TO ls_answer-answer_text.
+      APPEND <data>-answer_count TO ls_answer-answer_value.
+
+      AT END OF question_index.
+        APPEND ls_answer TO lt_result.
+      ENDAT.
+    ENDLOOP.
+
+    ls_result-result = lt_result.
+
+    rv_result = /UI2/CL_JSON=>serialize( ls_result ).
+
+
   ENDMETHOD.
 
 
@@ -130,9 +279,9 @@ CLASS ZCL_CRM_SURVEY_TOOL IMPLEMENTATION.
 
     CALL FUNCTION 'CRM_SVY_SURVEY_GET'
       EXPORTING
-        application_id     = 'CRM_SURVEY_ACTIVITY'
-        survey_id          = 'JERRY_TEST'
-        survey_version     = '0000000003'
+        application_id     = cv_app_id
+        survey_id          = CONV crm_svy_db_sid( cv_survey_id )
+        survey_version     = CONV crm_svy_db_svers( cv_survey_version )
         language           = 'E'
         media_type         = '01'
         parameter_xml      = 'CRM_SVY_BSP_SYSTEMPARAM.XML'
@@ -165,12 +314,18 @@ CLASS ZCL_CRM_SURVEY_TOOL IMPLEMENTATION.
 * <SIGNATURE>---------------------------------------------------------------------------------------+
 * | Instance Public Method ZCL_CRM_SURVEY_TOOL->SUBMIT
 * +-------------------------------------------------------------------------------------------------+
-* | [--->] IV_QUESTION1                   TYPE        ABAP_BOOL
-* | [--->] IV_QUESTION2                   TYPE        ABAP_BOOL
+* | [--->] IV_ANSWER_LIST                 TYPE        STRING
+* | [<-()] RV_RESPONSE_MESSAGE            TYPE        STRING
 * +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD submit.
-    DATA: ret TYPE BAPIRET1.
+    DATA: ret TYPE bapiret1.
 
+* Step0: check answer list
+    SPLIT iv_answer_list AT ',' INTO TABLE DATA(lt_answer).
+    IF lines( lt_answer ) <> 6.
+       rv_response_message = 'Invalid answer list, you must reply exactly all 6 questions'.
+       RETURN.
+    ENDIF.
 * Step1: get Survey Template
     DATA(survey_template) = get_survey_template( ).
 
@@ -180,8 +335,7 @@ CLASS ZCL_CRM_SURVEY_TOOL IMPLEMENTATION.
 
 * Step3: assemble request body
 
-    data(lv_request_body) = assemble_request_body( iv_question1 = iv_question1
-                                                   iv_question2 = iv_question2
+    DATA(lv_request_body) = assemble_request_body( iv_answer_list = iv_answer_list
                                                    iv_guid      = survey_guid ).
 
 * Step4: Submit survey
@@ -191,9 +345,9 @@ CLASS ZCL_CRM_SURVEY_TOOL IMPLEMENTATION.
       IMPORTING
         return      = ret.
 
-    WRITE:/ |result: { ret-message } | COLOR COL_NEGATIVE.
-
     COMMIT WORK AND WAIT.
+
+    rv_response_message = ret-message.
 
   ENDMETHOD.
 ENDCLASS.
