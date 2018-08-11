@@ -3,20 +3,9 @@
 
 <script>
 $(document).ready(function(){
-	
-	var ag3 = "https://ldai2ag3.wdf.sap.corp:44356/sap/crm/social_print?userId=i042416";
-	var c4c = "https://my306768.vlab.sapbydesign.com/sap/c4c/dis?ticketid=70957";
-	var c4clogon = "https://my306768.vlab.sapbydesign.com/sap/ap/ui/clogin?saml2=disabled&client_type=html";
-	
-	var formData = new FormData();
-	formData.append('sap-client', "004");
-	//formData.append('sap-user', "crmops");
-	formData.append('sap-alias', "crmops");
-	formData.append('sap-password', "Ondemand1");
-    
-    /*
+
     $.when( $.ajax({
-    	url: ag3,
+    	url: "https://api.ai.qq.com/fcgi-bin/nlp/nlp_wordseg",
     	type: "POST",
     	beforeSend: function (xhr) {
     		 // xhr.setRequestHeader("Authorization", "Basic V0FOR0pFUjpTYXB0ZXN0MQ==" );
