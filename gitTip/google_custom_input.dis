@@ -3,6 +3,9 @@ an	安卓
 an	Android
 au	Authentication
 au	Authorization
+c	Cloud for Customer
+c	Chrome
+c	CloudFoundry
 c	CDS view
 c	Cloud
 c	C4C
@@ -14,16 +17,21 @@ cr	CRM
 d	Docker
 d	dashboard
 e	Extensibility
+g	Github
 go	Google
 gzh	公众号
 j	囧
 j	Java
 js	JavaScript
+k	k8s
 k	Kubernetes
+l	Linux
 l	老哥
+m	Markdown
 n	Nginx
 n	namespace
 o	One Order
+r	容器
 r	Restful
 r	repository
 s	Saptest1
