@@ -21,6 +21,13 @@ catch(e)
     {
     parser=new DOMParser();
     xmlDoc=parser.parseFromString(text,"text/xml");
+
+    // Jerry: get Title tag's value
+
+    var titleCollection = xmlDoc.getElementsByTagName("title");
+    for( var i = 0; i < titleCollection.length; i++){
+      console.log(titleCollection[i].innerHTML);
+    }
     }
   catch(e) {alert(e.message)}
   }
