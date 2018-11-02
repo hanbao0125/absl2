@@ -464,3 +464,5 @@ SAP HANA Enterprise Cloud. It's a private managed cloud solution, so in some way
 # 2018-07-08
 
 Reminder: by default my SAP Cloud Connector has been configured under corporate proxy, so if you are at home, please establish connection via VPN!!
+
+[SCP上获取登陆user信息：User Attributes](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/9e2e0d7e91cc44e79901a756bf7b2d88.html?q=user%27s%20information)
