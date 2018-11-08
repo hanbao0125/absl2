@@ -464,6 +464,8 @@ XS Classic has been deprecated since HANA 2.0 SPS02. It means that if you choose
 
 * [Multi-target Application Archive Builder](https://help.sap.com/viewer/58746c584026430a890170ac4d87d03b/Cloud/en-US/ba7dd5a47b7a4858a652d15f9673c28d.html)
 
+* [Build Applications with MongoDB - MongoDB as a service in SAP cloud platform](https://help.sap.com/viewer/82f8a493cc6e4672a23a7e46bb11d4fa/Cloud/en-US/03ef949b534540778b4121148ded8c14.html?q=mongodb%20tutorial)
+
 
 # 2018-06-26
 
