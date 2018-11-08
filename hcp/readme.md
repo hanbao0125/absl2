@@ -443,6 +443,9 @@ The HANA DB runs as a service as part of SAP CF. Hence all the DB artifacts are 
 
 XS Classic has been deprecated since HANA 2.0 SPS02. It means that if you choose to develop on top of it now, you will eventually have to migrate. 
 
+# some useful SCN blogs
+
+
 * [Comparing SAP HANA to HANA Cloud Platform: Is it Apples to Oranges? Part 2](https://blogs.sap.com/2016/06/03/comparing-sap-hana-to-hana-cloud-platform-is-it-apples-to-oranges-part-2/)
 
 * [SAP HANA SPS 11: New Developer Features; XS Advanced](https://blogs.sap.com/2015/12/08/sap-hana-sps-11-new-developer-features-xs-advanced/)
@@ -458,6 +461,9 @@ XS Classic has been deprecated since HANA 2.0 SPS02. It means that if you choose
 * [SCP SCN wiki](https://wiki.scn.sap.com/wiki/display/SAPHCP/Cloud+Foundry)
 
 * [Deploying SHINE on the Cloud Foundry Environment within SAP Cloud Platform](https://blogs.sap.com/2017/07/10/deploying-shine-on-the-cloud-foundry-environment-within-sap-cloud-platform/)
+
+* [Multi-target Application Archive Builder](https://help.sap.com/viewer/58746c584026430a890170ac4d87d03b/Cloud/en-US/ba7dd5a47b7a4858a652d15f9673c28d.html)
+
 
 # 2018-06-26
 
