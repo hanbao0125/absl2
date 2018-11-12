@@ -1,3 +1,4 @@
+a	爱好者
 a	ABAP
 an	安卓
 an	Android
@@ -29,6 +30,7 @@ go	Google
 gzh	公众号
 h	HANA
 h	Hybris
+j	教学
 j	囧
 j	Java
 js	JavaScript
@@ -44,11 +46,13 @@ n	nodejs
 n	Nginx
 n	namespace
 o	One Order
+p	Port
 p	Partner
 q	区块链
 r	容器
 r	Restful
 r	repository
+s	Service
 s	Saptest1
 s	S/4HANA
 sa	SAP成都研究院
