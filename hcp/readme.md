@@ -72,63 +72,16 @@ password: the one to access my laptop!!!
 
 1. https://jerrylist.cfapps.eu10.hana.ondemand.com/ui5 - SCN offline list
 
-# 2017-08-06
-
-Vicky: https://blogs.sap.com/2017/02/07/how-to-deploy-ui5-application-on-hcpcloudfoundry/
-
 # 2018-04-23
 
-1. 定义的开发程序必须放在SAP Cloud Platform里，想要与S/4交互，请使用API。
-
 2. [12-factor application](https://12factor.net/zh_cn/)
-
-* BYOL Bring your own language
-* backing service: 后端服务是指程序运行所需要的通过网络调用的各种服务，如数据库（MySQL，CouchDB），消息/队列系统（RabbitMQ，Beanstalkd），SMTP 邮件发送服务（Postfix），以及缓存系统（Memcached）。
-
-polyglot
 
 # 2018-04-30
 
 [how to set proxy for cf login](https://docs.cloudfoundry.org/cf-cli/http-proxy.html#windows)
 
-12:04PM - password不对？？I should use this one: https://api.cf.eu10.hana.ondemand.com
+CF_TRACE=true 
 
-Credentials were rejected - fuck
-
->cf auth
-
-用IE试试能否用密码登录前台。-12:20 SCN都能用邮件和开机密码登录啊！
-SCP UI也能用邮件和密码登录，太怪了。---2018-05-01 12：16PM - 自动就好了。
-
-CF_TRACE=true 2018-04-28 12:34PM
-
-javax.naming.AuthenticationNotSupportedException: [LDAP: error code 48 - Authentication failed]
-
-http://proxy.sha.sap.corp:8080
-
-have your account on Trial deleted, please do the following: create a BCP ticket on BC-NEO-CIS and reqeust the account deletion for Trial. Please provide your email address and account ID and also state that only the account is to be deleted, not your user. Hope this helps!
-
-For doing CF Development you need to request for trial account on internal Cloud Foundry CANARY instance as described in the below jam page
-
-{"error":"unauthorized","error_description":"[LDAP: error code 48 - Authentication failed]; nested exception is javax.naming.AuthenticationNotSupportedException: [LDAP: error code 48 - Authentication failed]"}
-
-cf install-plugin cf-cli-mta-plugin-2.0.3-windows-x86_64.exe
-
-The Lightweight Directory Access Protocol (LDAP; /ˈɛldæp/) is an open, vendor-neutral, industry standard application protocol for accessing and maintaining distributed directory information services over an Internet Protocol (IP) network.[1] Directory services play an important role in developing intranet and Internet applications by allowing the sharing of information about users, systems, networks, services, and applications throughout the network.[2] As examples, directory services may provide any organized set of records, often with a hierarchical structure, such as a corporate email directory. Similarly, a telephone directory is a list of subscribers with an address and a phone number.
-
-A common use of LDAP is to provide a central place to store usernames and passwords. This allows many different applications and services to connect to the LDAP server to validate users.
-
-> Error starting application "shine-web": Controller operation failed: 400 Bad Request: You have exceeded the instance limit for your organization's quota.
-  Unexpected error: Controller operation failed: 400 Bad Request: You have exceeded the instance limit for your organization's quota.
-  Unexpected error: Error monitoring subprocess with id 22676823
-  Exception occured during execution: "Error monitoring subprocess with id 22676823"
-Process failed: Error starting application "shine-web": Controller operation failed: 400 Bad Request: You have exceeded the instance limit for your organization's quota.
-
-Use "cf deploy -i 22681535 -a abort" to abort the process.
-Use "cf deploy -i 22681535 -a retry" to retry the process.
-Use "cf dmol -i 22681535" to download the logs of the process.
-
-cf quotas
 
 1870220149 -  cf login failed: javax.naming.AuthenticationNotSupportedException
 
