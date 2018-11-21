@@ -8,26 +8,7 @@ i042416trial
 
 hanatrial.ondemand.com
 
-# Url
-
-2. [How To Use A Servlet As Your Main Web Page](http://wiki.metawerx.net/wiki/HowToUseAServletAsYourMainWebPage)
-
-3. install new software with url:  https://tools.hana.ondemand.com/neon
-
-4. [My test application url](https://helloworldi042416trial.hanatrial.ondemand.com/JerryTest/)
-
-After I changed it to Maven project on 2017-05-07, [new url](https://helloworldi042416trial.hanatrial.ondemand.com/jerrytest/)
-
-# Open SAP
-
-Unit 2: Digital Transformation: Connecting People, Things, and Businesses
-Unit 3: Architecture and Capabilities - done 2018-04-23
-
-# blogs
-
-1. [Logging in HCP Cloud foundry with Java and Tomee using slf4j, logback, Jolokia](https://blogs.sap.com/2016/12/02/logging-in-hcp-cloud-foundry-with-java-and-tomee-using-slf4j-logback-jolokia/)
-
-# work log
+# 工作日志
 
 ## 2017-05-01
 
@@ -35,6 +16,7 @@ Unit 3: Architecture and Capabilities - done 2018-04-23
 1004可能我有个工具没装。新Eclipse还是需要配proxy
 Possible hint: https://archive.sap.com/discussions/thread/3857381
 finally it works: https://helloworldi042416trial.hanatrial.ondemand.com/JerryTest/
+
 1518: I would like to achieve both servlet and html work. Is it really possible? I tried in local it is possible. Verified 1628, it is possible!
 1613: 果然重启大法好。。。
 
@@ -47,6 +29,8 @@ finally it works: https://helloworldi042416trial.hanatrial.ondemand.com/JerryTes
 ## 2017-05-20
 
 My Fiori application in HCP: https://flpportal-i042416trial.dispatcher.hanatrial.ondemand.com/sites?siteId=6af9e0d2-8b95-413c-9dc5-7d8b0c8b0ec1#jerrylist-Display
+
+- 2018-11-21 checked and it still works.
 
 I am in Europe-Rot-Trial.
 
