@@ -87,10 +87,6 @@ CF_TRACE=true
 
 # 2018-04-29
 
-MDC - multi-tenant database container
-
-com.sap.core.persistence.sql.trace
-
 jpa - java persistence api - 只需要定义annotation即可访问DB。
 
 p1942399991trial
@@ -123,7 +119,7 @@ JDBC done on 5:23PM
 
 # 2018-05-01
 
-11:23AM [Build Applications with MongoDB](https://help.sap.com/viewer/82f8a493cc6e4672a23a7e46bb11d4fa/Cloud/en-US/03ef949b534540778b4121148ded8c14.html?q=mongodb%20tutorial)
+11:23AM 
 
 6:27PM - week 3 done.
 
@@ -169,13 +165,9 @@ to consume connectivity configuration using JNDI, you need to define the Connect
 </resource-ref>
 ```
 
-要在 SCP 上展示 Fiori 应用程序，需要启用 Portal 服务,是指 Cloud 版本的 Fiori Launchpad的界面，用于在云端一站式显示各种 Fiori 或者 SAP UI5 类型的 APP。这和以前推出的 SAP Enterprise Portal 完全不是同一个事物。
-
 6:26PM - 一大堆编译错误！
 
 6:32PM try neo-java-web-sdk-3.52.15.zip Tomcat 8
-
-[Application Runtime Container](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/7613bd28711e1014839a8273b0e91070.html)
 
 SAP Cloud Platform applications run on a modular and lightweight application runtime container where they can use the platform services APIs and Java EE APIs according to standard patterns.
 
