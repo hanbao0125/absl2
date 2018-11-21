@@ -82,9 +82,6 @@ password: the one to access my laptop!!!
 
 CF_TRACE=true 
 
-
-1870220149 -  cf login failed: javax.naming.AuthenticationNotSupportedException
-
 # 2018-04-29
 
 jpa - java persistence api - 只需要定义annotation即可访问DB。
@@ -194,8 +191,6 @@ Server jerryconnecttest.i042416trial at hanatrial.ondemand.com was unable to sta
 8:17PM server在Eclipse里显示一直是Not authenticated状态
 # 8:23PM 找到solution了，先把resource从server移除，publish，再重新run as server，可以work。
 
-tips:陈教练说要游出自己节奏，左边滑时短暂闭气，右边划时使劲吐气。
-
 SYSTEM/Saptest1Sap12345
 
 10:45PM - 继续幺蛾子。HANA dev workbench无法使用。
@@ -280,11 +275,6 @@ vete2015ld001.dhcp.wdf.sap.corp:8010 in video - can work! 12:05PM
 
 ldai2gm6.wdf.sap.corp:50033 - can work as well! 12:08PM
 
-[Part 1: How to use SAP Cloud Platform Connectivity and Cloud Connector in the Cloud Foundry environment](https://blogs.sap.com/2017/07/09/how-to-use-the-sap-cloud-platform-connectivity-and-the-cloud-connector-in-the-cloud-foundry-environment-part-1/)
-
-[part 2: How to use SAP Cloud Platform Connectivity and Cloud Connector in the Cloud Foundry environment](https://blogs.sap.com/2017/07/13/part-2-how-to-use-the-sap-cloud-platform-connectivity-and-the-cloud-connector-in-the-cloud-foundry-environment/)
-
-[secure tunnel](https://blogs.sap.com/wp-content/uploads/2017/07/SAP-CP-Connectivity-CF-01.png)
 
 1. create a destination based on my virtual system in Cloud-Foundry: http://my-backend:80
 
@@ -353,40 +343,10 @@ npm ERR!     C:\Users\i042416\AppData\Roaming\npm-cache\_logs\2018-05-29T04_20_0
 
 The HANA DB runs as a service as part of SAP CF. Hence all the DB artifacts are deployed into its runtime container of Hana DB on CF.
 
-[SAP Cloud Platform regions and service portfolio](https://help.sap.com/doc/aa1ccd10da6c4337aa737df2ead1855b/Cloud/en-US/3b642f68227b4b1398d2ce1a5351389a.html)
 
 XS Classic has been deprecated since HANA 2.0 SPS02. It means that if you choose to develop on top of it now, you will eventually have to migrate. 
-
-# some useful SCN blogs
-
-
-* [Comparing SAP HANA to HANA Cloud Platform: Is it Apples to Oranges? Part 2](https://blogs.sap.com/2016/06/03/comparing-sap-hana-to-hana-cloud-platform-is-it-apples-to-oranges-part-2/)
-
-* [SAP HANA SPS 11: New Developer Features; XS Advanced](https://blogs.sap.com/2015/12/08/sap-hana-sps-11-new-developer-features-xs-advanced/)
-
-* [Comparing SAP HANA to HANA Cloud Platform: Is it Apples to Oranges?](https://blogs.sap.com/2015/07/30/comparing-sap-hana-to-hana-cloud-platform-is-it-apples-to-oranges/)
-
-* [some ways of developing OData service in HANA](https://answers.sap.com/questions/406082/how-to-connect-between-hanatrial-and-ui5-applicati-1.html)
-
-* [About Trial Accounts in the Cloud Foundry Environment](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/7da580474d654d96ad4d4fc05c778a18.html#loioa81ed0494d99471382f3e2d51b8ffd5e)
-
-* [SCP Cloud Foundry – Playing around with Node.js, MongoDB and UI5](https://blogs.sap.com/2016/09/05/hcp-cloud-foundry-playing-around-with-node-mongodb-and-ui5/)
-
-* [SCP SCN wiki](https://wiki.scn.sap.com/wiki/display/SAPHCP/Cloud+Foundry)
-
-* [Deploying SHINE on the Cloud Foundry Environment within SAP Cloud Platform](https://blogs.sap.com/2017/07/10/deploying-shine-on-the-cloud-foundry-environment-within-sap-cloud-platform/)
-
-* [Multi-target Application Archive Builder](https://help.sap.com/viewer/58746c584026430a890170ac4d87d03b/Cloud/en-US/ba7dd5a47b7a4858a652d15f9673c28d.html)
-
-* [Build Applications with MongoDB - MongoDB as a service in SAP cloud platform](https://help.sap.com/viewer/82f8a493cc6e4672a23a7e46bb11d4fa/Cloud/en-US/03ef949b534540778b4121148ded8c14.html?q=mongodb%20tutorial)
-
-
-# 2018-06-26
-
-SAP HANA Enterprise Cloud. It's a private managed cloud solution, so in some ways, it's similar to hosting.
 
 # 2018-07-08
 
 Reminder: by default my SAP Cloud Connector has been configured under corporate proxy, so if you are at home, please establish connection via VPN!!
 
-[SCP上获取登陆user信息：User Attributes](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/9e2e0d7e91cc44e79901a756bf7b2d88.html?q=user%27s%20information)
