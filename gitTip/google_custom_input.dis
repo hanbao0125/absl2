@@ -23,19 +23,26 @@ d	德国
 d	Docker
 d	dashboard
 dy	蝶泳
+e	employee
 e	Extensibility
 ec	Eclipse
 g	Github
 go	Google
 gzh	公众号
+h	环境变量
 h	HANA
 h	Hybris
+i	IP
+j	节点
 j	教学
 j	囧
 j	Java
 js	JavaScript
+k	框架
 k	k8s
 k	Kubernetes
+l	连接
+l	链接
 l	Linux
 l	老哥
 m	middleware
@@ -45,9 +52,12 @@ n	Netweaver
 n	nodejs
 n	Nginx
 n	namespace
+o	organization
+o	Opportunty
 o	One Order
 p	Port
 p	Partner
+q	全浸自由泳
 q	区块链
 r	容器
 r	Restful
@@ -59,6 +69,9 @@ sa	SAP成都研究院
 sa	SAP Cloud Platform
 sa	SAP云平台
 sa	SAP
+t	tcode
+t	TCP/IP
+t	通信
 t	腾讯
 u	Ubuntu
 v	VirtualBox
@@ -68,6 +81,7 @@ w	WebClient UI
 w	Welcome!
 w	WANGJER
 w	蛙泳
+x	需求
 x	谢谢支持
 xu	虚拟机
 y	应用
