@@ -1,11 +1,14 @@
 !	![image]
+(	()
 [	[图片]
+a	Administrator
 a	爱好者
 a	ABAP
 an	安卓
 an	Android
 au	Authentication
 au	Authorization
+b	BO
 b	Business
 c	Communication
 c	Cloud for Customer
@@ -28,6 +31,8 @@ dy	蝶泳
 e	employee
 e	Extensibility
 ec	Eclipse
+f	Fundamentals
+f	Fiori
 g	Github
 go	Google
 gzh	公众号
@@ -43,6 +48,7 @@ js	JavaScript
 k	框架
 k	k8s
 k	Kubernetes
+l	Lambda
 l	连接
 l	链接
 l	Linux
@@ -54,8 +60,8 @@ n	Netweaver
 n	nodejs
 n	Nginx
 n	namespace
+o	Opportunity
 o	organization
-o	Opportunty
 o	One Order
 p	Port
 p	Partner
@@ -64,6 +70,7 @@ q	区块链
 r	容器
 r	Restful
 r	repository
+s	Sales Order
 s	事务码
 s	Service
 s	Saptest1
@@ -72,6 +79,7 @@ sa	SAP成都研究院
 sa	SAP Cloud Platform
 sa	SAP云平台
 sa	SAP
+sz	数字创新空间
 t	tcode
 t	TCP/IP
 t	通信
@@ -84,6 +92,7 @@ w	WebClient UI
 w	Welcome!
 w	WANGJER
 w	蛙泳
+x	销售订单
 x	需求
 x	谢谢支持
 xu	虚拟机
