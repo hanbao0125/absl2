@@ -50,7 +50,8 @@ function sortByIndex(v1,v2){
 function extractImage(source,raw,imagePool){
 	var splitted = source.split("\n");
 	for( var i = 0; i < splitted.length; i++){
-		var trimed = splitted[i].trim();
+		var trimed = splitted[i]; //Jerry 2019-1-19 11:25AM don't trim, or code 
+		// format will be destroyed .trim();
 		if( trimed.indexOf("clipboard") > 0 ) { 
 			var result = IMAGE_PATTERN.exec(trimed);
 			// result 0 : whole image markdown
