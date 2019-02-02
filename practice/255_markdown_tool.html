@@ -22,10 +22,33 @@
 <button onclick="myFunction()">Click me</button>
 <script>
 
-/*
+var IMAGE_PATTERN = /^!\[(.*)\]\((.*)\)$/;
+var IMAGE_INDEX = /^image(\d+).*$/;
 
-*/
+function MyImage(index, name, url){
+	this.index = parseInt(index);
+	this.name = name;
+	this.url = url;
+}
 
+// input: ![image1.png](https://upload-images.jianshu.io/upload_images/2085791-9aa6232b1426df28.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
+function getParsedImage(input) {
+
+	if (input.indexOf("https://upload-images.jianshu.io") < 0 ) {
+		return;
+	} 
+	
+	var result = IMAGE_PATTERN.exec(input);
+	if( result.length != 3){
+		return;
+	}
+
+	var imageIndex = IMAGE_INDEX.exec(result[1]);
+	console.assert(imageIndex.length === 2);
+	return new MyImage(imageIndex[1], result[1], result[2]);
+}
 
 function getNodeTobeReplaced(current, parent, newPicUrl ){
 	return {
@@ -40,15 +63,6 @@ function getNodeTobeReplaced(current, parent, newPicUrl ){
 ![C:\\Users\\i042416\\AppData\\Local\\youdao\\ynote\\images\\8978F73796284F2A8A7DC3C3C979EABD\\clipboard.png](media/image35.png){width="7.85in" height="0.6604429133858267in"}
 
 */
-
-var IMAGE_PATTERN = /^!\[(.*)\].*$/;
-var IMAGE_NAME = /^clipboard(\d+)$/;
-var IMAGE_TAG = "[图片]";
-
-function SortedImage(index, url){
-	this.index = index;
-	this.url = url;
-}
 
 function sortByIndex(v1,v2){
 		if(v1.index < v2.index ){
@@ -71,38 +85,38 @@ function extractImage(source,raw,imagePool){
 	var splitted = source.split("\n");
 	for( var i = 0; i < splitted.length; i++){
 		var origin = splitted[i];
-		var trimed = splitted[i].trim();
-		if( trimed.indexOf("https://upload-images.jianshu.io") > 0 ) { 
-			var result = IMAGE_PATTERN.exec(trimed);
-			// result 0 : whole image markdown
-			// result 1 : "clipboard1"
-			if( result.length != 2){
-				continue;
-			}
-			var imageName = IMAGE_NAME.exec(result[1]);
-			if( imageName.length != 2) {
-				continue;
-			}
-			var index = parseInt(imageName[1]);
-			var storedImage = new SortedImage(index, result[0]);
-			imagePool.push(storedImage);
+
+		var parsed = getParsedImage(origin);
+
+		if( !parsed){
+			raw.push(origin);
 		}
 		else{
-			raw.push(origin);
+			imagePool.push(parsed);
 		}
 	}
 	imagePool.sort(sortByIndex);
 }
 
+/*
+![C:\\Users\\i042416\\AppData\\Local\\youdao\\ynote\\images\\31961301879E442EB726269DD13AFDCE\\clipboard.png](media/image30.png){width="4.241666666666666in" height="1.1583333333333334in"}
+
+*/
+
+var LOCAL_IMAGE_TAG = "(media/image";
+
 function replaceImageTag(raw,imagePool){
 	var formatted = "";
 	var line = "";
 	for( var i = 0; i < raw.length; i++){
-		if( raw[i].indexOf(IMAGE_TAG) < 0){
+		if( raw[i].indexOf(LOCAL_IMAGE_TAG) < 0){
 			line = raw[i];
 		}
 		else{
-			line = imagePool.shift().url;
+
+			console.log("local image tag found: " + raw[i]);
+			var currentImage = imagePool.shift();
+			line = "![](" + currentImage.url + ")";
 		}
 		formatted = formatted + "\n" + line;
 	}
