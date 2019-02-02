@@ -1,16 +1,23 @@
 <html>
 <script>
 
-var input = "![image31.png](https://upload-images.jianshu.io/upload_images/2085791-416440df76a7343c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)";
+var input = "![image3.png](https://upload-images.jianshu.io/upload_images/2085791-4d8b2cda3a057fb6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)" + "\n" + 
+
+"![image1.png](https://upload-images.jianshu.io/upload_images/2085791-9aa6232b1426df28.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)" + "\n" + 
+
+"![image2.png](https://upload-images.jianshu.io/upload_images/2085791-04f2773c126194fe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)";
 
 var IMAGE_PATTERN = /^!\[(.*)\]\((.*)\)$/;
-// var IMAGE_NAME = /^clipboard(\d+)$/;
-// var IMAGE_TAG = "[图片]";
+var IMAGE_INDEX = /^image(\d+).*$/;
 
-function SortedImage(index, url){
+function MyImage(index, name, url){
 	this.index = index;
+	this.name = name;
 	this.url = url;
 }
+
+var imagePool = [];
+
 
 function sortByIndex(v1,v2){
 		if(v1.index < v2.index ){
@@ -22,7 +29,8 @@ function sortByIndex(v1,v2){
 		else return 0;
 }
 
-function run(input) {
+
+function getParsedImage(input) {
 
 	if (input.indexOf("https://upload-images.jianshu.io") < 0 ) {
 		return;
@@ -32,15 +40,22 @@ function run(input) {
 	if( result.length != 3){
 		return;
 	}
-	return {
-		"fileIndex": 1,
-		"fileName": result[1],
-		"fileURL": result[2],
 
-	};
+	var imageIndex = IMAGE_INDEX.exec(result[1]);
+	console.assert(imageIndex.length === 2);
+	return new MyImage(imageIndex[1], result[1], result[2]);
 }
 			
-var result = run(input);
+var raw = input.split("\n");
+
+for( var i = 0; i < raw.length; i++){
+	var each = getParsedImage(raw[i]);
+	if( !!each){
+		imagePool.push(each);
+	}
+}
+
+imagePool.sort(sortByIndex);
 debugger;
 
 </script>
