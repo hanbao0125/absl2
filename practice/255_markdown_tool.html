@@ -1,7 +1,7 @@
 <html id="whole">
 
 <head>
-<title>Github上传工具</title>
+<title>Markdown上传工具</title>
 </head>
 
 <style>
@@ -17,15 +17,13 @@
 <textarea id="raw" rows="70" cols="80">
 </textarea>
 <textarea id="result" rows="70" cols="80">
-Paste the raw string copied from Cloud note in the Raw area
+输入:Typora里的markdown raw
 </textarea>
 <button onclick="myFunction()">Click me</button>
 <script>
 
 /*
-![clipboard3](https://user-images.githubusercontent.com/5669954/32415087-7b4d8a06-c26e-11e7-9122-c818d5f31586.png)
 
-2017-11-11 1：11PM [图片] and ![imageTag] must be matched.
 */
 
 
@@ -38,8 +36,9 @@ function getNodeTobeReplaced(current, parent, newPicUrl ){
 }
 
 /*
-wefsdfs
-![clipboard3](https://user-images.githubusercontent.com/5669954/32415087-7b4d8a06-c26e-11e7-9122-c818d5f31586.png)
+
+![C:\\Users\\i042416\\AppData\\Local\\youdao\\ynote\\images\\8978F73796284F2A8A7DC3C3C979EABD\\clipboard.png](media/image35.png){width="7.85in" height="0.6604429133858267in"}
+
 */
 
 var IMAGE_PATTERN = /^!\[(.*)\].*$/;
@@ -61,12 +60,19 @@ function sortByIndex(v1,v2){
 		else return 0;
 }
 
+// extract all image tag uploaded by jianshu
+
+/* jianshu image tag:
+![image31.png](https://upload-images.jianshu.io/upload_images/2085791-416440df76a7343c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+*/
+
 function extractImage(source,raw,imagePool){
 	var splitted = source.split("\n");
 	for( var i = 0; i < splitted.length; i++){
 		var origin = splitted[i];
 		var trimed = splitted[i].trim();
-		if( trimed.indexOf("clipboard") > 0 ) { 
+		if( trimed.indexOf("https://upload-images.jianshu.io") > 0 ) { 
 			var result = IMAGE_PATTERN.exec(trimed);
 			// result 0 : whole image markdown
 			// result 1 : "clipboard1"

@@ -1,0 +1,47 @@
+<html>
+<script>
+
+var input = "![image31.png](https://upload-images.jianshu.io/upload_images/2085791-416440df76a7343c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)";
+
+var IMAGE_PATTERN = /^!\[(.*)\]\((.*)\)$/;
+// var IMAGE_NAME = /^clipboard(\d+)$/;
+// var IMAGE_TAG = "[图片]";
+
+function SortedImage(index, url){
+	this.index = index;
+	this.url = url;
+}
+
+function sortByIndex(v1,v2){
+		if(v1.index < v2.index ){
+			return -1;
+		}
+		else if(v1.index > v2.index ){
+			return 1;
+		}
+		else return 0;
+}
+
+function run(input) {
+
+	if (input.indexOf("https://upload-images.jianshu.io") < 0 ) {
+		return;
+	} 
+	
+	var result = IMAGE_PATTERN.exec(input);
+	if( result.length != 3){
+		return;
+	}
+	return {
+		"fileIndex": 1,
+		"fileName": result[1],
+		"fileURL": result[2],
+
+	};
+}
+			
+var result = run(input);
+debugger;
+
+</script>
+</html>
