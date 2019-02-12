@@ -1,6 +1,7 @@
 !	![image]
 (	()
 [	[图片]
+`	```JavaScript
 a	Administrator
 a	爱好者
 a	ABAP
@@ -8,6 +9,8 @@ an	安卓
 an	Android
 au	Authentication
 au	Authorization
+b	Best Regards,
+b	编程
 b	BO
 b	Business
 c	Communication
@@ -41,6 +44,7 @@ gzh	公众号
 h	环境变量
 h	HANA
 h	Hybris
+i	innovation
 i	Individual
 i	IP
 j	节点
@@ -52,6 +56,7 @@ k	开发者工具
 k	框架
 k	k8s
 k	Kubernetes
+l	老哥猪年大吉
 l	Lambda
 l	连接
 l	链接
@@ -67,8 +72,10 @@ n	namespace
 o	Opportunity
 o	organization
 o	One Order
+p	profile
 p	Port
 p	Partner
+pr	Production Order
 q	全浸自由泳
 q	区块链
 r	容器
@@ -83,6 +90,7 @@ sa	SAP成都研究院
 sa	SAP Cloud Platform
 sa	SAP云平台
 sa	SAP
+sc	schedule
 sz	数字创新空间
 t	tcode
 t	TCP/IP
