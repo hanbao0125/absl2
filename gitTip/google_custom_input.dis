@@ -2,6 +2,7 @@
 (	()
 [	[图片]
 `	```JavaScript
+a	Application
 a	Administrator
 a	爱好者
 a	ABAP
@@ -20,6 +21,7 @@ c	CloudFoundry
 c	CDS view
 c	Cloud
 c	C4C
+ce	Certificate
 ch	程序猿
 ch	程序员
 ch	Chrome
@@ -63,6 +65,7 @@ l	连接
 l	链接
 l	Linux
 l	老哥
+m	Manifest.yml
 m	middleware
 m	mongoDB
 m	Markdown
@@ -73,6 +76,8 @@ n	namespace
 o	Opportunity
 o	organization
 o	One Order
+p	package.json
+p	PostgreSQL
 p	profile
 p	Port
 p	Partner
@@ -82,6 +87,7 @@ q	区块链
 r	容器
 r	Restful
 r	repository
+rx	瑞幸咖啡
 s	Sales Order
 s	事务码
 s	Service
@@ -93,11 +99,14 @@ sa	SAP云平台
 sa	SAP
 sc	schedule
 sf	Salesforce
+so	Socket
+su	subscribe
 sz	数字创新空间
 t	tcode
 t	TCP/IP
 t	通信
 t	腾讯
+tj	套接字
 u	UI5
 u	Ubuntu
 v	Visual Studio Code
