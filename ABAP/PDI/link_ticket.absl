@@ -1,7 +1,0 @@
-var eleBTD: elementsof ServiceRequest.BusinessTransactionDocumentReference;
-
-eleBTD.BusinessTransactionDocumentReference.ID.content = "101";// this.refTicket;
-eleBTD.BusinessTransactionDocumentReference.TypeCode = "/YTEJ8CJ8/1"; //"118";
-
-eleBTD.BusinessTransactionDocumentRelationshipRoleCode = "2";
-this.BusinessTransactionDocumentReference.Create(eleBTD);

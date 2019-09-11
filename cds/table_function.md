@@ -1,1 +1,0 @@
-[Debugging CDS Table Functions](https://blogs.sap.com/2016/10/19/debugging-cds-table-functions/)
